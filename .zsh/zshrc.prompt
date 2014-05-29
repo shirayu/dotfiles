@@ -1,0 +1,40 @@
+
+#show branchname
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '%b'
+zstyle ':vcs_info:*' actionformats '%b|%a'
+
+
+# prompt
+case ${UID} in
+    0)
+        PROMPT="[%{${fg[blue]}%}%n%{${reset_color}%}] %(!.#.$) %{${reset_color}%} "
+        PROMPT2="%B%{${fg[blue]}%}%_$%{${reset_color}%}%b "
+        SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+        RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+        ;;
+    *)
+        # user prompt
+        local GREEN=$'%{\e[1;32m%}'
+        local DEFAULT=$'%{\e[1;m%}'
+        #    PROMPT=$GREEN'${USER} %(!.#.$) '$DEFAULT
+        PROMPT=$GREEN'%(!.#.$) '$DEFAULT
+        #  PROMPT="%{${fg[cyan]}%}%n $%{${reset_color}%} "
+        PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
+        SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+        #  RPROMPT="%{${fg[cyan]}%}[%/]%{${reset_color}%}"
+        #  RPROMPT=$GREEN'[$USER@$HOST:%~]'$DEFAULT #former
+        VSN="%1(v|(%1v)|)"
+        RPROMPT=$GREEN'[$USER@$HOST:%~]$VSN'$DEFAULT #former
+
+        ;;
+esac
+
+function _vcs_myprecmd () {
+    #for version system
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+add-zsh-hook precmd _vcs_myprecmd
+

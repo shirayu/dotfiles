@@ -1,0 +1,18 @@
+
+# aliases
+
+
+alias "ls=ls --color" 
+alias "vi=vim"
+alias "vim-sjis=vim -c \":e ++enc=cp932\" "
+alias "vim=vim -X" #don't search X server
+alias "lv=lv -c"
+alias "su=su -l" #su
+alias "bc=bc -ql"
+alias "top=htop"
+alias "R=R -q"
+#alias "grep=grep --color=always"
+alias lock="gnome-screensaver-command -l ; xset dpms force off ;  "
+
+alias "jk=juman | knp -tab"
+alias "jkd=juman | knp -tab -debug"

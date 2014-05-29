@@ -1,0 +1,57 @@
+
+# PATH ###################################################
+export PATH=/sbin:$HOME/local/sbin:$HOME/local/bin:/usr/sbin/:/usr/local/sbin:$PATH
+
+# PYTHON
+export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/site-packages/
+export PYTHONPATH=$PYTHONPATH:$HOME/local/lib64/python2.7/site-packages/
+export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.6/site-packages/
+export PYTHONPATH=$PYTHONPATH:$HOME/local/lib64/python2.6/site-packages/
+export PYTHONPATH=$PYTHONPATH:/usr/lib/pymodules/python2.6
+export PYTHONPATH=$PYTHONPATH:$HOME/workspace/
+
+# SHELL
+export SHELL=`which zsh`
+
+#ssh-agent
+SSH_AGENT_FILE=/tmp/.ssh-agent-`hostname`-${USERNAME}
+if [ -e ${SSH_AGENT_FILE} ]; then
+    source ${SSH_AGENT_FILE}
+fi
+
+#Perl
+export PERL5LIB=$HOME/local/lib/perl5/site_perl/5.10.0/:$PERL5LIB
+export PERL5LIB=$HOME/local/perl/lib/:$PERL5LIB
+export PERL5LIB=$HOME/local/share/perl5/:$PERL5LIB
+
+# OTHER PATHES
+export INCLUDE=~/local/include:$INCLUDE
+export CPLUS_INCLUDE_PATH=~/local/include:$CPLUS_INCLUDE_PATH
+export CPLUS_LIBRARY_PATH=~/local/lib:$CPLUS_LIBRARY_PATH
+export LIBRARY_PATH=~/local/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=~/local/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=~/local/lib:$LD_RUN_PATH
+export JAVA_HOME=/usr/lib/jvm/java-6-sun/jre/
+
+export LC_TIME=C
+export EDITOR=vim
+export DISPLAY=:0.0
+#umask 66
+
+
+# LANG locale
+# if you check locales you can use, type "locale -a" command.
+export LANG=ja_JP.UTF-8
+# export LANG=en.US.UTF-8
+export LC_TIME=C
+#export JAVA_HOME=/usr/lib/jvm/java-6-sun/jre/bin/java
+
+
+## Environment variable configuration
+# case "$TERM" in
+#     xterm*)
+#     ;;
+#     *)
+#     ;;
+# esac
+

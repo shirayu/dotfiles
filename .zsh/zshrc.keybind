@@ -1,0 +1,19 @@
+
+
+# Keybind ##############################################
+bindkey -e # set the keybinds Emacs
+bindkey "^[[1~" beginning-of-line #home
+bindkey "^[OF" end-of-line #end
+bindkey "^[[3~" delete-char
+bindkey '^P' history-beginning-search-backward # search history file, show the matched command
+# bindkey '^N' history-beginning-search-forward # matching forward
+
+
+#Crtl+ <- or -> makes the cursor move
+#   http://d.hatena.ne.jp/tkng/20100712/1278896396
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+export WORDCHARS='*?[]~=&;!#$%^(){}<>'
+

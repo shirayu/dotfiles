@@ -1,0 +1,22 @@
+[user]
+	name = Yuta Hayashibe
+	email = yuta@hayashibe.jp
+
+[alias]
+    l = log --graph --pretty='%C(yellow)%h%Creset %C(cyan bold)%d%Creset %s %Cgreen[%cd] %C(bold blue)<%an> %Creset' --decorate --date=iso
+
+[core]
+	pager = lv -c
+	autocrlf = false
+
+[difftool.latex]
+;         cmd = git-latexdiff "$LOCAL" "$REMOTE"
+	cmd = latexdiff -t CFONT -e euc-jp "$LOCAL" "$REMOTE"
+[difftool]
+	prompt = false
+[alias]
+	ldiff = difftool -t latex   
+; [http]
+;         proxy = http://proxy.kuins.net:8080
+; [https]
+;         proxy = http://proxy.kuins.net:8080

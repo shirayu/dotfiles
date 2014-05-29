@@ -1,0 +1,22 @@
+#http://lambdalisue.hatenablog.com/entry/2013/06/25/140630
+
+# プロキシ設定 ==============================================
+#USERNAME="<USERNAME>"       # 認証が必要なプロキシの場合
+#PASSWORD="<PASSWORD>"       # 認証が必要なプロキシの場合
+PXHOST="proxy.kuins.net"
+PXPORT="8080"
+
+PXHOST="proxy.noc.titech.ac.jp" 
+PXPORT="3128"
+
+
+PROXY="$PXHOST:$PXPORT"
+export http_proxy="$PROXY"
+export https_proxy="$PROXY"
+export ftp_proxy="$PROXY"
+export HTTP_PROXY="$PROXY"
+export HTTPS_PROXY="$PROXY"
+export FTP_PROXY="$PROXY"
+
+export no_proxy="127.0.0.1,localhost"
+export NO_PROXY="$no_proxy"
