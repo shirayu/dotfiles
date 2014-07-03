@@ -8,4 +8,6 @@ ln -s $SRC/.signature ~/.signature
 ln -s $SRC/dot_vim/ ~/.vim
 ln -s $SRC/dot_vim/vimrc ~/.vimrc
 ln -s $SRC/.zsh ~/.zsh
+ln -s $SRC/.zprofile ~/.zprofile
+ln -s $SRC/.zlogout ~/.zlogout
 ln -s $SRC/.zshrc ~/.zshrc

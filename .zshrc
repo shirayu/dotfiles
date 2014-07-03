@@ -8,6 +8,7 @@ ZSH_SETTING_PATH=$HOME/.zsh/
 autoload -U add-zsh-hook
 
 source $ZSH_SETTING_PATH/zshrc.keybind
+source $ZSH_SETTING_PATH/zshrc.authsock
 source $ZSH_SETTING_PATH/zshrc.envvar
 source $ZSH_SETTING_PATH/zshrc.prompt
 source $ZSH_SETTING_PATH/zshrc.options

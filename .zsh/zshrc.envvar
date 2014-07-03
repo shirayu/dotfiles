@@ -3,6 +3,7 @@
 export PATH=/sbin:$HOME/local/sbin:$HOME/local/bin:/usr/sbin/:/usr/local/sbin:$PATH
 
 # PYTHON
+export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/
 export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/site-packages/
 export PYTHONPATH=$PYTHONPATH:$HOME/local/lib64/python2.7/site-packages/
 export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.6/site-packages/
@@ -13,13 +14,8 @@ export PYTHONPATH=$PYTHONPATH:$HOME/workspace/
 # SHELL
 export SHELL=`which zsh`
 
-#ssh-agent
-SSH_AGENT_FILE=/tmp/.ssh-agent-`hostname`-${USERNAME}
-if [ -e ${SSH_AGENT_FILE} ]; then
-    source ${SSH_AGENT_FILE}
-fi
-
 #Perl
+export PERL5LIB=$HOME/local/lib/perl5/:$PERL5LIB
 export PERL5LIB=$HOME/local/lib/perl5/site_perl/5.10.0/:$PERL5LIB
 export PERL5LIB=$HOME/local/perl/lib/:$PERL5LIB
 export PERL5LIB=$HOME/local/share/perl5/:$PERL5LIB
