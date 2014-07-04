@@ -14,6 +14,7 @@ source $ZSH_SETTING_PATH/zshrc.prompt
 source $ZSH_SETTING_PATH/zshrc.options
 source $ZSH_SETTING_PATH/zshrc.alias
 source $ZSH_SETTING_PATH/zshrc.change_title_bar
+source $ZSH_SETTING_PATH/zshrc.peco
 
 cd #go home-dir
 

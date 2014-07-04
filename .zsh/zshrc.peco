@@ -1,0 +1,35 @@
+
+# setting for peco
+
+# for f (~/.peco/*) source "${f}" # load peco sources
+#
+
+if which peco > /dev/null; then
+    function peco-select-history() {
+        local tac
+        if which tac > /dev/null; then
+            tac="tac"
+        else
+            tac="tail -r"
+        fi
+        BUFFER=$(history -n 1 | \
+            eval $tac | \
+            peco --query "$LBUFFER")
+        CURSOR=$#BUFFER
+        zle clear-screen
+    }
+    zle -N peco-select-history
+    bindkey '^r' peco-select-history
+
+
+    function peco-cd () {
+        local selected_dir=$(find ~/ -type d | peco)
+        if [ -n "$selected_dir" ]; then
+            BUFFER="cd ${selected_dir}"
+            zle accept-line
+        fi
+        zle clear-screen
+    }
+    zle -N peco-cd
+    bindkey '^f' peco-cd
+fi
