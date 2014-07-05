@@ -12,7 +12,7 @@ function _authsock () {
             fi
 
             #if the socket is invalid, erase it
-            sed -e '1,1d' ${SSH_SOCK_LIST}
+            sed -i '1d' ${SSH_SOCK_LIST}
         done
     fi
 }
