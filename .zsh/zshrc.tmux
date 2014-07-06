@@ -3,6 +3,8 @@
 function _tmux_myprecmd () {
     if [ "$TMUX" ]; then
         tmux rename-window $(basename $(print -P "%~"))
+    else
+        echo -ne "\033]0;`hostname`\007"
     fi
 }
 add-zsh-hook precmd _tmux_myprecmd
