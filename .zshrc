@@ -20,17 +20,22 @@ cd #go home-dir
 
 NO_SCREEN_HOSTS=(orchid reed)
 if (( ! ${NO_SCREEN_HOSTS[(I)`hostname`]} )); then
-    source $ZSH_SETTING_PATH/zshrc.screen
-    autoload -U compinit
+
+    #CDD    http://blog.m4i.jp/entry/2012/01/26/064329
+    autoload -Uz compinit
     compinit
     source $ZSH_SETTING_PATH/zshrc.cdd
-    add-zsh-hook chpwd _reg_pwd_screennum
+    add-zsh-hook chpwd _cdd_chpwd
 
 
     #screen
-    # -x Attach to a not detached screen session
-    # -R attempts  to  resume  the youngest (in terms of creation time) detached screen session it finds
-    # Gnu Screen starts automatically.
-    # If you don't use screen, please detach or eixt(kill screen).
+#     source $ZSH_SETTING_PATH/zshrc.screen
 #     screen -xR -U
+
+    #tmux
+    source $ZSH_SETTING_PATH/zshrc.tmux
+    if [ $SHLVL = 1 ]; then
+      tmux attach || tmux
+    fi
+
 fi
