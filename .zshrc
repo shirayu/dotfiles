@@ -32,5 +32,5 @@ if (( ! ${NO_SCREEN_HOSTS[(I)`hostname`]} )); then
     # -R attempts  to  resume  the youngest (in terms of creation time) detached screen session it finds
     # Gnu Screen starts automatically.
     # If you don't use screen, please detach or eixt(kill screen).
-    screen -xR -U
+#     screen -xR -U
 fi

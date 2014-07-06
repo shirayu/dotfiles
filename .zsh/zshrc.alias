@@ -16,3 +16,6 @@ alias lock="gnome-screensaver-command -l ; xset dpms force off ;  "
 
 alias "jk=juman | knp -tab"
 alias "jkd=juman | knp -tab -debug"
+
+# alias tmux="DISABLE_AUTO_TITLE=true TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color-bce tmux"
