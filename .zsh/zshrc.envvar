@@ -29,7 +29,6 @@ export LD_LIBRARY_PATH=~/local/lib:$LD_LIBRARY_PATH
 export LD_RUN_PATH=~/local/lib:$LD_RUN_PATH
 export JAVA_HOME=/usr/lib/jvm/java-6-sun/jre/
 
-export LC_TIME=C
 export EDITOR=vim
 export DISPLAY=:0.0
 #umask 66
@@ -42,12 +41,5 @@ export LANG=ja_JP.UTF-8
 export LC_TIME=C
 #export JAVA_HOME=/usr/lib/jvm/java-6-sun/jre/bin/java
 
-
-## Environment variable configuration
-# case "$TERM" in
-#     xterm*)
-#     ;;
-#     *)
-#     ;;
-# esac
+export LS_COLORS=""
 
