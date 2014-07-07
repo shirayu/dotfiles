@@ -16,7 +16,7 @@ source $ZSH_SETTING_PATH/zshrc.alias
 source $ZSH_SETTING_PATH/zshrc.change_title_bar
 source $ZSH_SETTING_PATH/zshrc.peco
 
-cd #go home-dir
+# cd #go home-dir
 
 NO_SCREEN_HOSTS=(orchid reed)
 if (( ! ${NO_SCREEN_HOSTS[(I)`hostname`]} )); then
