@@ -5,16 +5,24 @@
 #
 
 if which peco > /dev/null; then
-    function peco-select-history() {
+    function _get_one_hist(){
         local tac
         if which tac > /dev/null; then
             tac="tac"
         else
             tac="tail -r"
         fi
-        BUFFER=$(history -n 1 | \
-            eval $tac | \
-            peco --query "$LBUFFER")
+
+        if [ "$TMUX" ]; then
+            local mypanelnum
+            mypanelnum=`tmux display-message -p '#P'`
+            tmux split-window "sed 's/^:.*;//' ${HISTFILE} | eval $tac | peco --query \"$LBUFFER\" | xargs -i tmux send-keys -t $mypanelnum C-u '{}'"
+        else
+            history -n 1 | eval $tac | peco --query "$LBUFFER"
+        fi
+    }
+    function peco-select-history() {
+        BUFFER=$(_get_one_hist)
         CURSOR=$#BUFFER
         zle clear-screen
     }
