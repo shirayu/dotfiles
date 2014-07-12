@@ -18,8 +18,8 @@ source $ZSH_SETTING_PATH/zshrc.peco
 
 # cd #go home-dir
 
-NO_SCREEN_HOSTS=(orchid reed)
-if (( ! ${NO_SCREEN_HOSTS[(I)`hostname`]} )); then
+NO_SCREEN_HOSTS=(orchid reed lotus lotus2)
+if (( ! ${NO_SCREEN_HOSTS[(I)`hostname -s`]} )); then
 
     #CDD    http://blog.m4i.jp/entry/2012/01/26/064329
     autoload -Uz compinit
