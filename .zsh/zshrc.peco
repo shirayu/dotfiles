@@ -16,7 +16,7 @@ if which peco > /dev/null; then
         if [ "$TMUX" ]; then
             local mypanelnum
             mypanelnum=`tmux display-message -p '#P'`
-            tmux split-window "SENDKEYS=\`sed 's/^:.*;//' ${HISTFILE} | eval $tac | peco --query \"$LBUFFER\"\`; if [[ \${SENDKEYS} = '' ]]; then SENDKEYS='${LBUFFER}'; fi; tmux send-keys -t $mypanelnum C-u \${SENDKEYS}"
+            tmux split-window "SENDKEYS=\`sed 's/^:.*;//' ${HISTFILE} | eval $tac |awk '!x[\$0]++{print \$0}'| peco --query \"$LBUFFER\"\`; if [[ \${SENDKEYS} = '' ]]; then SENDKEYS='${LBUFFER}'; fi; tmux send-keys -t $mypanelnum C-u \${SENDKEYS}"
         else
             local selected_hist
             selected_hist=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
