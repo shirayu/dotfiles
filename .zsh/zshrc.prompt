@@ -5,30 +5,44 @@ zstyle ':vcs_info:*' formats '%b'
 zstyle ':vcs_info:*' actionformats '%b|%a'
 
 
-# prompt
-case ${UID} in
+# preparation for user prompt
+function _prompt_myprecmd () {
+    exit_status=$?
+    if ! $ran_something; then
+        exit_status=0
+    fi
+    ran_something=false
+}
+add-zsh-hook precmd _prompt_myprecmd
+function _prompt_mypreexec () {
+    ran_something=true
+}
+add-zsh-hook preexec _prompt_mypreexec
+show_non_zero_exit_status() {
+    local GREEN=$'%{\e[1;32m%}'
+    local RED=$'%{\e[1;31m%}'
+    case $exit_status in
     0)
-        PROMPT="[%{${fg[blue]}%}%n%{${reset_color}%}] %(!.#.$) %{${reset_color}%} "
-        PROMPT2="%B%{${fg[blue]}%}%_$%{${reset_color}%}%b "
-        SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-        RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
-        ;;
+        echo $GREEN #TODO change color uid=0
+        :;;
+    1 | 126 | 127)
+        echo $RED
+        :;;
     *)
-        # user prompt
-        local GREEN=$'%{\e[1;32m%}'
-        local DEFAULT=$'%{\e[1;m%}'
-        #    PROMPT=$GREEN'${USER} %(!.#.$) '$DEFAULT
-        PROMPT=$GREEN'%(!.#.$) '$DEFAULT
-        #  PROMPT="%{${fg[cyan]}%}%n $%{${reset_color}%} "
-        PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
-        SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-        #  RPROMPT="%{${fg[cyan]}%}[%/]%{${reset_color}%}"
-        #  RPROMPT=$GREEN'[$USER@$HOST:%~]'$DEFAULT #former
-        VSN="%1(v|(%1v)|)"
-        RPROMPT=$GREEN'[$USER@$HOST:%~]$VSN'$DEFAULT #former
+        echo "${RED}[${exit_status}]";;
+    esac
+}
 
-        ;;
-esac
+# user prompt
+local GREEN=$'%{\e[1;32m%}'
+local RED=$'%{\e[1;31m%}'
+local DEFAULT=$'%{\e[1;m%}'
+PROMPT=$GREEN'%(!.#.$) '$DEFAULT
+PROMPT='$(show_non_zero_exit_status)%(!.#.$) ${DEFAULT}'
+PROMPT2="${GREEN}%B%{${fg[blue]}%}%_#%{${reset_color}%}%b ${DEFAULT}"
+SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+VSN="%1(v|(%1v)|)"
+RPROMPT=$GREEN'[$USER@$HOST:%~]$VSN'$DEFAULT #former
 
 function _vcs_myprecmd () {
     #for version system
