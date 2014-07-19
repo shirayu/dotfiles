@@ -1,6 +1,11 @@
 
 # PATH ###################################################
-export PATH=/sbin:$HOME/local/sbin:$HOME/local/bin:/usr/sbin/:/usr/local/sbin:$PATH
+export PATH=/sbin:$PATH
+export PATH=/usr/sbin/$PATH:
+export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/local/sbin:$PATH
+export PATH=$HOME/local/bin:$PATH
+
 
 # PYTHON
 export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/
