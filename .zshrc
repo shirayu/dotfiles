@@ -4,12 +4,16 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 
-ZSH_SETTING_PATH=$HOME/.zsh/
 autoload -U add-zsh-hook
+
+if [[ $ZSH_SETTING_PATH == '' ]]; then
+    export ZSH_SETTING_PATH=$HOME/.zsh/
+    source $ZSH_SETTING_PATH/zshrc.envvar
+fi
+
 
 source $ZSH_SETTING_PATH/zshrc.keybind
 source $ZSH_SETTING_PATH/zshrc.authsock
-source $ZSH_SETTING_PATH/zshrc.envvar
 source $ZSH_SETTING_PATH/zshrc.prompt
 source $ZSH_SETTING_PATH/zshrc.options
 source $ZSH_SETTING_PATH/zshrc.alias
