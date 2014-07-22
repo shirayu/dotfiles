@@ -3,6 +3,12 @@ HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
+# Loading complement setting, and set it.
+autoload -Uz compinit && compinit
+# highlighting complement canditates
+autoload colors
+zstyle ':completion:*' list-colors "${LS_COLORS}"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 autoload -U add-zsh-hook
 
@@ -11,7 +17,9 @@ if [[ $ZSH_SETTING_PATH == '' ]]; then
     source $ZSH_SETTING_PATH/zshrc.envvar
 fi
 
-
+if [ -e $GOROOT/misc/zsh/go ]; then
+    source $GOROOT/misc/zsh/go
+fi
 source $ZSH_SETTING_PATH/zshrc.keybind
 source $ZSH_SETTING_PATH/zshrc.authsock
 source $ZSH_SETTING_PATH/zshrc.prompt
@@ -26,8 +34,6 @@ NO_SCREEN_HOSTS=(orchid reed lotus lotus2)
 if (( ! ${NO_SCREEN_HOSTS[(I)`hostname -s`]} )); then
 
     #CDD    http://blog.m4i.jp/entry/2012/01/26/064329
-    autoload -Uz compinit
-    compinit
     source $ZSH_SETTING_PATH/zshrc.cdd
     add-zsh-hook chpwd _cdd_chpwd
 

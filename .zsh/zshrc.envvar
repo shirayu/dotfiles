@@ -7,6 +7,14 @@ export PATH=$HOME/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
 
 
+# GO
+if [ -e $HOME/local/lib/go/bin ];then
+    export PATH=$HOME/local/lib/go/bin:$PATH
+fi
+export GOPATH=~/.go
+export PATH=$GOPATH/bin:$PATH
+export GOROOT=`go env GOROOT` #warning: GOPATH set to GOROOT has no effect
+
 # PYTHON
 export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/
 export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/site-packages/

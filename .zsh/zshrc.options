@@ -1,11 +1,4 @@
 
-# Loading complement setting, and set it.
-autoload -U compinit
-compinit 
-# highlighting complement canditates
-autoload colors
-zstyle ':completion:*' list-colors "${LS_COLORS}"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 setopt auto_list             # show a list of complementable things by ^I
 setopt auto_cd	 # you can change directory without typing cd command.
