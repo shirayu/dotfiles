@@ -9,11 +9,14 @@ export PATH=$HOME/local/bin:$PATH
 
 # GO
 if [ -e $HOME/local/lib/go/bin ];then
+    #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/lib/go
     export PATH=$HOME/local/lib/go/bin:$PATH
+    export GOROOT=$HOME/local/lib/go
+else
+    export GOROOT=`go env GOROOT` #warning: GOPATH set to GOROOT has no effect
 fi
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
-export GOROOT=`go env GOROOT` #warning: GOPATH set to GOROOT has no effect
 
 # PYTHON
 export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/
