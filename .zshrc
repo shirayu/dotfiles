@@ -20,9 +20,14 @@ fi
 if [ -e $GOROOT/misc/zsh/go ]; then
     source $GOROOT/misc/zsh/go
 fi
+
+OLD_ZSH_HOSTS=(orchid reed lotus lotus2)
+if (( ! ${OLD_ZSH_HOSTS[(I)`hostname -s`]} )); then
+    source $ZSH_SETTING_PATH/zshrc.authsock
+    source $ZSH_SETTING_PATH/zshrc.prompt
+fi
+
 source $ZSH_SETTING_PATH/zshrc.keybind
-source $ZSH_SETTING_PATH/zshrc.authsock
-source $ZSH_SETTING_PATH/zshrc.prompt
 source $ZSH_SETTING_PATH/zshrc.options
 source $ZSH_SETTING_PATH/zshrc.alias
 source $ZSH_SETTING_PATH/zshrc.change_title_bar
