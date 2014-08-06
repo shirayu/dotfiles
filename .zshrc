@@ -21,7 +21,7 @@ if [ -e $GOROOT/misc/zsh/go ]; then
     source $GOROOT/misc/zsh/go
 fi
 
-OLD_ZSH_HOSTS=(orchid reed lotus lotus2)
+OLD_ZSH_HOSTS=(orchid reed lotus)
 if (( ! ${OLD_ZSH_HOSTS[(I)`hostname -s`]} )); then
     source $ZSH_SETTING_PATH/zshrc.authsock
     source $ZSH_SETTING_PATH/zshrc.prompt
@@ -35,7 +35,7 @@ source $ZSH_SETTING_PATH/zshrc.peco
 
 # cd #go home-dir
 
-NO_SCREEN_HOSTS=(orchid reed lotus lotus2)
+NO_SCREEN_HOSTS=(orchid reed lotus)
 if (( ! ${NO_SCREEN_HOSTS[(I)`hostname -s`]} )); then
 
     #CDD    http://blog.m4i.jp/entry/2012/01/26/064329
