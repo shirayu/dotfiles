@@ -19,3 +19,9 @@ alias "jkd=juman | knp -tab -debug"
 
 # alias tmux="DISABLE_AUTO_TITLE=true TERM=screen-256color-bce tmux"
 alias tmux="TERM=screen-256color-bce tmux"
+
+host=`hostname -s`
+if [[ $host[0,5] == "basil" ]]; then
+   alias tmux="TERM=screen-256color-bce LD_PRELOAD=/lib64/libncurses.so.5 tmux"
+fi
+
