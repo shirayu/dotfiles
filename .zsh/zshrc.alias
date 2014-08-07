@@ -22,6 +22,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 host=`hostname -s`
 if [[ $host[0,5] == "basil" ]]; then
+   export LD_PRELOAD="" #disable after tmux launch
    alias tmux="TERM=screen-256color-bce LD_PRELOAD=/lib64/libncurses.so.5 tmux"
 fi
 
