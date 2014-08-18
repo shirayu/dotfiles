@@ -12,6 +12,8 @@ ln -s $SRC/.zprofile ~/.zprofile
 ln -s $SRC/.zlogout ~/.zlogout
 ln -s $SRC/.zshrc ~/.zshrc
 
+ln -s $SRC/fonts.conf ~/.fonts.conf
+ln -s $SRC/fonts.conf ~/.config/fontconfig/fonts.conf
 
 ln -s $SRC/.tmux.conf ~/.tmux.conf
 ln -s $SRC/.tmux ~/.tmux
