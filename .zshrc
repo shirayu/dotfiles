@@ -19,6 +19,18 @@ fi
 
 if [ -e $GOROOT/misc/zsh/go ]; then
     source $GOROOT/misc/zsh/go
+
+    __customized_go_tool_complete() {
+        if [[ "${words[2]}" = "run" ]] ;then
+            _files ; #suggest all file names
+            if [[ $CURRENT -lt 4 ]]; then
+                __go_tool_complete ;
+            fi
+        else
+            __go_tool_complete ;
+        fi
+    }
+    compdef __customized_go_tool_complete go
 fi
 
 OLD_ZSH_HOSTS=(orchid reed lotus)
