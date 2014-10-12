@@ -3,6 +3,16 @@ HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
+#FPATH
+MYFPATH=/usr/share/zsh/4.3.10/functions
+if [ -e $MYFPATH ];then
+    export FPATH=$FPATH:$MYFPATH
+fi
+MYFPATH=$HOME/share/zsh/5.0.7/functions
+if [ -e $MYFPATH ];then
+    export FPATH=$FPATH:$MYFPATH
+fi
+
 # Loading complement setting, and set it.
 autoload -Uz compinit && compinit
 # highlighting complement canditates
