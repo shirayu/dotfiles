@@ -6,6 +6,7 @@ alias "ls=ls --color"
 alias "vi=vim"
 alias "vim-sjis=vim -c \":e ++enc=cp932\" "
 alias "vim=vim -X" #don't search X server
+alias "renamer.vim=vi +Renamer"
 alias "lv=lv -c"
 alias "su=su -l" #su
 alias "bc=bc -ql"
