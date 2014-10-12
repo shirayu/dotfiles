@@ -1,6 +1,9 @@
 #!/bin/sh
 
 SRC=$HOME/Dropbox/dotfiles/
+if [ ! -e $SRC ];then
+    SRC=$HOME/.dotfiles/
+fi
 
 ln -s $SRC/.gitconfig ~/.gitconfig 
 ln -s $SRC/.screenrc ~/.screenrc
