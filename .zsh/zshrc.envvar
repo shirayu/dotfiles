@@ -31,10 +31,14 @@ export PYTHONPATH=$PYTHONPATH:$HOME/workspace/
 export SHELL=`which zsh`
 
 #Perl
-export PERL5LIB=$HOME/local/lib/perl5/:$PERL5LIB
-export PERL5LIB=$HOME/local/lib/perl5/site_perl/5.10.0/:$PERL5LIB
-export PERL5LIB=$HOME/local/perl/lib/:$PERL5LIB
-export PERL5LIB=$HOME/local/share/perl5/:$PERL5LIB
+#for basil servers in kyoto-univ
+export PERL5LIB=/share/usr-x86_64/lib64/perl5/:$PERL5LIB
+export PERL5LIB=/share/usr-x86_64/lib64/perl5/site_perl/5.8.8/:$PERL5LIB
+
+# export PERL5LIB=$HOME/local/lib/perl5/:$PERL5LIB
+# export PERL5LIB=$HOME/local/lib/perl5/site_perl/5.10.0/:$PERL5LIB
+# export PERL5LIB=$HOME/local/perl/lib/:$PERL5LIB
+# export PERL5LIB=$HOME/local/share/perl5/:$PERL5LIB
 
 # OTHER PATHES
 export INCLUDE=~/local/include:$INCLUDE
