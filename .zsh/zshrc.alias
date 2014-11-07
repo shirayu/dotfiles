@@ -27,3 +27,8 @@ if [[ $host[0,5] == "basil" || $host == "sakura" || $host[0,7] == "tsubaki" || `
    alias tmux="TERM=screen-256color-bce LD_PRELOAD=/lib64/libncurses.so.5 tmux"
 fi
 
+
+unalias \rm 2> /dev/null
+unalias \cp 2> /dev/null
+unalias \mv 2> /dev/null
+
