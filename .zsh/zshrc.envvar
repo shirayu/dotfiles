@@ -13,7 +13,10 @@ if [ -e $HOME/local/lib/go/bin ];then
     export PATH=$HOME/local/lib/go/bin:$PATH
     export GOROOT=$HOME/local/lib/go
 else
-    export GOROOT=`go env GOROOT` #warning: GOPATH set to GOROOT has no effect
+    which go >/dev/null
+    if [ "$?" -eq 0 ];then
+        export GOROOT=`go env GOROOT` #warning: GOPATH set to GOROOT has no effect
+    fi
 fi
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
