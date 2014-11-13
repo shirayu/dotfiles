@@ -4,7 +4,7 @@ function _authsock () {
     if [ ! -e ${SSH_SOCK_LIST} ]; then
         return
     elif [ ! -e ${SSH_AUTH_SOCK} ]; then
-        while [ "`wc -l ${SSH_SOCK_LIST}`" != "0" ]
+        while [ "`wc -l < ${SSH_SOCK_LIST}`" != "0" ]
         do 
             export SSH_AUTH_SOCK=`head -n1 ${SSH_SOCK_LIST}`
             if [ -e "${SSH_AUTH_SOCK}"  ]; then
