@@ -42,3 +42,5 @@ if [ -e ${HOME}/.dir_colors ]; then
     eval "`dircolors -b ${HOME}/.dir_colors`"
 fi
 
+#Disable lock to type Ctrl-S
+stty stop undef
