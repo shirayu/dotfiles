@@ -49,6 +49,7 @@ if (( ! ${OLD_ZSH_HOSTS[(I)`hostname -s`]} )); then
     source $ZSH_SETTING_PATH/zshrc.prompt
 fi
 
+source $ZSH_SETTING_PATH/zshrc.gxp
 source $ZSH_SETTING_PATH/zshrc.keybind
 source $ZSH_SETTING_PATH/zshrc.options
 source $ZSH_SETTING_PATH/zshrc.alias
