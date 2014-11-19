@@ -62,8 +62,8 @@ NO_SCREEN_HOSTS=(orchid reed lotus)
 if (( ! ${NO_SCREEN_HOSTS[(I)`hostname -s`]} )); then
 
     #CDD    http://blog.m4i.jp/entry/2012/01/26/064329
-    source $ZSH_SETTING_PATH/zshrc.cdd
-    add-zsh-hook chpwd _cdd_chpwd
+#     source $ZSH_SETTING_PATH/zshrc.cdd
+#     add-zsh-hook chpwd _cdd_chpwd
 
 
     #screen
