@@ -2,7 +2,7 @@
 # aliases
 
 
-alias "ls=ls --color" 
+alias "ls=LS_COLORS='' ls --color"
 alias "vi=vim"
 alias "vim-sjis=vim -c \":e ++enc=cp932\" "
 alias "vim=vim -X" #don't search X server
