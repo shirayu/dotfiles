@@ -33,15 +33,15 @@ export PYTHONPATH=$PYTHONPATH:$HOME/workspace/
 # SHELL
 export SHELL=`which zsh`
 
-#Perl
-#for basil servers in kyoto-univ
-export PERL5LIB=/share/usr-x86_64/lib64/perl5/:$PERL5LIB
-export PERL5LIB=/share/usr-x86_64/lib64/perl5/site_perl/5.8.8/:$PERL5LIB
-
-# export PERL5LIB=$HOME/local/lib/perl5/:$PERL5LIB
-# export PERL5LIB=$HOME/local/lib/perl5/site_perl/5.10.0/:$PERL5LIB
-# export PERL5LIB=$HOME/local/perl/lib/:$PERL5LIB
-# export PERL5LIB=$HOME/local/share/perl5/:$PERL5LIB
+#Perl (with cpanminus installed at $HOME/local/lib/perl)
+#   wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
+#   export PERL_CPANM_OPT="--local-lib=$HOME/local/lib/perl"
+#   cat ./cpanm | perl - App::cpanminus
+export PATH=$HOME/local/lib/perl/bin/:$PATH
+export PERL_CPANM_OPT="--local-lib=$HOME/local/lib/perl"
+export PERL_MM_OPT="$HOME/local/lib/perl"
+export PERL_MB_OPT="$HOME/local/lib/perl"
+export PERL5LIB=$HOME/local/lib/perl/lib/perl5/:$PERL5LIB
 
 # OTHER PATHES
 export INCLUDE=~/local/include:$INCLUDE
