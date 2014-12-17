@@ -8,10 +8,10 @@ export PATH=$HOME/local/bin:$PATH
 
 
 # GO
-if [ -e $HOME/local/lib/go/bin ];then
-    #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/lib/go
-    export PATH=$HOME/local/lib/go/bin:$PATH
-    export GOROOT=$HOME/local/lib/go
+if [ -e $HOME/local/share/go/bin ];then
+    #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/share/go
+    export PATH=$HOME/local/share/go/bin:$PATH
+    export GOROOT=$HOME/local/share/go
 else
     which go >/dev/null
     if [ "$?" -eq 0 ];then
