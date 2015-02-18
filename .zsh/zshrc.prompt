@@ -42,11 +42,13 @@ PROMPT='$(show_non_zero_exit_status)%(!.#.$) ${DEFAULT}'
 PROMPT2="${GREEN}%B%{${fg[blue]}%}%_#%{${reset_color}%}%b ${DEFAULT}"
 SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
 VSN="%1(v|(%1v)|)"
+
+MYSHORTHOST=${HOST%\.lang-private\.kuee\.kyoto-u\.ac\.jp}
 if [ "$TMUX" = "" ]; then
-    RPROMPT=$GREEN'[$USER@$HOST:%~]$VSN'$DEFAULT
+    RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]$VSN'$DEFAULT
 else
     #exclude username when tmux is active
-    RPROMPT=$GREEN'[$HOST:%~]$VSN'$DEFAULT
+    RPROMPT=$GREEN'[$MYSHORTHOST:%~]$VSN'$DEFAULT
 fi
 
 function _vcs_myprecmd () {
