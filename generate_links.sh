@@ -20,3 +20,4 @@ ln -s $SRC/fonts.conf ~/.config/fontconfig/fonts.conf
 
 ln -s $SRC/.tmux.conf ~/.tmux.conf
 ln -s $SRC/.tmux ~/.tmux
+ln -s $SRC/.latexmkrc ~/.latexmkrc
