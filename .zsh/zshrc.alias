@@ -32,3 +32,4 @@ unalias \rm 2> /dev/null
 unalias \cp 2> /dev/null
 unalias \mv 2> /dev/null
 
+alias "crontab-e=vi ~/.crontab; crontab ~/.crontab"
