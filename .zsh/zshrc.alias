@@ -7,9 +7,15 @@ alias "vi=vim"
 alias "vim-sjis=vim -c \":e ++enc=cp932\" "
 alias "vim=vim -X" #don't search X server
 alias "renamer.vim=vi +Renamer"
+
 function mylv(){
-    $HOME/.zsh/lesspipe $@ | lv -c  
-}
+    extension=${1##*.}
+    if [[ "$extension" == "xz" ]];then
+        xzcat $1 | lv -c
+    else
+        lv -c $@
+    fi
+};
 alias "lv=mylv"
 alias "su=su -l" #su
 alias "bc=bc -ql"
