@@ -31,6 +31,10 @@ export PYTHONPATH=$PYTHONPATH:/usr/lib/pymodules/python2.6
 export PYTHONPATH=$PYTHONPATH:$HOME/workspace/
 
 
+# Ruby
+export GEM_HOME=$HOME/local/lib/gems
+export PATH=$PATH:$GEM_HOME/bin
+
 # Java
 export JAVA_HOME=$HOME/local/share/jdk/home
 
