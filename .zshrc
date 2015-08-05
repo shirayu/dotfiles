@@ -4,17 +4,17 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 #FPATH
-MYFPATH=/usr/share/zsh/4.3.10/functions
+MYFPATH=/usr/share/zsh/4.3.11/functions
 if [ -e $MYFPATH ];then
     export FPATH=$FPATH:$MYFPATH
 fi
-MYFPATH=$HOME/share/zsh/5.0.7/functions
+MYFPATH=$HOME/local/share/zsh/5.0.7/functions
 if [ -e $MYFPATH ];then
-    export FPATH=$FPATH:$MYFPATH
+    export FPATH=$MYFPATH:$FPATH
 fi
 
 # Loading complement setting, and set it.
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -u
 # highlighting complement canditates
 autoload colors
 zstyle ':completion:*' list-colors "${LS_COLORS}"
