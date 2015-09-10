@@ -49,9 +49,6 @@ fi
 export SHELL=`which zsh`
 
 #Perl (with cpanminus installed at $HOME/local/lib/perl)
-#   wget https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm
-#   export PERL_CPANM_OPT="--local-lib=$HOME/local/lib/perl"
-#   cat ./cpanm | perl - App::cpanminus
 export PATH=$HOME/local/lib/perl/bin/:$PATH
 export PERL_CPANM_OPT="--local-lib=$HOME/local/lib/perl"
 export PERL_MM_OPT="$HOME/local/lib/perl"
