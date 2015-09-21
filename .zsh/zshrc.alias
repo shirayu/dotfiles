@@ -1,7 +1,7 @@
 
 # aliases
 
-case `uname` in
+case `uname | tr A-Z a-z` in
     darwin*)
         ;;
     linux*)
