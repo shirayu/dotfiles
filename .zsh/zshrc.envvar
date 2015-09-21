@@ -1,7 +1,7 @@
 
 # PATH ###################################################
 export PATH=/sbin:$PATH
-export PATH=/usr/sbin/:$PATH
+export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
@@ -49,7 +49,7 @@ fi
 export SHELL=`which zsh`
 
 #Perl (with cpanminus installed at $HOME/local/lib/perl)
-export PATH=$HOME/local/lib/perl/bin/:$PATH
+export PATH=$HOME/local/lib/perl/bin:$PATH
 export PERL_CPANM_OPT="--local-lib=$HOME/local/lib/perl"
 export PERL_MM_OPT="$HOME/local/lib/perl"
 export PERL_MB_OPT="$HOME/local/lib/perl"
