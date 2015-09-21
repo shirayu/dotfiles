@@ -39,11 +39,11 @@ show_non_zero_exit_status() {
 # user prompt
 local GREEN=$'%{\e[1;32m%}'
 local RED=$'%{\e[1;31m%}'
-local DEFAULT=$'%{\e[1;m%}'
+local DEFAULT=$'%{\e[0;m%}'
 PROMPT=$GREEN'%(!.#.$) '$DEFAULT
-PROMPT='$(show_non_zero_exit_status)%(!.#.$) ${DEFAULT}'
+PROMPT='$(show_non_zero_exit_status)%(!.#.$) '${DEFAULT}
 PROMPT2="${GREEN}%B%{${fg[blue]}%}%_#%{${reset_color}%}%b ${DEFAULT}"
-SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b ${DEFAULT}"
 VSN="%1(v|(%1v)|)"
 
 MYSHORTHOST=${HOST%\.lang-private\.kuee\.kyoto-u\.ac\.jp}
