@@ -46,7 +46,7 @@ PROMPT2="${GREEN}%B%{${fg[blue]}%}%_#%{${reset_color}%}%b ${DEFAULT}"
 SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b ${DEFAULT}"
 VSN="%1(v|(%1v)|)"
 
-MYSHORTHOST=${HOST%\.lang-private\.kuee\.kyoto-u\.ac\.jp}
+MYSHORTHOST=`hostname -s`
 if [ "$TMUX" = "" ]; then
     RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]$VSN'$DEFAULT
 else
