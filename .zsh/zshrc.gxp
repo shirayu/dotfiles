@@ -99,3 +99,10 @@ function ghosts(){
 
 }
 
+# Do the given command in a single host                       
+function gxpc_single(){
+    local TARGET=`gxpc e hostname | shuf | head -n1`
+    echo "[Target: ${TARGET} ]" 1>&2
+    gxpc e " (hostname | grep ${TARGET} > /dev/null )  && $* "
+}
+
