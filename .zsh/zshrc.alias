@@ -37,7 +37,7 @@ alias "jkd=juman | knp -tab -debug"
 alias tmux="TERM=screen-256color-bce tmux"
 
 host=`hostname -s`
-if [[ $host[0,5] == "basil" || $host == "sakura" || $host[0,7] == "tsubaki" || `hostname -a 2>/dev/null ` == "web.lang-private.kuee.kyoto-u.ac.jp" ]]; then
+if [[ $host[0,5] == "basil" || $host == "jungle" || $host == "sakura" || $host[0,7] == "tsubaki" || `hostname -a 2>/dev/null ` == "web.lang-private.kuee.kyoto-u.ac.jp" ]]; then
    export LD_PRELOAD="" #disable after tmux launch
    alias tmux="TERM=screen-256color-bce LD_PRELOAD=/lib64/libncurses.so.5 tmux"
 fi
