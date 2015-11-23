@@ -6,7 +6,9 @@ export SSH_SOCK_LIST=/tmp/.ssh-sock-`hostname`-${USERNAME}
 #TODO check the file owner is *me*
 
 #save my sock
-echo ${SSH_AUTH_SOCK} >> ${SSH_SOCK_LIST}
+if [ "${SSH_AUTH_SOCK}" != "" ];then
+    echo ${SSH_AUTH_SOCK} >> ${SSH_SOCK_LIST}
+fi
 
 # Read current ssh-agent setting
 # [!]  $SSH_AUTH_SOCK will be overwrite
