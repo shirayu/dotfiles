@@ -8,6 +8,7 @@
 [core]
 	pager = lv -c
 	autocrlf = false
+        editor = vim -c \"set fenc=utf-8\"
 
 [difftool.latex]
 ;         cmd = git-latexdiff "$LOCAL" "$REMOTE"
