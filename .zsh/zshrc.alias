@@ -5,7 +5,7 @@ case `uname | tr A-Z a-z` in
     darwin*)
         ;;
     linux*)
-        alias "ls=LS_COLORS='' ls --color"
+        alias "ls=LS_COLORS='' ls --color --time-style=long-iso"
         ;;
 esac
 
