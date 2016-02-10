@@ -14,7 +14,7 @@ if [ -e $MYFPATH ];then
 fi
 
 # Loading complement setting, and set it.
-autoload -Uz compinit && compinit -u
+autoload -Uz compinit && compinit -u -C
 # highlighting complement canditates
 autoload colors
 zstyle ':completion:*' list-colors "${LS_COLORS}"
