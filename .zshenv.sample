@@ -20,3 +20,6 @@ export FTP_PROXY="$PROXY"
 
 export no_proxy="127.0.0.1,localhost"
 export NO_PROXY="$no_proxy"
+
+#For basil
+# source /orange/brew/brew.sh
