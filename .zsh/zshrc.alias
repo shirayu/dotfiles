@@ -9,13 +9,8 @@ case `uname | tr A-Z a-z` in
         ;;
 esac
 
-if builtin command -v  nvim >/dev/null; then
-    alias "vi=nvim"
-else
-    alias "vi=vim"
-fi
+alias "vi=vim"
 alias "vim-sjis=vim -c \":e ++enc=cp932\" "
-alias "vim=vim -X" #don't search X server
 alias "renamer.vim=vi +Renamer"
 
 function mylv(){
