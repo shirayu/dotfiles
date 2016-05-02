@@ -40,4 +40,14 @@ unalias \rm 2> /dev/null
 unalias \cp 2> /dev/null
 unalias \mv 2> /dev/null
 
-alias "crontab-e=vi ~/.crontab; crontab ~/.crontab"
+# Forbid "crontab -r"
+function crontab() {
+  local opt
+  for opt in "$@"; do
+    if [[ $opt == -r ]]; then
+      echo 'crontab -r is sealed!'
+      return 1
+    fi
+  done
+  command crontab "$@"
+}
