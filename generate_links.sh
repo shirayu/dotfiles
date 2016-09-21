@@ -1,8 +1,8 @@
 #!/bin/sh
 
-SRC=$HOME/Dropbox/dotfiles/
+SRC=~/Dropbox/dotfiles/
 if [ ! -e $SRC ];then
-    SRC=$HOME/.dotfiles/
+    SRC=~/.dotfiles/
 fi
 
 ln -s $SRC/.gitconfig ~/.gitconfig 
