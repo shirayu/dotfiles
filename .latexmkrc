@@ -7,5 +7,9 @@ $makeindex        = 'mendex %O -o %D %S';
 $max_repeat       = 5;
 $pdf_mode     = 3; # generates pdf via dvipdfmx
 
-$pdf_previewer = "start evince";
+if ($^O eq 'darwin') {
+    $pdf_previewer = 'open -a Preview';
+} elsif ($^O eq 'linux') {
+    $pdf_previewer = 'evince';
+}
 $pdf_update_method = 0;
