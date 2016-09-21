@@ -2,7 +2,7 @@
 
 function _tmux_myprecmd () {
     if [ "$TMUX" ]; then
-        tmux rename-window $(basename $(print -P "%~"))
+        tmux rename-window "${PWD##*/}"
     else
         echo -ne "\033]0;`hostname`\007"
     fi
