@@ -39,9 +39,13 @@ unalias \mv 2> /dev/null
 # Forbid "crontab -r"
 function crontab() {
   local opt
+  if [[ $# -eq 0 ]]; then
+      echo "crontab without argument is sealed!" >&2
+      return 1
+  fi
   for opt in "$@"; do
-    if [[ $opt == -r ]]; then
-      echo 'crontab -r is sealed!'
+    if [[ $opt == '-r' || $opt == '-e' ]]; then
+      echo "crontab ${opt} is sealed!" >&2
       return 1
     fi
   done
