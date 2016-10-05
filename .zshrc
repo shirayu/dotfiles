@@ -68,7 +68,7 @@ NO_SCREEN_HOSTS=(orchid reed lotus)
 if (( ! ${NO_SCREEN_HOSTS[(I)`hostname -s`]} )); then
     #tmux
     source $ZSH_SETTING_PATH/zshrc.tmux
-    if [[ $SHLVL = 1 && `uname` -ne "Darwin" ]]; then
+    if [[ $SHLVL = 1 && `uname` != "Darwin" ]]; then
       tmux attach || tmux
     fi
 
