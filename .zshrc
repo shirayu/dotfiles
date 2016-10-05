@@ -66,19 +66,9 @@ source $ZSH_SETTING_PATH/zshrc.peco
 
 NO_SCREEN_HOSTS=(orchid reed lotus)
 if (( ! ${NO_SCREEN_HOSTS[(I)`hostname -s`]} )); then
-
-    #CDD    http://blog.m4i.jp/entry/2012/01/26/064329
-#     source $ZSH_SETTING_PATH/zshrc.cdd
-#     add-zsh-hook chpwd _cdd_chpwd
-
-
-    #screen
-#     source $ZSH_SETTING_PATH/zshrc.screen
-#     screen -xR -U
-
     #tmux
     source $ZSH_SETTING_PATH/zshrc.tmux
-    if [ $SHLVL = 1 ]; then
+    if [[ $SHLVL = 1 && `uname` -ne "Darwin" ]]; then
       tmux attach || tmux
     fi
 
