@@ -21,16 +21,6 @@ fi
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
 
-# PYTHON
-export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/
-export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.7/site-packages/
-export PYTHONPATH=$PYTHONPATH:$HOME/local/lib64/python2.7/site-packages/
-export PYTHONPATH=$PYTHONPATH:$HOME/local/lib/python2.6/site-packages/
-export PYTHONPATH=$PYTHONPATH:$HOME/local/lib64/python2.6/site-packages/
-export PYTHONPATH=$PYTHONPATH:/usr/lib/pymodules/python2.6
-export PYTHONPATH=$PYTHONPATH:$HOME/workspace/
-
-
 # Ruby
 export GEM_HOME=$HOME/local/lib/gems
 export PATH=$PATH:$GEM_HOME/bin
