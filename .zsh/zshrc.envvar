@@ -34,6 +34,13 @@ if [ -e $HOME/local/share/scala/bin ];then
     export PATH=$PATH:$SCALA_HOME/bin
 fi
 
+# Google Cloud SDK
+if [ -f "$HOME/local/opt/google-cloud-sdk/path.zsh.inc" ]; then
+  source "$HOME/local/opt/google-cloud-sdk/path.zsh.inc"
+fi
+if [ -f "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc" ]; then
+  source "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc"
+fi
 
 # SHELL
 export SHELL=`which zsh`
