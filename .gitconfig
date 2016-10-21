@@ -17,7 +17,11 @@
 	prompt = false
 [alias]
 	ldiff = difftool -t latex   
-; [http]
-;         proxy = http://proxy.kuins.net:8080
-; [https]
-;         proxy = http://proxy.kuins.net:8080
+
+[pager]
+	diff = diff-highlight | lv -c
+	show = diff-highlight | lv -c
+	log = diff-highlight | lv -c
+
+[diff]
+	compactionHeuristic = true
