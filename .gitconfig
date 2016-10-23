@@ -19,9 +19,9 @@
 	ldiff = difftool -t latex   
 
 [pager]
-	diff = diff-highlight | lv -c
-	show = diff-highlight | lv -c
-	log = diff-highlight | lv -c
+	diff = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
+	show = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
+	log  = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
 
 [diff]
 	compactionHeuristic = true
