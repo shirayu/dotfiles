@@ -27,7 +27,14 @@ alias "bc=bc -ql"
 alias "top=htop"
 alias "R=R -q"
 #alias "grep=grep --color=always"
-alias lock="sleep 1 ; xset dpms force off ;"
+case ${OSTYPE} in
+    darwin*)
+        alias lock="pmset displaysleepnow;"
+        ;;
+    linux*)
+        alias lock="sleep 1 ; xset dpms force off ;"
+        ;;
+esac
 
 alias "jk=juman | knp -tab"
 alias "jkd=juman | knp -tab -debug"
