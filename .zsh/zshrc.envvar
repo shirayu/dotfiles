@@ -34,6 +34,11 @@ if [ -e $HOME/local/share/scala/bin ];then
     export PATH=$PATH:$SCALA_HOME/bin
 fi
 
+# npmjs
+if [ -e $HOME/.npm-global/bin ];then
+    export PATH=$PATH:$HOME/.npm-global/bin
+fi
+
 # Google Cloud SDK
 if [ -f "$HOME/local/opt/google-cloud-sdk/path.zsh.inc" ]; then
   source "$HOME/local/opt/google-cloud-sdk/path.zsh.inc"

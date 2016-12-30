@@ -22,3 +22,4 @@ ln -s $SRC/.tmux.conf ~/.tmux.conf
 ln -s $SRC/.tmux ~/.tmux
 ln -s $SRC/.latexmkrc ~/.latexmkrc
 ln -s $SRC/.clang-format ~/.clang-format
+ln -s $SRC/.npmrc ~/.npmrc
