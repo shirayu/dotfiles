@@ -35,6 +35,9 @@ if [ -e $HOME/local/share/scala/bin ];then
 fi
 
 # npmjs
+if [ -e $HOME/local/share/nodejs ];then
+    export PATH=$PATH:$HOME/local/share/nodejs/bin
+fi
 if [ -e $HOME/.npm-global/bin ];then
     export PATH=$PATH:$HOME/.npm-global/bin
 fi
