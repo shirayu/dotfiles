@@ -23,3 +23,4 @@ ln -s $SRC/.tmux ~/.tmux
 ln -s $SRC/.latexmkrc ~/.latexmkrc
 ln -s $SRC/.clang-format ~/.clang-format
 ln -s $SRC/.npmrc ~/.npmrc
+ln -s $SRC/.eslintrc.json ~/.eslintrc.json
