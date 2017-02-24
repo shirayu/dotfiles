@@ -8,10 +8,10 @@ export PATH=$HOME/local/bin:$PATH
 
 
 # GO
-if [ -e $HOME/local/share/go/bin ];then
-    #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/share/go
-    export PATH=$HOME/local/share/go/bin:$PATH
-    export GOROOT=$HOME/local/share/go
+if [ -e $HOME/local/opt/go/bin ];then
+    #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/opt/go
+    export PATH=$HOME/local/opt/go/bin:$PATH
+    export GOROOT=$HOME/local/opt/go
 else
     which go >/dev/null
     if [ "$?" -eq 0 ];then
@@ -26,17 +26,17 @@ export GEM_HOME=$HOME/local/lib/gems
 export PATH=$PATH:$GEM_HOME/bin
 
 # Java
-export JAVA_HOME=$HOME/local/share/jdk/home
+export JAVA_HOME=$HOME/local/opt/jdk/home
 
 # Scala
-if [ -e $HOME/local/share/scala/bin ];then
-    export SCALA_HOME=$HOME/local/share/scala
+if [ -e $HOME/local/opt/scala/bin ];then
+    export SCALA_HOME=$HOME/local/opt/scala
     export PATH=$PATH:$SCALA_HOME/bin
 fi
 
 # npmjs
-if [ -e $HOME/local/share/nodejs ];then
-    export PATH=$PATH:$HOME/local/share/nodejs/bin
+if [ -e $HOME/local/opt/nodejs ];then
+    export PATH=$PATH:$HOME/local/opt/nodejs/bin
 fi
 if [ -e $HOME/.npm-global/bin ];then
     export PATH=$PATH:$HOME/.npm-global/bin
@@ -53,12 +53,12 @@ fi
 # SHELL
 export SHELL=`which zsh`
 
-#Perl (with cpanminus installed at $HOME/local/lib/perl)
-export PATH=$HOME/local/lib/perl/bin:$PATH
-export PERL_CPANM_OPT="--local-lib=$HOME/local/lib/perl"
-export PERL_MM_OPT="$HOME/local/lib/perl"
-export PERL_MB_OPT="$HOME/local/lib/perl"
-export PERL5LIB=$HOME/local/lib/perl/lib/perl5/:$PERL5LIB
+#Perl (with cpanminus installed at $HOME/local/opt/perl)
+export PATH=$HOME/local/opt/perl/bin:$PATH
+export PERL_CPANM_OPT="--local-lib=$HOME/local/opt/perl"
+export PERL_MM_OPT="$HOME/local/opt/perl"
+export PERL_MB_OPT="$HOME/local/opt/perl"
+export PERL5LIB=$HOME/local/opt/perl/lib/perl5/:$PERL5LIB
 
 # OTHER PATHES
 export INCLUDE=~/local/include:$INCLUDE
