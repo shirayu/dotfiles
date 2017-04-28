@@ -41,6 +41,10 @@ fi
 if [ -e $HOME/.npm-global/bin ];then
     export PATH=$PATH:$HOME/.npm-global/bin
 fi
+if [ -e $HOME/.npm-global/lib/node_modules ];then
+    export NODE_PATH=$PATH:$HOME/.npm-global/lib/node_modules
+fi
+
 
 # Google Cloud SDK
 if [ -f "$HOME/local/opt/google-cloud-sdk/path.zsh.inc" ]; then
