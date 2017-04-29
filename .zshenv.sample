@@ -1,8 +1,3 @@
-#http://lambdalisue.hatenablog.com/entry/2013/06/25/140630
-
-# プロキシ設定 ==============================================
-#USERNAME="<USERNAME>"       # 認証が必要なプロキシの場合
-#PASSWORD="<PASSWORD>"       # 認証が必要なプロキシの場合
 PXHOST="proxy.kuins.net"
 PXPORT="8080"
 
@@ -20,6 +15,3 @@ export FTP_PROXY="$PROXY"
 
 export no_proxy="127.0.0.1,localhost"
 export NO_PROXY="$no_proxy"
-
-#For basil
-# source /orange/brew/brew.sh
