@@ -9,9 +9,13 @@ case `uname | tr A-Z a-z` in
         ;;
 esac
 
-alias "vi=vim"
+if which nvim >/dev/null 2>/dev/null; then
+    alias "vi=nvim"
+else
+    alias "vi=vim"
+fi
 alias "vim-sjis=vim -c \":e ++enc=cp932\" "
-alias "renamer.vim=vi +Renamer"
+alias "renamer.vim=vim +Renamer"
 
 function mylv(){
     extension=${1##*.}
