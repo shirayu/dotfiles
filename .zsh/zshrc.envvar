@@ -72,6 +72,13 @@ export LIBRARY_PATH=~/local/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=~/local/lib:$LD_LIBRARY_PATH
 export LD_RUN_PATH=~/local/lib:$LD_RUN_PATH
 
+
+CUDNN_ROOT=/usr/local/cuda
+if [ -e "${CUDNN_ROOT}" ]; then
+    export PATH=${CUDNN_ROOT}/bin:$PATH
+    export LD_LIBRARY_PATH=${CUDNN_ROOT}/lib64:$LD_LIBRARY_PATH
+fi
+
 export EDITOR=vim
 export DISPLAY=:0.0
 #umask 66
