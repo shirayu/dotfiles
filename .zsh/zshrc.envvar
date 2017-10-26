@@ -5,6 +5,9 @@ export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
+if [ -e $HOME/.local/bin ];then
+    export PATH=/usr/.local/bin:$PATH
+fi
 
 
 # GO
