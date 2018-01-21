@@ -41,7 +41,6 @@ fi
 
 source $ZSH_SETTING_PATH/zshrc.authsock
 source $ZSH_SETTING_PATH/zshrc.prompt
-source $ZSH_SETTING_PATH/zshrc.gxp
 source $ZSH_SETTING_PATH/zshrc.keybind
 source $ZSH_SETTING_PATH/zshrc.options
 source $ZSH_SETTING_PATH/zshrc.alias
