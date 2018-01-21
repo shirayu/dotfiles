@@ -1,8 +1,9 @@
 #!/bin/sh
 
-SRC=~/Dropbox/dotfiles/
-if [ ! -e $SRC ];then
-    SRC=~/.dotfiles/
+SRC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ ! -e "${SRC}/.tmux" ];then
+    echo "Not found: [${SRC}/.tmux]"
+    exit 1
 fi
 
 ln -s $SRC/.gitconfig ~/.gitconfig 
@@ -16,6 +17,7 @@ ln -s $SRC/.zlogout ~/.zlogout
 ln -s $SRC/.zshrc ~/.zshrc
 
 ln -s $SRC/fonts.conf ~/.fonts.conf
+mkdir -p ~/.config/fontconfig
 ln -s $SRC/fonts.conf ~/.config/fontconfig/fonts.conf
 
 ln -s $SRC/.tmux.conf ~/.tmux.conf
