@@ -17,6 +17,16 @@ fi
 alias "vim-sjis=vim -c \":e ++enc=cp932\" "
 alias "renamer.vim=vim +Renamer"
 
+function sleep_until {
+  sec=$(( $(date -d "$*" +%s) - $(date +%s) ))
+  if [[ ${sec} -lt 0 ]];then
+      echo "Invalid argument" >&2
+      return 1
+  fi
+  echo "Sleep time: $(( $sec/3600 ))h $(( ($sec%3600)/60 ))m $(( $sec%60 ))s" >&2
+  sleep ${sec}
+}
+
 function mylv(){
     extension=${1##*.}
     if [[ "$extension" == "xz" ]];then
