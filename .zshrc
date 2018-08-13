@@ -49,7 +49,7 @@ source $ZSH_SETTING_PATH/zshrc.peco
 
 #tmux
 source $ZSH_SETTING_PATH/zshrc.tmux
-if [[ $SHLVL = 1 && `uname` != "Darwin" ]]; then
+if [[ $SHLVL = 1 ]]; then
   tmux attach || tmux
 fi
 
