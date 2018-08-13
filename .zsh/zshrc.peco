@@ -19,7 +19,7 @@ if which peco > /dev/null; then
             if [ "${#LBUFFER}" -ne 0 ];then
                 PECO_OPTION="--query \"$LBUFFER\""
             fi
-            tmux split-window "SENDKEYS=\`eval $tac ${HISTFILE} | python2 ${ZSH_SETTING_PATH}/zshhist.py |  sed 's/^:.*;//' | awk '!x[\$0]++{print \$0}'| peco ${PECO_OPTION}\`; if [[ \${SENDKEYS} = '' ]]; then SENDKEYS='${LBUFFER}'; fi; tmux send-keys -t $mypanelnum C-u \${SENDKEYS}"
+            tmux split-window "SENDKEYS=\`eval $tac ${HISTFILE} | python ${ZSH_SETTING_PATH}/zshhist.py |  sed 's/^:.*;//' | awk '!x[\$0]++{print \$0}'| peco ${PECO_OPTION}\`; if [[ \${SENDKEYS} = '' ]]; then SENDKEYS='${LBUFFER}'; fi; tmux send-keys -t $mypanelnum C-u \${SENDKEYS}"
         else
             local selected_hist
             selected_hist=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
