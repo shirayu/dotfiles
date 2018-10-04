@@ -47,6 +47,7 @@ case ${OSTYPE} in
         ;;
     linux*)
         alias lock="sleep 1 ; xset dpms force off ;"
+        alias open="xdg-open"
         ;;
 esac
 
