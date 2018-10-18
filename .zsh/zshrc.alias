@@ -9,13 +9,13 @@ if [ -e /usr/local/opt/coreutils/libexec/gnubin ];then
         | grep -v '/usr/local/opt/coreutils/libexec/gnubin/' \
         | sed 's|^.*/||' \
         | xargs -I {} echo 'alias {}=/usr/local/opt/coreutils/libexec/gnubin/{}' )
-    alias "ls=LS_COLORS='' gls --color --time-style=long-iso"
+    alias "ls=gls --color --time-style=long-iso"
 else
     case `uname | tr A-Z a-z` in
         darwin*)
             ;;
         linux*)
-            alias "ls=LS_COLORS='' ls --color --time-style=long-iso"
+            alias "ls=ls --color --time-style=long-iso"
             ;;
     esac
 fi

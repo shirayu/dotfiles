@@ -99,8 +99,6 @@ export LANG=ja_JP.UTF-8
 # export LANG=en.US.UTF-8
 export LC_TIME=C
 
-export LS_COLORS=""
-
 
 # OS X, El Capitan
 # from /etc/zprofile
