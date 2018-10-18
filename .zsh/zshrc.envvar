@@ -10,6 +10,12 @@ if [ -e $HOME/.local/bin ];then
 fi
 
 
+# brew coreutils
+if [ -e /usr/local/opt/coreutils/libexec/gnubin ];then
+    export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+    export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+fi
+
 # GO
 if [ -e $HOME/local/opt/go/bin ];then
     #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/opt/go
@@ -95,3 +101,14 @@ export LC_TIME=C
 
 export LS_COLORS=""
 
+
+# OS X, El Capitan
+# from /etc/zprofile
+case $OSTYPE in
+    darwin*)
+        # system-wide environment settings for zsh(1)
+        if [ -x /usr/libexec/path_helper ]; then
+            eval `/usr/libexec/path_helper -s`
+        fi
+        ;;
+esac

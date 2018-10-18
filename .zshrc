@@ -11,7 +11,7 @@ SAVEHIST=100000
 
 # Loading complement setting, and set it.
 autoload -Uz compinit && compinit -u -C
-# highlighting complement canditates
+# highlighting complement candidates
 autoload colors
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
