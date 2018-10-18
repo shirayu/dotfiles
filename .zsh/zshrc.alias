@@ -1,13 +1,25 @@
 
 # aliases
 
-case `uname | tr A-Z a-z` in
-    darwin*)
-        ;;
-    linux*)
-        alias "ls=LS_COLORS='' ls --color --time-style=long-iso"
-        ;;
-esac
+# brew coreutils
+if [ -e /usr/local/opt/coreutils/libexec/gnubin ];then
+    source <( find /usr/local/opt/coreutils/libexec/gnubin -type l \
+        | grep -v '\[' \
+        | sed 's|^.*/||' | xargs which \
+        | grep -v '/usr/local/opt/coreutils/libexec/gnubin/' \
+        | sed 's|^.*/||' \
+        | xargs -I {} echo 'alias {}=/usr/local/opt/coreutils/libexec/gnubin/{}' )
+    alias "ls=LS_COLORS='' gls --color --time-style=long-iso"
+else
+    case `uname | tr A-Z a-z` in
+        darwin*)
+            ;;
+        linux*)
+            alias "ls=LS_COLORS='' ls --color --time-style=long-iso"
+            ;;
+    esac
+fi
+
 
 if which nvim >/dev/null 2>/dev/null; then
     alias "vi=nvim"
