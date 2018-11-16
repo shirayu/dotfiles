@@ -8,6 +8,9 @@ export PATH=$HOME/local/bin:$PATH
 if [ -e $HOME/.local/bin ];then
     export PATH=$HOME/.local/bin:$PATH
 fi
+if [ -e /snap/bin ];then
+    export PATH=$PATH:/snap/bin
+fi
 
 
 # brew coreutils
