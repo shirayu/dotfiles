@@ -49,18 +49,10 @@ source $ZSH_SETTING_PATH/zshrc.options
 source $ZSH_SETTING_PATH/zshrc.alias
 source $ZSH_SETTING_PATH/zshrc.change_title_bar
 source $ZSH_SETTING_PATH/zshrc.peco
+source $ZSH_SETTING_PATH/zshrc.gcp
 
 #tmux
 source $ZSH_SETTING_PATH/zshrc.tmux
 if [[ $SHLVL = 1 ]]; then
   tmux attach || tmux
-fi
-
-# GCP
-if [ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk' ];then
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-elif [ -d "$HOME/local/google-cloud-sdk" ]; then
-    source "$HOME/local/google-cloud-sdk/path.zsh.inc"
-    source "$HOME/local/google-cloud-sdk/completion.zsh.inc"
 fi
