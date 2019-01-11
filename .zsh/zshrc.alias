@@ -21,11 +21,11 @@ else
 fi
 
 
-if which nvim >/dev/null 2>/dev/null; then
-    alias "vi=nvim"
-else
+# if which nvim >/dev/null 2>/dev/null; then
+#     alias "vi=nvim"
+# else
     alias "vi=vim"
-fi
+# fi
 alias "vim-sjis=vim -c \":e ++enc=cp932\" "
 alias "renamer.vim=vim +Renamer"
 
