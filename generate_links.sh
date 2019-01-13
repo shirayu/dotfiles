@@ -6,23 +6,28 @@ if [ ! -e "${SRC}/.tmux" ];then
     exit 1
 fi
 
-ln -s $SRC/.gitconfig ~/.gitconfig 
-ln -s $SRC/.screenrc ~/.screenrc
-ln -s $SRC/.signature ~/.signature
-ln -s $SRC/dot_vim/ ~/.vim
-ln -s $SRC/dot_vim/vimrc ~/.vimrc
-ln -s $SRC/.zsh ~/.zsh
-ln -s $SRC/.zprofile ~/.zprofile
-ln -s $SRC/.zlogout ~/.zlogout
-ln -s $SRC/.zshrc ~/.zshrc
+ln -snf $SRC/.gitconfig ~/.gitconfig
+ln -snf $SRC/.screenrc ~/.screenrc
+ln -snf $SRC/.zsh ~/.zsh
+ln -snf $SRC/.zprofile ~/.zprofile
+ln -snf $SRC/.zlogout ~/.zlogout
+ln -snf $SRC/.zshrc ~/.zshrc
 
-ln -s $SRC/fonts.conf ~/.fonts.conf
+ln -snf $SRC/fonts.conf ~/.fonts.conf
 mkdir -p ~/.config/fontconfig
-ln -s $SRC/fonts.conf ~/.config/fontconfig/fonts.conf
+ln -snf $SRC/fonts.conf ~/.config/fontconfig/fonts.conf
 
-ln -s $SRC/.tmux.conf ~/.tmux.conf
-ln -s $SRC/.tmux ~/.tmux
-ln -s $SRC/.latexmkrc ~/.latexmkrc
-ln -s $SRC/.clang-format ~/.clang-format
-ln -s $SRC/.npmrc ~/.npmrc
-ln -s $SRC/.eslintrc.json ~/.eslintrc.json
+ln -snf $SRC/.tmux.conf ~/.tmux.conf
+ln -snf $SRC/.tmux ~/.tmux
+ln -snf $SRC/.latexmkrc ~/.latexmkrc
+ln -snf $SRC/.clang-format ~/.clang-format
+ln -snf $SRC/.npmrc ~/.npmrc
+ln -snf $SRC/.eslintrc.json ~/.eslintrc.json
+
+if [ -d $SRC/dot_vim ];then
+    ln -snf $SRC/dot_vim/ ~/.vim
+fi
+if [ -f ~/.vim/vimrc ];then
+    ln -snf ~/.vim/vimrc ~/.vimrc
+fi
+
