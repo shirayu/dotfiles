@@ -4,6 +4,7 @@
 
 [alias]
     l = log --graph --pretty='%C(yellow)%h%Creset %C(cyan bold)%d%Creset %s %Cgreen[%cd] %C(bold blue)<%an> %Creset' --decorate --date=iso
+    d = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 
 [core]
 	pager = lv -c
