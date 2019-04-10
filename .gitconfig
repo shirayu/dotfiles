@@ -31,3 +31,7 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[merge]
+	ff = false
+[pull]
+	ff = only
