@@ -33,6 +33,13 @@ fi
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
 
+# Python
+if [ -e $HOME/.pyenv ];then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # Ruby
 export GEM_HOME=$HOME/local/lib/gems
 export PATH=$PATH:$GEM_HOME/bin

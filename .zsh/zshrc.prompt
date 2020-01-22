@@ -15,6 +15,20 @@ function _prompt_myprecmd () {
         exit_status=0
     fi
     ran_something=false
+
+    # Python
+    if [ -e $HOME/.pyenv ];then
+        PYTHON_VERSION_NAME=$(pyenv version-name)
+        if [ "${PYTHON_VERSION_NAME}" = 'system' ];then
+            PYTHON_VERSION_STRING=""
+        else
+            PYTHON_VERSION_STRING="[py:${PYTHON_VERSION_NAME}]"
+            PYTHON_VIRTUAL_ENV_STRING=""
+            if [ -n "$VIRTUAL_ENV" ]; then
+                PYTHON_VIRTUAL_ENV_STRING=":`basename \"$VIRTUAL_ENV\"`"
+            fi
+        fi
+    fi
 }
 add-zsh-hook precmd _prompt_myprecmd
 function _prompt_mypreexec () {
@@ -51,7 +65,7 @@ if [ "$TMUX" = "" ]; then
     RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]$VSN'$DEFAULT
 else
     #exclude username when tmux is active
-    RPROMPT=$GREEN'[$MYSHORTHOST:%~]$VSN'$DEFAULT
+    RPROMPT=$GREEN'[$MYSHORTHOST:%~]$VSN${PYTHON_VERSION_STRING}'$DEFAULT
 fi
 
 function _vcs_myprecmd () {
