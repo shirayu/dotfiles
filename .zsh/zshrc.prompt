@@ -22,11 +22,11 @@ function _prompt_myprecmd () {
         if [ "${PYTHON_VERSION_NAME}" = 'system' ];then
             PYTHON_VERSION_STRING=""
         else
-            PYTHON_VERSION_STRING="[py:${PYTHON_VERSION_NAME}]"
             PYTHON_VIRTUAL_ENV_STRING=""
             if [ -n "$VIRTUAL_ENV" ]; then
                 PYTHON_VIRTUAL_ENV_STRING=":`basename \"$VIRTUAL_ENV\"`"
             fi
+            PYTHON_VERSION_STRING="[py:${PYTHON_VERSION_NAME}${PYTHON_VIRTUAL_ENV_STRING}]"
         fi
     fi
 }
@@ -62,7 +62,7 @@ VSN="%1(v|(%1v)|)"
 
 MYSHORTHOST=`hostname -s`
 if [ "$TMUX" = "" ]; then
-    RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]$VSN'$DEFAULT
+    RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]$VSN${PYTHON_VERSION_STRING}'$DEFAULT
 else
     #exclude username when tmux is active
     RPROMPT=$GREEN'[$MYSHORTHOST:%~]$VSN${PYTHON_VERSION_STRING}'$DEFAULT
