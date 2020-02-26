@@ -23,7 +23,7 @@ ln -snf $SRC/.latexmkrc ~/.latexmkrc
 ln -snf $SRC/.clang-format ~/.clang-format
 ln -snf $SRC/.npmrc ~/.npmrc
 ln -snf $SRC/.eslintrc.json ~/.eslintrc.json
-ln -snf $SRC/.markdownlint.json .markdownlint.json
+ln -snf $SRC/.markdownlint.json ~/.markdownlint.json
 
 if [ -d $SRC/dot_vim ];then
     ln -snf $SRC/dot_vim/ ~/.vim
