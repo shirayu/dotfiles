@@ -32,3 +32,5 @@ if [ -f ~/.vim/vimrc ];then
     ln -snf ~/.vim/vimrc ~/.vimrc
 fi
 
+mkdir -p ~/local/bin
+ln -snf $SRC/bin/* ~/local/bin
