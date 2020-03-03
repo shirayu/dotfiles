@@ -11,11 +11,11 @@ if [[ ! -f ~/.apikey.sh ]];then
     zenity --width 600 --error --text "No such file:\n~/.apikey.sh"
     exit 2
 fi
+source ~/.apikey.sh
 if [[ "${ALPHAVANTAGE_API_KEY}" = "" ]];then
     zenity --width 600 --error --text "No ALPHAVANTAGE_API_KEY"
     exit 3
 fi
-source ~/.apikey
 
 atexit() {
   [[ -n ${TMP_DIR-} ]] && rm -rf "${TMP_DIR}"
