@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 SRC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ ! -e "${SRC}/.tmux" ];then
