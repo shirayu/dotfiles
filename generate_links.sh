@@ -34,3 +34,6 @@ fi
 
 mkdir -p ~/local/bin
 ln -snf $SRC/bin/* ~/local/bin
+
+wget --no-glob https://raw.githubusercontent.com/google/adb-sync/master/adb-sync -P ~/local/bin
+chmod a+x ~/local/bin/adb-sync
