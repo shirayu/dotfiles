@@ -19,6 +19,11 @@ if [ -e /usr/local/opt/coreutils/libexec/gnubin ];then
     export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 fi
 
+# Linuxbrew
+if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
+    export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
+fi
+
 # GO
 if [ -e $HOME/local/opt/go/bin ];then
     #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/opt/go
