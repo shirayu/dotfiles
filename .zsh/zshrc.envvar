@@ -28,12 +28,6 @@ fi
 if [ -e $HOME/local/opt/go/bin ];then
     #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/opt/go
     export PATH=$HOME/local/opt/go/bin:$PATH
-    export GOROOT=$HOME/local/opt/go
-else
-    which go >/dev/null
-    if [ "$?" -eq 0 ];then
-        export GOROOT=`go env GOROOT` #warning: GOPATH set to GOROOT has no effect
-    fi
 fi
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
