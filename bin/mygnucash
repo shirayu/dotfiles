@@ -2,37 +2,36 @@
 
 PID="$(pgrep gnucash)"
 if [ "$PID" != "" ]; then
-    zenity --width 600 --error --text "Already running: ${PID}"
-    exit 1
+	zenity --width 600 --error --text "Already running: ${PID}"
+	exit 1
 fi
 
-TMP_DIR=`mktemp -d`
+TMP_DIR=$(mktemp -d)
 FDIR=~/secret/money/gnucash/
 FNAME=yuta.sqlite3.gnucash
-if [[ ! -d ${FDIR} ]];then
-    zenity --width 600 --error --text "No such directory:\n${FDIR}"
-    exit 1
+if [[ ! -d ${FDIR} ]]; then
+	zenity --width 600 --error --text "No such directory:\n${FDIR}"
+	exit 1
 fi
-if [[ ! -f ~/.apikey.sh ]];then
-    zenity --width 600 --error --text "No such file:\n~/.apikey.sh"
-    exit 2
+if [[ ! -f ~/.apikey.sh ]]; then
+	zenity --width 600 --error --text "No such file:\n~/.apikey.sh"
+	exit 2
 fi
 source ~/.apikey.sh
-if [[ "${ALPHAVANTAGE_API_KEY}" = "" ]];then
-    zenity --width 600 --error --text "No ALPHAVANTAGE_API_KEY"
-    exit 3
+if [[ "${ALPHAVANTAGE_API_KEY}" = "" ]]; then
+	zenity --width 600 --error --text "No ALPHAVANTAGE_API_KEY"
+	exit 3
 fi
 
 atexit() {
-  [[ -n ${TMP_DIR-} ]] && rm -rf "${TMP_DIR}"
+	[[ -n ${TMP_DIR-} ]] && rm -rf "${TMP_DIR}"
 }
 trap atexit EXIT
 trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
 
 echo "${FDIR} -> ${TMP_DIR}"
 find "${FDIR}" -name '*log' -mtime +2 | xargs rm
-rsync -av ${FDIR}/ ${TMP_DIR}
+rsync -av "${FDIR}/" "${TMP_DIR}"
 
-FQ_LOAD_QUOTELET='-defaults YahooJapan' gnucash ${TMP_DIR}/${FNAME}
-rsync --delete -av ${TMP_DIR}/ ${FDIR}
-
+FQ_LOAD_QUOTELET='-defaults YahooJapan' gnucash "${TMP_DIR}/${FNAME}"
+rsync --delete -av "${TMP_DIR}/" "${FDIR}"
