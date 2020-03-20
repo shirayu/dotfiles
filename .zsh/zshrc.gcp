@@ -1,7 +1,5 @@
-
-
 # GCP
-if [ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk' ];then
+if [ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk' ]; then
     source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
     source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 elif [ -d "$HOME/local/google-cloud-sdk" ]; then
@@ -11,7 +9,7 @@ fi
 
 function gcloud_switch() {
     projData=$(gcloud config configurations list | peco --initial-index 1)
-    if echo "${projData}" | grep -E "^[a-zA-Z].*" > /dev/null ; then
+    if echo "${projData}" | grep -E "^[a-zA-Z].*" >/dev/null; then
         config=$(echo ${projData} | awk '{print $1}')
         gcloud config configurations activate ${config}
 

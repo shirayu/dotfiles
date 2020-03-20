@@ -1,30 +1,27 @@
-
-
-setopt auto_list             # show a list of complementable things by ^I
-setopt auto_cd	 # you can change directory without typing cd command.
+setopt auto_list  # show a list of complementable things by ^I
+setopt auto_cd    # you can change directory without typing cd command.
 setopt auto_pushd # push stacks of directories the directory which
-		  # you run cd command.
-		  # Just typing "-[tab]", you can see the list. which you have ever
-setopt auto_param_keys       # auto complement parances to correspond
+# you run cd command.
+# Just typing "-[tab]", you can see the list. which you have ever
+setopt auto_param_keys # auto complement parances to correspond
 
-setopt print_eightbit		# You can see the japanese filename
-setopt hist_save_no_dups # ignore duplicate commands when writes history file.
-setopt hist_expand       # when supplementing, expand the history automatically.
-setopt hist_ignore_all_dups     # ignores duplication command history list
-setopt hist_reduce_blanks      # deletes extra spaces of command lines
-setopt share_history		# shares command history data
-setopt inc_append_history  # append the history incremental searching
+setopt print_eightbit       # You can see the japanese filename
+setopt hist_save_no_dups    # ignore duplicate commands when writes history file.
+setopt hist_expand          # when supplementing, expand the history automatically.
+setopt hist_ignore_all_dups # ignores duplication command history list
+setopt hist_reduce_blanks   # deletes extra spaces of command lines
+setopt share_history        # shares command history data
+setopt inc_append_history   # append the history incremental searching
 
-setopt list_types		# display file type
-setopt list_packed # simply display the supplementation lists.
-setopt PROMPT_SUBST		# charm to set prompt.
-setopt transient_rprompt	#remove prompts after making a new line
+setopt list_types        # display file type
+setopt list_packed       # simply display the supplementation lists.
+setopt PROMPT_SUBST      # charm to set prompt.
+setopt transient_rprompt #remove prompts after making a new line
 
 setopt magic_equal_subst
 #URL escape
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
-
 
 # history completion
 # usage: [C-p], [C-n]
@@ -39,7 +36,7 @@ zle -N history-beginning-search-forward-end history-search-end
 # dir colors
 # enable 256 color support of ls.
 if [ -e ${HOME}/.dir_colors ]; then
-    eval "`dircolors -b ${HOME}/.dir_colors`"
+    eval "$(dircolors -b ${HOME}/.dir_colors)"
 fi
 
 #Disable lock to type Ctrl-S

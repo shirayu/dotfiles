@@ -1,19 +1,15 @@
-
-
-function _screen_myprecmd () {
+function _screen_myprecmd() {
     if [ "$STY" ]; then
         screen -X title $(basename $(print -P "%~"))
     else
-        echo -ne "\033]0;`hostname`\007"
+        echo -ne "\033]0;$(hostname)\007"
     fi
 }
 add-zsh-hook precmd _screen_myprecmd
 
-
-function _screen_mypreexec () {
+function _screen_mypreexec() {
     if [ "$STY" ]; then
         screen -X eval "title '$1'"
     fi
 }
 add-zsh-hook preexec _screen_mypreexec
-

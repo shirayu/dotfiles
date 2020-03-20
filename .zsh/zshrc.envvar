@@ -1,20 +1,18 @@
-
 # PATH ###################################################
 export PATH=/sbin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
-if [ -e $HOME/.local/bin ];then
+if [ -e $HOME/.local/bin ]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
-if [ -e /snap/bin ];then
+if [ -e /snap/bin ]; then
     export PATH=$PATH:/snap/bin
 fi
 
-
 # brew coreutils
-if [ -e /usr/local/opt/coreutils/libexec/gnubin ];then
+if [ -e /usr/local/opt/coreutils/libexec/gnubin ]; then
     export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
     export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 fi
@@ -25,7 +23,7 @@ if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
 fi
 
 # GO
-if [ -e $HOME/local/opt/go/bin ];then
+if [ -e $HOME/local/opt/go/bin ]; then
     #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/opt/go
     export PATH=$HOME/local/opt/go/bin:$PATH
 fi
@@ -36,14 +34,14 @@ export PATH=$GOPATH/bin:$PATH
 ## https://github.com/pyenv/pyenv/wiki
 #   sudo apt-get -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 #   curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-if [ -e $HOME/.pyenv ];then
+if [ -e $HOME/.pyenv ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
 fi
-if type pyenv > /dev/null 2>&1; then
+if type pyenv >/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
-if type pipenv > /dev/null 2>&1; then
+if type pipenv >/dev/null 2>&1; then
     eval "$(pipenv --completion)"
 fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -56,33 +54,32 @@ export PATH=$PATH:$GEM_HOME/bin
 export JAVA_HOME=$HOME/local/opt/jdk/home
 
 # Scala
-if [ -e $HOME/local/opt/scala/bin ];then
+if [ -e $HOME/local/opt/scala/bin ]; then
     export SCALA_HOME=$HOME/local/opt/scala
     export PATH=$PATH:$SCALA_HOME/bin
 fi
 
 # npmjs
-if [ -e $HOME/local/opt/nodejs ];then
+if [ -e $HOME/local/opt/nodejs ]; then
     export PATH=$PATH:$HOME/local/opt/nodejs/bin
 fi
-if [ -e $HOME/.npm-global/bin ];then
+if [ -e $HOME/.npm-global/bin ]; then
     export PATH=$PATH:$HOME/.npm-global/bin
 fi
-if [ -e $HOME/.npm-global/lib/node_modules ];then
+if [ -e $HOME/.npm-global/lib/node_modules ]; then
     export NODE_PATH=$PATH:$HOME/.npm-global/lib/node_modules
 fi
 
-
 # Google Cloud SDK
 if [ -f "$HOME/local/opt/google-cloud-sdk/path.zsh.inc" ]; then
-  source "$HOME/local/opt/google-cloud-sdk/path.zsh.inc"
+    source "$HOME/local/opt/google-cloud-sdk/path.zsh.inc"
 fi
 if [ -f "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc" ]; then
-  source "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc"
+    source "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc"
 fi
 
 # SHELL
-export SHELL=`which zsh`
+export SHELL=$(which zsh)
 
 #Perl (with cpanminus installed at $HOME/local/opt/perl)
 export PATH=$HOME/local/opt/perl/bin:$PATH
@@ -105,7 +102,6 @@ export LIBRARY_PATH=~/local/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=~/local/lib:$LD_LIBRARY_PATH
 export LD_RUN_PATH=~/local/lib:$LD_RUN_PATH
 
-
 CUDNN_ROOT=/usr/local/cuda
 if [ -e "${CUDNN_ROOT}" ]; then
     export PATH=${CUDNN_ROOT}/bin:$PATH
@@ -116,13 +112,11 @@ export EDITOR=vim
 export DISPLAY=:0.0
 #umask 66
 
-
 # LANG locale
 # if you check locales you can use, type "locale -a" command.
 export LANG=ja_JP.UTF-8
 # export LANG=en.US.UTF-8
 export LC_TIME=C
-
 
 # OS X, El Capitan
 # from /etc/zprofile
@@ -130,7 +124,7 @@ case $OSTYPE in
     darwin*)
         # system-wide environment settings for zsh(1)
         if [ -x /usr/libexec/path_helper ]; then
-            eval `/usr/libexec/path_helper -s`
+            eval $(/usr/libexec/path_helper -s)
         fi
         ;;
 esac

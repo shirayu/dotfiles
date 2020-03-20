@@ -1,4 +1,3 @@
-
 HISTFILE=~/.zsh_history
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -21,22 +20,21 @@ fi
 
 # highlighting complement candidates
 autoload colors
-export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
+export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:'
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
 
 if [ -e $GOROOT/misc/zsh/go ]; then
     source $GOROOT/misc/zsh/go
 
     __customized_go_tool_complete() {
-        if [[ "${words[2]}" = "run" ]] ;then
-            _files ; #suggest all file names
+        if [[ ${words[2]} == "run" ]]; then
+            _files #suggest all file names
             if [[ $CURRENT -lt 4 ]]; then
-                __go_tool_complete ;
+                __go_tool_complete
             fi
         else
-            __go_tool_complete ;
+            __go_tool_complete
         fi
     }
     compdef __customized_go_tool_complete go
@@ -53,6 +51,6 @@ source $ZSH_SETTING_PATH/zshrc.gcp
 
 #tmux
 source $ZSH_SETTING_PATH/zshrc.tmux
-if [[ $SHLVL = 1 ]]; then
-  tmux attach || tmux
+if [[ $SHLVL == 1 ]]; then
+    tmux attach || tmux
 fi

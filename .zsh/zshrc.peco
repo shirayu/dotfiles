@@ -1,13 +1,12 @@
-
 # setting for peco
 
 # for f (~/.peco/*) source "${f}" # load peco sources
 #
 
-if which peco > /dev/null; then
+if which peco >/dev/null; then
     function peco-select-history() {
         local tac
-        if which tac > /dev/null; then
+        if which tac >/dev/null; then
             tac="tac"
         else
             tac="tail -r"
@@ -15,8 +14,8 @@ if which peco > /dev/null; then
 
         if [ "$TMUX" ]; then
             local mypanelnum
-            mypanelnum=`tmux display-message -p '#P'`
-            if [ "${#LBUFFER}" -ne 0 ];then
+            mypanelnum=$(tmux display-message -p '#P')
+            if [ "${#LBUFFER}" -ne 0 ]; then
                 PECO_OPTION="--query \"$LBUFFER\""
             fi
             tmux split-window "SENDKEYS=\`eval $tac ${HISTFILE} | python2 ${ZSH_SETTING_PATH}/zshhist.py |  sed 's/^:.*;//' | awk '!x[\$0]++{print \$0}'| peco ${PECO_OPTION}\`; if [[ \${SENDKEYS} = '' ]]; then SENDKEYS='${LBUFFER}'; fi; tmux send-keys -t $mypanelnum C-u \${SENDKEYS}"
@@ -33,8 +32,7 @@ if which peco > /dev/null; then
     zle -N peco-select-history
     bindkey '^r' peco-select-history
 
-
-    function peco-cd () {
+    function peco-cd() {
         local selected_dir=$(find ~/ -type d | peco)
         if [ -n "$selected_dir" ]; then
             BUFFER="cd ${selected_dir}"
