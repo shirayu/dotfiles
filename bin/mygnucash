@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+PID="$(pgrep gnucash)"
+if [ "$PID" != "" ]; then
+    zenity --width 600 --error --text "Already running: ${PID}"
+    exit 1
+fi
+
 TMP_DIR=`mktemp -d`
 FDIR=~/secret/money/gnucash/
 FNAME=yuta.sqlite3.gnucash
