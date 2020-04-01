@@ -84,4 +84,6 @@ function crontab() {
     command crontab "$@"
 }
 
+alias "pip=python3 -m pip"
+alias "pip2=python2 -m pip"
 alias "pip3=python3 -m pip"
