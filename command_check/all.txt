@@ -1,2 +1,4 @@
+lacheck
+latexmk
 shellcheck
 shfmt
