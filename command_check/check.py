@@ -2,6 +2,7 @@
 
 import argparse
 import codecs
+import json
 import os
 import platform
 import shutil
@@ -15,6 +16,17 @@ def brew_checks(targets: typing.List[str]) -> typing.Iterable[str]:
     installed: typing.Set[str] = set()
     for item in res.stdout.decode('utf8').split():
         installed.add(item.split('@')[0])
+
+    for t in targets:
+        if t not in installed:
+            yield t
+
+
+def npm_checks(targets: typing.List[str]) -> typing.Iterable[str]:
+    cmds = 'npm -g list --depth=0 --json=true'.split()
+    res = subprocess.run(cmds, stdout=subprocess.PIPE)
+    installed: typing.Set[str] = set(json.loads(
+        res.stdout.decode('utf8'))['dependencies'].keys())
 
     for t in targets:
         if t not in installed:
@@ -51,7 +63,12 @@ def operation(path_indir: str) -> bool:
                 yield t
         for t in checks(get_list(os.path.join(path_indir, 'all.txt'))):
             yield t
-        # TODO npm pip
+
+        if shutil.which('npm'):
+            for t in npm_checks(get_list(os.path.join(path_indir, 'npm.txt'))):
+                yield f'@npm\t{t}'
+
+        # TODO pip
 
     found = False
     for t in check():
