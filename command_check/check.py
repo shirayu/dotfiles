@@ -33,6 +33,17 @@ def npm_checks(targets: typing.List[str]) -> typing.Iterable[str]:
             yield t
 
 
+def pip_checks(targets: typing.List[str]) -> typing.Iterable[str]:
+    cmds = 'python3 -m pip list --format json'.split()
+    res = subprocess.run(cmds, stdout=subprocess.PIPE)
+    installed: typing.Set[str] = set([d['name'] for d in json.loads(
+        res.stdout.decode('utf8'))])
+
+    for t in targets:
+        if t not in installed:
+            yield t
+
+
 def checks(targets: typing.List[str]) -> typing.Iterable[str]:
     for t in targets:
         if not shutil.which(t):
@@ -68,7 +79,9 @@ def operation(path_indir: str) -> bool:
             for t in npm_checks(get_list(os.path.join(path_indir, 'npm.txt'))):
                 yield f'@npm\t{t}'
 
-        # TODO pip
+        if shutil.which('python3'):
+            for t in npm_checks(get_list(os.path.join(path_indir, 'pip.txt'))):
+                yield f'@pip\t{t}'
 
     found = False
     for t in check():
