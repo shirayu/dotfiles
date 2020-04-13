@@ -80,7 +80,7 @@ def operation(path_indir: str) -> bool:
                 yield f'@npm\t{t}'
 
         if shutil.which('python3'):
-            for t in npm_checks(get_list(os.path.join(path_indir, 'pip.txt'))):
+            for t in pip_checks(get_list(os.path.join(path_indir, 'pip.txt'))):
                 yield f'@pip\t{t}'
 
     found = False
