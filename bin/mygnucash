@@ -32,7 +32,8 @@ trap atexit EXIT
 trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
 
 echo "${FDIR} -> ${TMP_DIR}"
-find "${FDIR}" -print0 -name '*log' -mtime +2 | xargs -0 rm
+# shellcheck disable=SC2038
+find "${FDIR}" -name '*log' -mtime +2 -type f | xargs rm
 rsync -av "${FDIR}/" "${TMP_DIR}"
 
 FQ_LOAD_QUOTELET='-defaults YahooJapan' gnucash "${TMP_DIR}/${FNAME}"
