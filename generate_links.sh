@@ -9,7 +9,8 @@ if [ ! -e "${SRC}/.tmux" ]; then
 fi
 
 mkdir -p ~/.config/fontconfig
-find "${SRC}" -mindepth 1 -maxdepth 1 -type f -name '\.*' -not '\.git' -print0 | xargs -0 -I {} ln -snf {} ~
+find "${SRC}" -mindepth 1 -maxdepth 1 -type f -name '\.*' -not -name '\.git' -print0 | xargs -0 -I {} ln -snf {} ~
+find "${SRC}" -mindepth 1 -maxdepth 1 -type d -name '\.*' -not -name '.mypy_cache' -print0 | xargs -0 -I {} ln -snf {} ~
 
 if [ -d "$SRC/dot_vim" ]; then
     ln -snf "$SRC/dot_vim/" ~/.vim
