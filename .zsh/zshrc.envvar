@@ -128,3 +128,8 @@ case $OSTYPE in
         fi
         ;;
 esac
+
+if [ -e $HOME/local/opt/tmsu/bin ]; then
+    export PATH="$HOME/local/opt/tmsu/bin:$PATH"
+fi
+
