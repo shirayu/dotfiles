@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+for arg in "$@"; do
+    FORMAT=""
+    OPT=""
+
+    #sometimes return x-flv though the audio type is aac
+    MINE=$(file "${arg}" --mime-type)
+
+    AUDIOTYPE=$(ffmpeg -i "${arg}" 2>&1 | grep Audio)
+
+    if
+        va=$(echo "${AUDIOTYPE}" | grep mp3)
+        [ -n "$va" ]
+    then
+        FORMAT="mp3"
+    elif
+        va=$(echo "${AUDIOTYPE}" | grep aac)
+        [ -n "$va" ]
+    then
+        FORMAT="aac"
+        OPT="-vn"
+    elif
+        va=$(echo "${MINE}" | grep asf)
+        [ -n "$va" ]
+    then
+        FORMAT="wma"
+    elif
+        va=$(echo "${MINE}" | grep msvideo)
+        [ -n "$va" ]
+    then
+        FORMAT="mp3"
+    elif
+        va=$(echo "${MINE}" | grep webm)
+        [ -n "$va" ]
+    then
+        FORMAT="ogg"
+        OPT="-vn"
+    else
+        echo "UNKWON MINETYPE ${FORMAT}"
+    fi
+
+    if [ -n "${FORMAT}" ]; then
+        ffmpeg -i "${arg}" ${OPT} -acodec copy "${arg%.*}.${FORMAT}"
+    fi
+done
