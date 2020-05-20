@@ -8,3 +8,4 @@ md5sha1sum
 poppler
 rename
 watch
+fswatch
