@@ -35,7 +35,7 @@ zle -N history-beginning-search-forward-end history-search-end
 
 # dir colors
 # enable 256 color support of ls.
-if [ -e ${HOME}/.dir_colors ]; then
+if [ -e "${HOME}/.dir_colors" ]; then
     eval "$(dircolors -b ${HOME}/.dir_colors)"
 fi
 

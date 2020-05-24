@@ -1,4 +1,4 @@
 change_title_of_the_bar() {
     echo -ne "\033]0;${1}\007"
 }
-change_title_of_the_bar $(hostname)
+change_title_of_the_bar "$(hostname)"

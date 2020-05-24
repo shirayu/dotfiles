@@ -15,7 +15,7 @@ function _prompt_myprecmd() {
     ran_something=false
 
     # Python
-    if [ -e $HOME/.pyenv ]; then
+    if [ -e "$HOME/.pyenv" ]; then
         PYTHON_VERSION_NAME=$(pyenv version-name)
         if [ "${PYTHON_VERSION_NAME}" = 'system' ]; then
             PYTHON_VERSION_STRING=""

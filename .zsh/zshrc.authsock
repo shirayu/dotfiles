@@ -1,16 +1,16 @@
 function _authsock() {
     #if error
-    if [ ! -e ${SSH_SOCK_LIST} ]; then
+    if [ ! -e "${SSH_SOCK_LIST}" ]; then
         return
-    elif [ ! -e ${SSH_AUTH_SOCK} ]; then
+    elif [ ! -e "${SSH_AUTH_SOCK}" ]; then
         while [ "$(wc -l <${SSH_SOCK_LIST})" != "0" ]; do
-            export SSH_AUTH_SOCK=$(head -n1 ${SSH_SOCK_LIST})
+            export SSH_AUTH_SOCK=$(head -n1 "${SSH_SOCK_LIST}")
             if [ -e "${SSH_AUTH_SOCK}" ]; then
                 break
             fi
 
             #if the socket is invalid, erase it
-            sed -i '1d' ${SSH_SOCK_LIST}
+            sed -i '1d' "${SSH_SOCK_LIST}"
         done
     fi
 }

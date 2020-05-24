@@ -4,7 +4,7 @@ export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
-if [ -e $HOME/.local/bin ]; then
+if [ -e "$HOME/.local/bin" ]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
 if [ -e /snap/bin ]; then
@@ -23,7 +23,7 @@ if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
 fi
 
 # GO
-if [ -e $HOME/local/opt/go/bin ]; then
+if [ -e "$HOME/local/opt/go/bin" ]; then
     #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/opt/go
     export PATH=$HOME/local/opt/go/bin:$PATH
 fi
@@ -34,7 +34,7 @@ export PATH=$GOPATH/bin:$PATH
 ## https://github.com/pyenv/pyenv/wiki
 #   sudo apt-get -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 #   curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-if [ -e $HOME/.pyenv ]; then
+if [ -e "$HOME/.pyenv" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
 fi
 if type pyenv >/dev/null 2>&1; then
@@ -54,19 +54,19 @@ export PATH=$PATH:$GEM_HOME/bin
 export JAVA_HOME=$HOME/local/opt/jdk/home
 
 # Scala
-if [ -e $HOME/local/opt/scala/bin ]; then
+if [ -e "$HOME/local/opt/scala/bin" ]; then
     export SCALA_HOME=$HOME/local/opt/scala
     export PATH=$PATH:$SCALA_HOME/bin
 fi
 
 # npmjs
-if [ -e $HOME/local/opt/nodejs ]; then
+if [ -e "$HOME/local/opt/nodejs" ]; then
     export PATH=$PATH:$HOME/local/opt/nodejs/bin
 fi
-if [ -e $HOME/.npm-global/bin ]; then
+if [ -e "$HOME/.npm-global/bin" ]; then
     export PATH=$PATH:$HOME/.npm-global/bin
 fi
-if [ -e $HOME/.npm-global/lib/node_modules ]; then
+if [ -e "$HOME/.npm-global/lib/node_modules" ]; then
     export NODE_PATH=$PATH:$HOME/.npm-global/lib/node_modules
 fi
 
@@ -124,12 +124,12 @@ case $OSTYPE in
     darwin*)
         # system-wide environment settings for zsh(1)
         if [ -x /usr/libexec/path_helper ]; then
-            eval $(/usr/libexec/path_helper -s)
+            eval "$(/usr/libexec/path_helper -s)"
         fi
         ;;
 esac
 
-if [ -e $HOME/local/opt/tmsu/bin ]; then
+if [ -e "$HOME/local/opt/tmsu/bin" ]; then
     export PATH="$HOME/local/opt/tmsu/bin:$PATH"
 fi
 
