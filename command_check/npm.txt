@@ -4,3 +4,4 @@ js-beautify
 markdownlint-cli
 typescript
 typescript-language-server
+htmllint-cli
