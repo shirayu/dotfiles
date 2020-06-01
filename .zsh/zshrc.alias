@@ -26,7 +26,7 @@ alias "vi=vim"
 # fi
 alias 'vim-sjis=vim -c ":e ++enc=cp932" '
 alias "renamer.vim=vim +Renamer"
-alias 'jvgrep=jvgrep --exclude "/\.git$|/\.svn$|/\.hg$|\.o$|\.obj$|\.a$|\.exe~?$|/tags$|cache/|pyc$|min\.js$"'
+alias 'jvgrep=jvgrep --exclude "/\.git$|/\.svn$|/\.hg$|\.o$|\.obj$|\.a$|\.exe~?$|/tags$|cache/|pyc$|pack\.js$|min\.js$"'
 
 function sleep_until() {
     sec=$(($(date -d "$*" +%s) - $(date +%s)))
