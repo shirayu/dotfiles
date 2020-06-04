@@ -1,5 +1,4 @@
 # aliases
-
 # brew coreutils
 if [ -e /usr/local/opt/coreutils/libexec/gnubin ]; then
     source <(find /usr/local/opt/coreutils/libexec/gnubin -type l \
@@ -27,6 +26,12 @@ alias "vi=vim"
 alias 'vim-sjis=vim -c ":e ++enc=cp932" '
 alias "renamer.vim=vim +Renamer"
 alias 'jvgrep=jvgrep --exclude "/\.git$|/\.svn$|/\.hg$|\.o$|\.obj$|\.a$|\.exe~?$|/tags$|cache/|pyc$|pack\.js$|min\.js$"'
+alias pbcopy='xsel --clipboard --input'
+
+if type 'xsel' > /dev/null 2>&1
+then
+    alias pbcopy='xsel --clipboard --input'
+fi
 
 function sleep_until() {
     sec=$(($(date -d "$*" +%s) - $(date +%s)))
