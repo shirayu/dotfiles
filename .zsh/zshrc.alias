@@ -26,7 +26,6 @@ alias "vi=vim"
 alias 'vim-sjis=vim -c ":e ++enc=cp932" '
 alias "renamer.vim=vim +Renamer"
 alias 'jvgrep=jvgrep --exclude "/\.git$|/\.svn$|/\.hg$|\.o$|\.obj$|\.a$|\.exe~?$|/tags$|cache/|pyc$|pack\.js$|min\.js$"'
-alias pbcopy='xsel --clipboard --input'
 
 if type 'xsel' > /dev/null 2>&1
 then
