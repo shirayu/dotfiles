@@ -9,3 +9,9 @@ poppler
 rename
 watch
 fswatch
+
+# cask
+docker
+google-cloud-sdk
+skim
+tomighty

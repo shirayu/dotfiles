@@ -12,10 +12,15 @@ import typing
 
 
 def brew_checks(targets: typing.List[str]) -> typing.Iterable[str]:
-    res = subprocess.run(["brew", "list"], stdout=subprocess.PIPE)
     installed: typing.Set[str] = set()
-    for item in res.stdout.decode('utf8').split():
-        installed.add(item.split('@')[0])
+    commands = [
+        ["brew", "list"],
+        ["brew", "cask", "list"],
+    ]
+    for opts in commands:
+        res = subprocess.run(opts, stdout=subprocess.PIPE)
+        for item in res.stdout.decode('utf8').split():
+            installed.add(item.split('@')[0])
 
     for t in targets:
         if t not in installed:
@@ -51,8 +56,12 @@ def checks(targets: typing.List[str]) -> typing.Iterable[str]:
 
 
 def get_list(path_in: str) -> typing.List[str]:
+    targets = []
     with codecs.open(path_in, "r", "utf8") as inf:
-        targets = [line.strip()for line in inf]
+        for line in inf:
+            name = line.strip()
+            if not name.startswith('#') and len(name) > 0:
+                targets.append(name)
     return targets
 
 
