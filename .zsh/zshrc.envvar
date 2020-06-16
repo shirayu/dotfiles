@@ -46,6 +46,13 @@ if type pipenv >/dev/null 2>&1; then
 fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+if [ -e "$HOME/Library/Python/3.7/bin/" ]; then
+    export PATH="$HOME/Library/Python/3.7/bin/:$PATH"
+fi
+if [ -e "$HOME/Library/Python/3.8/bin/" ]; then
+    export PATH="$HOME/Library/Python/3.8/bin/:$PATH"
+fi
+
 # Ruby
 export GEM_HOME=$HOME/local/lib/gems
 export PATH=$PATH:$GEM_HOME/bin
@@ -132,4 +139,3 @@ esac
 if [ -e "$HOME/local/opt/tmsu/bin" ]; then
     export PATH="$HOME/local/opt/tmsu/bin:$PATH"
 fi
-
