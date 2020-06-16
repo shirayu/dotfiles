@@ -30,8 +30,8 @@ def brew_checks(targets: typing.List[str]) -> typing.Iterable[str]:
 def npm_checks(targets: typing.List[str]) -> typing.Iterable[str]:
     cmds = 'npm -g list --depth=0 --json=true'.split()
     res = subprocess.run(cmds, stdout=subprocess.PIPE)
-    installed: typing.Set[str] = set(json.loads(
-        res.stdout.decode('utf8'))['dependencies'].keys())
+    data = json.loads(res.stdout.decode('utf8')).get('dependencies', {})
+    installed: typing.Set[str] = set(data.keys())
 
     for t in targets:
         if t not in installed:
