@@ -9,8 +9,8 @@ fi
 TMP_DIR=$(mktemp -d)
 FDIR=~/secret/money/gnucash/
 FNAME=yuta.sqlite3.gnucash
-if [[ ! -d ${FDIR} ]]; then
-    zenity --width 600 --error --text "No such directory:\n${FDIR}"
+if [[ ! -f "${FDIR}/${FNAME}" ]]; then
+    zenity --width 600 --error --text "No such file:\n${FDIR}/${FNAME}"
     exit 1
 fi
 if [[ ! -f ~/.apikey.sh ]]; then
