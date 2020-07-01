@@ -11,6 +11,7 @@ jq
 jvgrep
 killall
 lacheck
+latex2rtf
 latexmk
 lv
 nkf
