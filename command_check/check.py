@@ -59,7 +59,7 @@ def get_list(path_in: str) -> typing.List[str]:
     targets = []
     with codecs.open(path_in, "r", "utf8") as inf:
         for line in inf:
-            name = line.strip()
+            name = line.strip().split('\t')[0]
             if not name.startswith('#') and len(name) > 0:
                 targets.append(name)
     return targets

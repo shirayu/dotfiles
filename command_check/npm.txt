@@ -1,6 +1,6 @@
 esformatter
 eslint
-js-beautify
+js-beautify	#includes css-beautify and html-beautify
 markdownlint-cli
 typescript
 typescript-language-server
