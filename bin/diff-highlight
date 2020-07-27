@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+declare -a SCRIPTS=("/usr/local/share/git-core/contrib/diff-highlight/diff-highlight" "/usr/share/doc/git/contrib/diff-highlight/diff-highlight")
+
+for SCRIPT in "${SCRIPTS[@]}"; do
+    if [ -e "${SCRIPT}" ]; then
+        perl "${SCRIPT}" "$@"
+        exit $?
+    fi
+done
+
+echo 'Script not found' >&2
+exit 1
