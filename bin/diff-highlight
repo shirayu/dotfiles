@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-declare -a SCRIPTS=("/usr/local/share/git-core/contrib/diff-highlight/diff-highlight" "/usr/share/doc/git/contrib/diff-highlight/diff-highlight")
+declare -a SCRIPTS=(
+    "/usr/share/doc/git/contrib/diff-highlight/diff-highlight"
+    "/usr/local/share/git-core/contrib/diff-highlight/diff-highlight"
+    "/usr/share/doc/git/contrib/diff-highlight/diff-highlight"
+)
 
 for SCRIPT in "${SCRIPTS[@]}"; do
     if [ -e "${SCRIPT}" ]; then
@@ -8,6 +12,11 @@ for SCRIPT in "${SCRIPTS[@]}"; do
         exit $?
     fi
 done
+
+if [ -d '/usr/share/doc/git/contrib/diff-highlight/' ]; then
+    echo 'PLEASE make in "/usr/share/doc/git/contrib/diff-highlight/"' >&2
+    exit 2
+fi
 
 echo 'Script not found' >&2
 exit 1
