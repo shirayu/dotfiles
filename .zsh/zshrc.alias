@@ -55,6 +55,7 @@ alias "su=su -l" #su
 alias "bc=bc -ql"
 alias "top=htop"
 alias "R=R -q"
+alias "diffc=git diff -U0 --no-index --word-diff=color --word-diff-regex=."
 #alias "grep=grep --color=always"
 case ${OSTYPE} in
     darwin*)
