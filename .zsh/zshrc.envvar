@@ -46,9 +46,11 @@ if type pipenv >/dev/null 2>&1; then
 fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-LATEST_PYTHON_PATH=$(find "${HOME}/Library/Python" -type d -maxdepth 1 -mindepth 1 | sort -V -r | head -n1)
-if [ "${LATEST_PYTHON_PATH}" != "" ]; then
-    export PATH="${LATEST_PYTHON_PATH}/bin:$PATH"
+if [ -d "${HOME}/Library/Python" ]; then
+    LATEST_PYTHON_PATH=$(find "${HOME}/Library/Python" -type d -maxdepth 1 -mindepth 1 | sort -V -r | head -n1)
+    if [ "${LATEST_PYTHON_PATH}" != "" ]; then
+        export PATH="${LATEST_PYTHON_PATH}/bin:$PATH"
+    fi
 fi
 
 # Ruby
