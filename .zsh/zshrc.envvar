@@ -46,11 +46,9 @@ if type pipenv >/dev/null 2>&1; then
 fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-if [ -e "$HOME/Library/Python/3.7/bin/" ]; then
-    export PATH="$HOME/Library/Python/3.7/bin/:$PATH"
-fi
-if [ -e "$HOME/Library/Python/3.8/bin/" ]; then
-    export PATH="$HOME/Library/Python/3.8/bin/:$PATH"
+LATEST_PYTHON_PATH=$(find "${HOME}/Library/Python" -type d -maxdepth 1 -mindepth 1 | sort -V -r | head -n1)
+if [ "${LATEST_PYTHON_PATH}" != "" ]; then
+    export PATH="${LATEST_PYTHON_PATH}/bin:$PATH"
 fi
 
 # Ruby
@@ -74,7 +72,7 @@ if [ -e "$HOME/.npm-global/bin" ]; then
     export PATH=$PATH:$HOME/.npm-global/bin
 fi
 if [ -e "$HOME/.npm-global/lib/node_modules" ]; then
-    export NODE_PATH=$PATH:$HOME/.npm-global/lib/node_modules
+    export NODE_PATH=$NODE_PATH:$HOME/.npm-global/lib/node_modules
 fi
 
 # Google Cloud SDK
