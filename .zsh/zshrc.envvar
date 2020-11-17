@@ -4,12 +4,8 @@ export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
-if [ -e "$HOME/.local/bin" ]; then
-    export PATH=$HOME/.local/bin:$PATH
-fi
-if [ -e /snap/bin ]; then
-    export PATH=$PATH:/snap/bin
-fi
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:/snap/bin
 
 # brew coreutils
 if [ -e /usr/local/opt/coreutils/libexec/gnubin ]; then
@@ -17,16 +13,10 @@ if [ -e /usr/local/opt/coreutils/libexec/gnubin ]; then
     export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 fi
 
-# Linuxbrew
-if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
-    export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
-fi
+export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
 
 # GO
-if [ -e "$HOME/local/opt/go/bin" ]; then
-    #set uncompressed data of goX.X.linux-amd64.tar.gz at ~/local/opt/go
-    export PATH=$HOME/local/opt/go/bin:$PATH
-fi
+export PATH=$HOME/local/opt/go/bin:$PATH
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
 
@@ -34,9 +24,7 @@ export PATH=$GOPATH/bin:$PATH
 ## https://github.com/pyenv/pyenv/wiki
 #   sudo apt-get -y install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 #   curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-if [ -e "$HOME/.pyenv" ]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-fi
+export PATH="$HOME/.pyenv/bin:$PATH"
 if type pyenv >/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
@@ -67,15 +55,9 @@ if [ -e "$HOME/local/opt/scala/bin" ]; then
 fi
 
 # npmjs
-if [ -e "$HOME/local/opt/nodejs" ]; then
-    export PATH=$PATH:$HOME/local/opt/nodejs/bin
-fi
-if [ -e "$HOME/.npm-global/bin" ]; then
-    export PATH=$PATH:$HOME/.npm-global/bin
-fi
-if [ -e "$HOME/.npm-global/lib/node_modules" ]; then
-    export NODE_PATH=$NODE_PATH:$HOME/.npm-global/lib/node_modules
-fi
+export PATH=$PATH:$HOME/local/opt/nodejs/bin
+export PATH=$PATH:$HOME/.npm-global/bin
+export NODE_PATH=$NODE_PATH:$HOME/.npm-global/lib/node_modules
 
 # Google Cloud SDK
 if [ -f "$HOME/local/opt/google-cloud-sdk/path.zsh.inc" ]; then
