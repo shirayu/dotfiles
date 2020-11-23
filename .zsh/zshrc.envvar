@@ -121,3 +121,6 @@ esac
 if [ -e "$HOME/local/opt/tmsu/bin" ]; then
     export PATH="$HOME/local/opt/tmsu/bin:$PATH"
 fi
+if [[ "$(hostname)" == "mochi" ]]; then
+    export DISPLAY=localhost:0.0
+fi
