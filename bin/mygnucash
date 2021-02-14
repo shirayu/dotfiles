@@ -37,4 +37,12 @@ find "${FDIR}" -name '*log' -mtime +2 -type f | xargs rm
 rsync -av "${FDIR}/" "${TMP_DIR}"
 
 FQ_LOAD_QUOTELET='-defaults YahooJapan' gnucash "${TMP_DIR}/${FNAME}"
+
+if [[ "${NOSAVE}" == "1" ]]; then
+    exit
+fi
+
+while [ ! -d "${FDIR}" ]; do
+    zenity --width 600 --error --text "No such directory:\n${FDIR}"
+done
 rsync --delete -av "${TMP_DIR}/" "${FDIR}"
