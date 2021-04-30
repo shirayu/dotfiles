@@ -123,6 +123,7 @@ if [ -e "$HOME/local/opt/tmsu/bin" ]; then
 fi
 
 # WSL2
+# https://qiita.com/Engr_Coal33/items/6aabb6932b53bd43b843
 if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
     export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 fi
