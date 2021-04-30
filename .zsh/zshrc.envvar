@@ -121,6 +121,8 @@ esac
 if [ -e "$HOME/local/opt/tmsu/bin" ]; then
     export PATH="$HOME/local/opt/tmsu/bin:$PATH"
 fi
-if [[ "$(hostname)" == "mochi" ]]; then
-    export DISPLAY=localhost:0.0
+
+# WSL2
+if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
+    export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 fi
