@@ -26,6 +26,7 @@ export PATH=$GOPATH/bin:$PATH
 #   curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 export PATH="$HOME/.pyenv/bin:$PATH"
 if type pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
