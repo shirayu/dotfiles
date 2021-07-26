@@ -30,6 +30,10 @@ if type pyenv >/dev/null 2>&1; then
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
+    _PY_VERSION=$(cat ~/.pyenv/version)
+    if [ "${_PY_VERSION}" != '' ]; then
+        export PATH="$HOME/.pyenv/versions/${_PY_VERSION}/bin/:$PATH"
+    fi
 fi
 if type pipenv >/dev/null 2>&1; then
     eval "$(pipenv --completion)"
