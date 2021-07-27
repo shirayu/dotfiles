@@ -39,6 +39,7 @@ if type pipenv >/dev/null 2>&1; then
     eval "$(pipenv --completion)"
 fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PIPENV_VENV_IN_PROJECT=1
 
 if [ -d "${HOME}/Library/Python" ]; then
     LATEST_PYTHON_PATH=$(find "${HOME}/Library/Python" -type d -maxdepth 1 -mindepth 1 | sort -V -r | head -n1)
