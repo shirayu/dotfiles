@@ -1,9 +1,8 @@
 PXHOST="proxy.kuins.net"
 PXPORT="8080"
 
-PXHOST="proxy.noc.titech.ac.jp" 
+PXHOST="proxy.noc.titech.ac.jp"
 PXPORT="3128"
-
 
 PROXY="$PXHOST:$PXPORT"
 export http_proxy="$PROXY"
@@ -15,3 +14,22 @@ export FTP_PROXY="$PROXY"
 
 export no_proxy="127.0.0.1,localhost"
 export NO_PROXY="$no_proxy"
+
+# For WSL2
+# https://nnao45.hatenadiary.com/entry/2021/02/12/134852
+# checks to see if we are in a windows or linux dir
+function isWinDir() {
+    case $PWD/ in
+        /mnt/*) return $(true) ;;
+        *) return $(false) ;;
+    esac
+}
+
+# wrap the git command to either run windows git or linux
+function git() {
+    if isWinDir; then
+        git.exe "$@"
+    else
+        /usr/bin/git "$@"
+    fi
+}
