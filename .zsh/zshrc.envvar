@@ -5,7 +5,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/local/sbin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$PATH:/snap/bin
+export PATH=/snap/bin:$PATH
 
 # brew coreutils
 if [ -e /usr/local/opt/coreutils/libexec/gnubin ]; then
@@ -31,7 +31,7 @@ if type pyenv >/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
-    if [ -e  ~/.pyenv/version ]; then
+    if [ -e ~/.pyenv/version ]; then
         _PY_VERSION=$(cat ~/.pyenv/version)
         if [ "${_PY_VERSION}" != '' ]; then
             export PATH="$HOME/.pyenv/versions/${_PY_VERSION}/bin/:$PATH"
@@ -53,7 +53,7 @@ fi
 
 # Ruby
 export GEM_HOME=$HOME/local/lib/gems
-export PATH=$PATH:$GEM_HOME/bin
+export PATH=$GEM_HOME/bin:$PATH
 
 # Java
 export JAVA_HOME=$HOME/local/opt/jdk/home
@@ -61,12 +61,12 @@ export JAVA_HOME=$HOME/local/opt/jdk/home
 # Scala
 if [ -e "$HOME/local/opt/scala/bin" ]; then
     export SCALA_HOME=$HOME/local/opt/scala
-    export PATH=$PATH:$SCALA_HOME/bin
+    export PATH=$$SCALA_HOME/bin:PATH
 fi
 
 # npmjs
-export PATH=$PATH:$HOME/local/opt/nodejs/bin
-export PATH=$PATH:$HOME/.npm-global/bin
+export PATH=$HOME/local/opt/nodejs/bin:$PATH
+export PATH=$HOME/.npm-global/bin:$PATH
 export NODE_PATH=$NODE_PATH:$HOME/.npm-global/lib/node_modules
 
 # Google Cloud SDK
