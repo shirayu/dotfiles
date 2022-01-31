@@ -41,10 +41,12 @@ fi
 # pip install MODULE_NAME
 # asdf reshim python
 
-# npmjs
-export PATH=$HOME/local/opt/nodejs/bin:$PATH
-export PATH=$HOME/.npm-global/bin:$PATH
-export NODE_PATH=$NODE_PATH:$HOME/.npm-global/lib/node_modules
+### npmjs
+# asdf plugin add nodejs
+# asdf install nodejs 16.13.2
+# asdf global nodejs 16.13.2
+# asdf reshim nodejs
+
 
 # Google Cloud SDK
 if [ -f "$HOME/local/opt/google-cloud-sdk/path.zsh.inc" ]; then
