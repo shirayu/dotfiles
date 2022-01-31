@@ -22,17 +22,24 @@ if [ -e ~/.asdf/asdf.sh ]; then
     . ~/.asdf/asdf.sh
 fi
 
-# Python
+### Python
 # asdf plugin add python
 # https://github.com/pyenv/pyenv/issues/1479#issuecomment-610683526
 # PATH="$(echo $PATH | tr : '\n' | grep -v linuxbrew | paste -s -d:)" asdf install python 3.9.10
 # asdf global python 3.9.10
 # asdf reshim python
 ## Do re-login
+
+### Poetry
 # asdf plugin add poetry
 # asdf install poetry latest
 # asdf global poetry latest
 # poetry config virtualenvs.in-project true
+
+### Pip with binaries
+### https://github.com/danhper/asdf-python#pip-installed-modules-and-binaries
+# pip install MODULE_NAME
+# asdf reshim python
 
 # npmjs
 export PATH=$HOME/local/opt/nodejs/bin:$PATH
