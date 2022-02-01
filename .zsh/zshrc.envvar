@@ -59,19 +59,6 @@ fi
 # SHELL
 export SHELL=$(which zsh)
 
-#Perl (with cpanminus installed at $HOME/local/opt/perl)
-export PATH=$HOME/local/opt/perl/bin:$PATH
-export PERL_CPANM_OPT="--local-lib=$HOME/local/opt/perl"
-export PERL_MM_OPT="$HOME/local/opt/perl"
-export PERL_MB_OPT="$HOME/local/opt/perl"
-export PERL5LIB=$HOME/local/opt/perl/lib/perl5/:$PERL5LIB
-
-# .NET
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-if [ -e "$HOME/.dotnet" ]; then
-    export PATH="$HOME/.dotnet/tools:$PATH"
-fi
-
 # OTHER PATHES
 export INCLUDE=~/local/include:$INCLUDE
 export CPLUS_INCLUDE_PATH=~/local/include:$CPLUS_INCLUDE_PATH
