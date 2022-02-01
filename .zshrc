@@ -19,6 +19,7 @@ autoload -U add-zsh-hook
 if [[ "${ZSH_SETTING_PATH}" == '' ]]; then
     export ZSH_SETTING_PATH=$HOME/.zsh/
     source "${ZSH_SETTING_PATH}/zshrc.envvar"
+    source "$ZSH_SETTING_PATH/zshrc.gcp"
 fi
 
 # highlighting complement candidates
@@ -50,7 +51,6 @@ source "$ZSH_SETTING_PATH/zshrc.options"
 source "$ZSH_SETTING_PATH/zshrc.alias"
 source "$ZSH_SETTING_PATH/zshrc.change_title_bar"
 source "$ZSH_SETTING_PATH/zshrc.peco"
-source "$ZSH_SETTING_PATH/zshrc.gcp"
 
 #tmux
 source "$ZSH_SETTING_PATH/zshrc.tmux"
