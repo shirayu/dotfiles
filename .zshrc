@@ -29,22 +29,6 @@ export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
-if [ -e "$GOROOT/misc/zsh/go" ]; then
-    source "$GOROOT/misc/zsh/go"
-
-    __customized_go_tool_complete() {
-        if [[ ${words[2]} == "run" ]]; then
-            _files #suggest all file names
-            if [[ $CURRENT -lt 4 ]]; then
-                __go_tool_complete
-            fi
-        else
-            __go_tool_complete
-        fi
-    }
-    compdef __customized_go_tool_complete go
-fi
-
 source "$ZSH_SETTING_PATH/zshrc.authsock"
 source "$ZSH_SETTING_PATH/zshrc.prompt"
 source "$ZSH_SETTING_PATH/zshrc.keybind"
