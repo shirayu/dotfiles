@@ -6,6 +6,9 @@ if [ -e ~/.asdf/asdf.sh ]; then
 fi
 
 ### Python
+# Please setup build environment
+## https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+#
 # asdf plugin add python
 # https://github.com/pyenv/pyenv/issues/1479#issuecomment-610683526
 # PATH="$(echo $PATH | tr : '\n' | grep -v linuxbrew | paste -s -d:)" asdf install python 3.9.10
