@@ -38,6 +38,9 @@ source "$ZSH_SETTING_PATH/zshrc.change_title_bar"
 source "$ZSH_SETTING_PATH/zshrc.peco"
 
 #tmux
+# https://endaaman.me/tips/tmux-renumber-session
+tmux ls | grep -E '^[0-9]*:' | cut -f1 -d':' | sort -n | awk '{ printf("tmux rename -t %s _%s\n", $1,NR)}END{ for(i=1;i<=NR;i++){ printf("tmux rename -t _%s %s\n", i, i) } }' | zsh
+
 source "$ZSH_SETTING_PATH/zshrc.tmux"
 if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux
