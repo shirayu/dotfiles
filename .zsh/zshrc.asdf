@@ -11,8 +11,8 @@ fi
 #
 # asdf plugin add python
 # https://github.com/pyenv/pyenv/issues/1479#issuecomment-610683526
-# PATH="$(echo $PATH | tr : '\n' | grep -v linuxbrew | paste -s -d:)" asdf install python 3.9.10
-# asdf global python 3.9.10
+# PATH="$(echo $PATH | tr : '\n' | grep -v linuxbrew | paste -s -d:)" asdf install python latest
+# asdf global python latest
 # asdf reshim python
 ## Do re-login
 
@@ -29,6 +29,6 @@ fi
 
 ### npmjs
 # asdf plugin add nodejs
-# asdf install nodejs 16.13.2
-# asdf global nodejs 16.13.2
+# asdf install nodejs latest
+# asdf global nodejs latest
 # asdf reshim nodejs
