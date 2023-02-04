@@ -70,4 +70,5 @@ fi
 if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
     export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
     export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
+    alias "nvidia-smi=/usr/lib/wsl/lib/nvidia-smi"
 fi
