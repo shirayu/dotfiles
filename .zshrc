@@ -8,6 +8,17 @@ setopt HIST_NO_STORE
 export HISTSIZE=100000
 export SAVEHIST=100000
 
+
+zshaddhistory() {
+    local line=${1%%$'\n'}
+    local cmd=${line%% *}
+
+    # Only those that satisfy all of the following conditions are added to the history
+    [[ ${#line} -ge 5
+        && ${cmd} != (ls|pwd|man|ping|whois|mv|open)
+    ]]
+}
+
 # Loading complement setting, and set it.
 if [ -e "$HOME/local/opt/tmsu/misc/zsh" ]; then
     FPATH="$HOME/local/opt/tmsu/misc/zsh:$FPATH"
