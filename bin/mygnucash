@@ -6,6 +6,16 @@ if [ "$PID" != "" ]; then
     exit 1
 fi
 
+if [ "$PID" != "" ]; then
+    zenity --width 600 --error --text "Already running: ${PID}"
+    exit 1
+fi
+
+type sqlite3 >/dev/null || (
+    zenity --width 600 --error --text "No sqlite3"
+    exit 1
+)
+
 TMP_DIR=$(mktemp -d)
 FDIR=~/secret/money/gnucash/
 FNAME=yuta.sqlite3.gnucash
@@ -38,9 +48,11 @@ rsync -av "${FDIR}/" "${TMP_DIR}"
 
 FQ_LOAD_QUOTELET='-defaults YahooJapan' gnucash "${TMP_DIR}/${FNAME}"
 
-if [[ "${NOSAVE}" == "1" ]]; then
+if [[ ${NOSAVE} == "1" ]]; then
     exit
 fi
+
+sqlite3 "${TMP_DIR}/${FNAME}" .dump >"${TMP_DIR}/${FNAME}.dump"
 
 while [ ! -d "${FDIR}" ]; do
     zenity --width 600 --error --text "No such directory:\n${FDIR}"
