@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+PID=$1
+INTERVAL=10
+if [[ $2 != "" ]]; then
+    INTERVAL=$2
+fi
+
+MYHOST=$(hostname -s)
+START_TIME=$(cut -f22 -d' ' "/proc/${PID}/stat" 2>/dev/null)
+while :; do
+    NEW_START_TIME=$(cut -f22 -d' ' "/proc/${PID}/stat" 2>/dev/null)
+    if [[ ${NEW_START_TIME} == "" || ${NEW_START_TIME} != "${START_TIME}" ]]; then
+        echo ""
+        echo "Done"
+        exit 0
+    fi
+
+    echo -n -e "\r" $(date) "    PID ${PID} still lives" 1>&2
+    sleep "${INTERVAL}"
+done
