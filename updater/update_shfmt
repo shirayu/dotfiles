@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+shfmt --version
+
+TMPDIR=/tmp/update__shfmt
+mkdir -p "${TMPDIR}"
+
+cd "${TMPDIR}" || exti 1
+wget -q https://api.github.com/repos/mvdan/sh/releases/latest -O - \
+    | grep 'browser_download_url' | grep linux | grep amd64 | grep -o 'http[^"]*' \
+    | xargs -I {} wget -q {} -O "${TMPDIR}/shfmt"
+
+chmod a+x "${TMPDIR}/shfmt"
+mv "${TMPDIR}/shfmt" ~/local/bin
+
+rm -rf "${TMPDIR}"
+shfmt --version
