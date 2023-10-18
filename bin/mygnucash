@@ -46,7 +46,12 @@ echo "${FDIR} -> ${TMP_DIR}"
 find "${FDIR}" -name '*log' -mtime +2 -type f | xargs rm
 rsync -av "${FDIR}/" "${TMP_DIR}"
 
-FQ_LOAD_QUOTELET='-defaults YahooJapan' gnucash "${TMP_DIR}/${FNAME}"
+# https://gitlab.gnome.org/GNOME/gnome-control-center/-/issues/2498#note_1779435
+WEBKIT_DISABLE_COMPOSITING_MODE=1 \
+    WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1 \
+    WEBKIT_FORCE_SANDBOX=0 \
+    FQ_LOAD_QUOTELET='-defaults YahooJapan' \
+    gnucash "${TMP_DIR}/${FNAME}"
 
 if [[ ${NOSAVE} == "1" ]]; then
     exit
