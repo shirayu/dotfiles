@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#
+# https://qiita.com/hayamiz/items/254b29e99e70a230e920
+
+if [ $# -lt 1 ]; then
+    echo "[ERROR] usage: $0 PARENT_PID"
+    exit 1
+fi
+
+LAST_CHILD_PID=$(for pid in $(ps --ppid $1 -o pid= | tr -d ' '); do
+    STARTTIME_SEC=$(date -d "$(ps --pid $pid -o lstart=)" +%s)
+    echo $pid $STARTTIME_SEC
+done | sort -k2 | tail -n1 | cut -d' ' -f1)
+
+if [ -z "$LAST_CHILD_PID" ]; then
+    echo "No child process is running."
+    exit
+fi
+
+STARTTIME_SEC=$(date -d "$(ps --pid $LAST_CHILD_PID -o lstart=)" +%s)
+STARTTIME=$(date -d @${STARTTIME_SEC} +"%Y/%m/%d %H:%M:%S")
+DURATION_SEC=$(($(date +%s) - STARTTIME_SEC))
+DURATION=$(date --utc -d @${DURATION_SEC} +%kh%Mm%Ss | sed -e 's/^ \(0h\)?*//' | sed -e 's/^00*m//' | sed -e 's/^0//')
+NAMES=$(ps --pid ${LAST_CHILD_PID} -o comm=,args= | sed 's/ \{2,\}/ /g')
+
+echo "[PID:$LAST_CHILD_PID] started at $STARTTIME (running $DURATION) ${NAMES}"
