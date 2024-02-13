@@ -32,7 +32,7 @@ if [[ "${ZSH_SETTING_PATH}" == '' ]]; then
     source "${ZSH_SETTING_PATH}/zshrc.envvar"
     source "$ZSH_SETTING_PATH/zshrc.gcp"
 fi
-source "${ZSH_SETTING_PATH}/zshrc.asdf"
+source "${ZSH_SETTING_PATH}/zshrc.mise"
 
 # highlighting complement candidates
 autoload colors
