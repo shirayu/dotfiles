@@ -1,0 +1,5 @@
+[tools]
+python = "3.11.8"
+node = "20.11.0"
+pnpm = "8.15.2"
+poetry = "1.7.1"
