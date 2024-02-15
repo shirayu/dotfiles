@@ -8,7 +8,6 @@ if [ ! -e "${SRC}/.tmux" ]; then
     exit 1
 fi
 
-mkdir -p ~/.config/fontconfig
 find "${SRC}" -mindepth 1 -maxdepth 1 -type f -name '\.*' -not -name '\.gitignore' -print0 | xargs -0 -I {} ln -snf {} ~
 find "${SRC}" -mindepth 1 -maxdepth 1 -type d -name '\.*' -not -name '\.git' -not -name '.mypy_cache' -print0 | xargs -0 -I {} ln -snf {} ~
 
