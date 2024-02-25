@@ -2,6 +2,6 @@
 python = "3.11.8"
 node = "20.11.1"
 pnpm = "latest"
-poetry = "latest"
+poetry = "1.8.0"
 typos = "latest"
 shfmt = "latest"
