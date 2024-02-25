@@ -39,5 +39,14 @@ if [ -e "${HOME}/.dir_colors" ]; then
     eval "$(dircolors -b ${HOME}/.dir_colors)"
 fi
 
-#Disable lock to type Ctrl-S
-stty stop undef
+# Check current setting
+# $ stty -a
+if [[ $- == *i* ]]; then # interactive shell
+    # Disable lock to type Ctrl-S
+    stty stop undef
+    # Disable Ctrl-Q
+    stty start undef
+
+    # Disable Ctrl-Z (suspend)
+    stty susp undef
+fi
