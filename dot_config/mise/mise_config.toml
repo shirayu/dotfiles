@@ -1,5 +1,7 @@
 [tools]
 python = "3.11.8"
 node = "20.11.1"
-pnpm = "8.15.3"
-poetry = "1.7.1"
+pnpm = "latest"
+poetry = "latest"
+typos = "latest"
+shfmt = "latest"
