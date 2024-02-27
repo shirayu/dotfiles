@@ -7,6 +7,8 @@ fi
 # https://anatofuz.hatenablog.com/entry/2024/01/05/122649
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 
+eval "$(mise completion zsh)"
+
 # mise install python 3.x.y
 ## Need?
 ##  sudo apt install build-essential libbz2-dev libdb-dev libreadline-dev libffi-dev libgdbm-dev liblzma-dev ibncursesw5-dev libsqlite3-dev libssl-dev zlib1g-dev uuid-dev
