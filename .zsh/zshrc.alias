@@ -25,7 +25,7 @@ alias "vi=vim"
 # fi
 alias 'vim-sjis=vim -c ":e ++enc=cp932" '
 alias "renamer.vim=vim +Renamer"
-alias 'jvgrep=jvgrep --exclude "/\.git$|/\.svn$|/\.hg$|\.o$|\.obj$|\.a$|\.exe~?$|/tags$|cache/|pyc$|pack\.js$|min\.js$"'
+alias 'jvgrep=GREP_COLORS="mt=0;7;31" grep -n -R --binary-files=without-match --color=always'
 
 if type 'xsel' > /dev/null 2>&1
 then
@@ -42,15 +42,15 @@ function sleep_until() {
     sleep ${sec}
 }
 
-function mylv() {
+function myless() {
     extension=${1##*.}
     if [[ $extension == "xz" ]]; then
-        xzcat "${1}" | lv -c
+        xzcat "${1}" | less -R
     else
-        lv -c "$@"
+        less -R "$@"
     fi
 }
-alias "lv=mylv"
+alias "lv=myless"
 alias "su=su -l" #su
 alias "bc=bc -ql"
 alias "top=htop"
