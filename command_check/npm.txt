@@ -1,7 +1,0 @@
-esformatter
-eslint
-js-beautify	#includes css-beautify and html-beautify
-markdownlint-cli
-typescript
-typescript-language-server
-htmllint-cli
