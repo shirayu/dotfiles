@@ -33,7 +33,7 @@ function myjvgrep() {
     if [[ -p /dev/stdin ]]; then
         set -- "$@" "-"
     fi
-    GREP_COLORS="mt=0;7;31" grep -n -R --binary-files=without-match --color=always "$@"
+    GREP_COLORS="mt=0;7;31" grep -n -R -H --binary-files=without-match --color=always "$@"
 }
 alias 'jvgrep=myjvgrep'
 
