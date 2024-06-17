@@ -1,6 +1,6 @@
 [tools]
-python = "3.11.8"
-node = "20.11.1"
+python = "3.12.4"
+node = "22.3.0"
 pnpm = "latest"
 poetry = "1.8.3"
 typos = "latest"
