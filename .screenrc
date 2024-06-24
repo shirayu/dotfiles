@@ -25,7 +25,7 @@ autodetach on
 
 # defines a directory where hardcopy files will be places.
 # If unset, hardcopys are dumped in screen's current working
-# directroy
+# directory
 hardcopydir "$HOME/screenlog"
 
 # The hardstatus line that all new windows will get it set to
