@@ -43,3 +43,6 @@
 	defaultBranch = main
 [commit]
 	gpgsign = true
+
+[http "https://gitlab.llm-jp.nii.ac.jp/"]
+        sslCAInfo=~/.dotfiles/ca/nii-ca.pem
