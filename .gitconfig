@@ -1,6 +1,10 @@
 [user]
 	name = Yuta Hayashibe
 	email = yuta@hayashibe.jp
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
 
 [alias]
     l = log --graph --pretty='%C(yellow)%h%Creset %C(cyan bold)%d%Creset %s %Cgreen[%cd] %C(bold blue)<%an> %Creset' --decorate --date=iso
@@ -11,38 +15,38 @@
 	autocrlf = false
         editor = vim -c \"set fenc=utf-8\"
 
-[difftool.latex]
-;         cmd = git-latexdiff "$LOCAL" "$REMOTE"
-	cmd = latexdiff -t CFONT -e euc-jp "$LOCAL" "$REMOTE"
-[difftool]
-	prompt = false
-[alias]
-	ldiff = difftool -t latex   
-
 [pager]
 	diff = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
 	show = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
 	log  = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
 
-[diff]
-	compactionHeuristic = true
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
 [merge]
 	ff = false
 [pull]
 	ff = only
 
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
 [filter "ignore-npmrc"]
     smudge = cat
     clean = sed '/^\\/\\/registry\\.npmjs\\.org\\/:_authToken/d'
-[init]
-	defaultBranch = main
-[commit]
-	gpgsign = true
+
+
+[diff]
+	compactionHeuristic = true
+
+[difftool.latex]
+;         cmd = git-latexdiff "$LOCAL" "$REMOTE"
+	cmd = latexdiff -t CFONT -e euc-jp "$LOCAL" "$REMOTE"
+
+[difftool]
+	prompt = false
+[alias]
+	ldiff = difftool -t latex   
 
 [http "https://gitlab.llm-jp.nii.ac.jp/"]
         sslCAInfo=~/.dotfiles/ca/nii-ca.pem
