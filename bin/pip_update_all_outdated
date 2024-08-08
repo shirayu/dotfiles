@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pip list -o --format json \
+    | python -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
+    | xargs -t pip install -U
