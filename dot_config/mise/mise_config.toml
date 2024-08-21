@@ -1,5 +1,5 @@
 [tools]
-python = "3.12.4"
+python = "3.12.5"
 node = "22.3.0"
 pnpm = "latest"
 poetry = "1.8.3"
