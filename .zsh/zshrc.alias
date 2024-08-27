@@ -54,9 +54,9 @@ function sleep_until() {
 function myless() {
     extension=${1##*.}
     if [[ $extension == "xz" ]]; then
-        xzcat "${1}" | less -R
+        xzless "$@"
     elif [[ $extension == "gz" || $extension == "gzip" ]]; then
-        zcat "${1}" | less -R
+        zless "$@"
     else
         less -R "$@"
     fi
