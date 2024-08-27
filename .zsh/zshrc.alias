@@ -78,9 +78,6 @@ case ${OSTYPE} in
         ;;
 esac
 
-alias "jk=juman | knp -tab"
-alias "jkd=juman | knp -tab -debug"
-
 unalias rm 2>/dev/null
 unalias cp 2>/dev/null
 unalias mv 2>/dev/null
