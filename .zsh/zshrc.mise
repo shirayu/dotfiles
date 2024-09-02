@@ -2,12 +2,12 @@
 
 if [ -e $HOME/.local/bin/mise ]; then
     eval "$($HOME/.local/bin/mise activate zsh)"
+
+    # https://anatofuz.hatenablog.com/entry/2024/01/05/122649
+    export PATH="$HOME/.local/share/mise/shims:$PATH"
+
+    eval "$(mise completion zsh)"
 fi
-
-# https://anatofuz.hatenablog.com/entry/2024/01/05/122649
-export PATH="$HOME/.local/share/mise/shims:$PATH"
-
-eval "$(mise completion zsh)"
 
 # mise install python 3.x.y
 ## Need?
