@@ -17,8 +17,10 @@ type sqlite3 >/dev/null || (
 )
 
 TMP_DIR=$(mktemp -d)
-FDIR=~/secret/money/gnucash/
-FNAME=yuta.sqlite3.gnucash
+FULLPATH=${1:-"$HOME/secret/money/gnucash/yuta.sqlite3.gnucash"}
+FNAME=$(basename "${FULLPATH}")
+FDIR=$(dirname "${FULLPATH}")
+
 if [[ ! -f "${FDIR}/${FNAME}" ]]; then
     zenity --width 600 --error --text "No such file:\n${FDIR}/${FNAME}"
     exit 1
