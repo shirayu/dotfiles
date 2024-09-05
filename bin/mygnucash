@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
 
-PID="$(pgrep gnucash)"
-if [ "$PID" != "" ]; then
-    zenity --width 600 --error --text "Already running: ${PID}"
-    exit 1
-fi
-
-if [ "$PID" != "" ]; then
-    zenity --width 600 --error --text "Already running: ${PID}"
-    exit 1
-fi
+FILE_FULLPATH=${1:-"$HOME/secret/money/gnucash/yuta.sqlite3.gnucash"}
+FILE_BASENAME=$(basename "${FILE_FULLPATH}")
+FILE_DIRNAME=$(dirname "${FILE_FULLPATH}")
+LOCK_DIR="/tmp/mygnucash"
+LOCK_FILE="${LOCK_DIR}/${FILE_BASENAME}.lock"
 
 type sqlite3 >/dev/null || (
     zenity --width 600 --error --text "No sqlite3"
     exit 1
 )
 
-TMP_DIR=$(mktemp -d)
-FULLPATH=${1:-"$HOME/secret/money/gnucash/yuta.sqlite3.gnucash"}
-FNAME=$(basename "${FULLPATH}")
-FDIR=$(dirname "${FULLPATH}")
+if [ -e "${LOCK_FILE}" ]; then
+    zenity --width 600 --error --text "Already running for ${FILE_FULLPATH}"
+    exit 1
+fi
 
-if [[ ! -f "${FDIR}/${FNAME}" ]]; then
-    zenity --width 600 --error --text "No such file:\n${FDIR}/${FNAME}"
+mkdir -p "${LOCK_DIR}"
+date '+%Y-%m-%d-%H:%M:%S' >"${LOCK_FILE}"
+
+TMP_DIR=$(mktemp -d)
+
+if [[ ! -f "${FILE_DIRNAME}/${FILE_BASENAME}" ]]; then
+    zenity --width 600 --error --text "No such file:\n${FILE_DIRNAME}/${FILE_BASENAME}"
     exit 1
 fi
 if [[ ! -f ~/.apikey.sh ]]; then
@@ -43,29 +43,30 @@ atexit() {
 trap atexit EXIT
 trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
 
-echo "${FDIR} -> ${TMP_DIR}"
+echo "${FILE_DIRNAME} -> ${TMP_DIR}"
 # shellcheck disable=SC2038
-find "${FDIR}" -name '*log' -mtime +2 -type f | xargs rm
-rsync -av "${FDIR}/" "${TMP_DIR}"
+find "${FILE_DIRNAME}" -name '*log' -mtime +2 -type f | xargs rm
+rsync -av "${FILE_DIRNAME}/" "${TMP_DIR}"
 
 # https://gitlab.gnome.org/GNOME/gnome-control-center/-/issues/2498#note_1779435
 WEBKIT_DISABLE_COMPOSITING_MODE=1 \
     WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1 \
     WEBKIT_FORCE_SANDBOX=0 \
     FQ_LOAD_QUOTELET='-defaults YahooJapan' \
-    gnucash "${TMP_DIR}/${FNAME}"
+    gnucash "${TMP_DIR}/${FILE_BASENAME}"
 
 if [[ ${NOSAVE} == "1" ]]; then
     exit
 fi
 
-sqlite3 "${TMP_DIR}/${FNAME}" .dump >"${TMP_DIR}/${FNAME}.dump"
+sqlite3 "${TMP_DIR}/${FILE_BASENAME}" .dump >"${TMP_DIR}/${FILE_BASENAME}.dump"
 
-while [ ! -d "${FDIR}" ]; do
-    zenity --width 600 --error --text "No such directory:\n${FDIR}"
+while [ ! -d "${FILE_DIRNAME}" ]; do
+    zenity --width 600 --error --text "No such directory:\n${FILE_DIRNAME}"
 done
 
-diff "${FDIR}/${FNAME}.dump" "${TMP_DIR}/${FNAME}.dump" && exit 0
+diff "${FILE_DIRNAME}/${FILE_BASENAME}.dump" "${TMP_DIR}/${FILE_BASENAME}.dump" && exit 0
 
 echo "Found diff. Do rsync."
-rsync --delete -av "${TMP_DIR}/" "${FDIR}"
+rsync --delete -av "${TMP_DIR}/" "${FILE_DIRNAME}"
+rm "${LOCK_FILE}"
