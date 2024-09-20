@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "Update pip"
+pip list -o --format json \
+    | python -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
+    | xargs --no-run-if-empty -t pip install -U
+
+echo "Update pipx"
+pipx upgrade-all
+
+echo "Update mise"
+mise cache clear
+mise self-update -y
+MISE_USE_VERSIONS_HOST=false mise up
