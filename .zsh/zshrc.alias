@@ -57,6 +57,8 @@ function myless() {
         xzless "$@"
     elif [[ $extension == "gz" || $extension == "gzip" ]]; then
         zless "$@"
+    elif [[ $extension == "zst" ]]; then
+        zstdless "$@"
     else
         less -R "$@"
     fi
