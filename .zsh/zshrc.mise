@@ -9,6 +9,7 @@ if [ -e $HOME/.local/bin/mise ]; then
     eval "$(mise completion zsh)"
 
     type "mise" >/dev/null && eval "$(task --completion zsh)"
+    type "uv" >/dev/null && eval "$(uv generate-shell-completion zsh)"
 fi
 
 # mise install python 3.x.y
