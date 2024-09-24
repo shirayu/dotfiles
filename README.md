@@ -15,9 +15,14 @@ git clone https://github.com/shirayu/dot_vim.git ~/.vim
 git clone https://github.com/shirayu/dotfiles.git ~/.dotfiles
 curl https://mise.run | sh # https://mise.jdx.dev/getting-started.html
 bash ~/.dotfiles/generate_links.sh
-sudo chsh -s $(which zsh)
+sudo chsh $(whoami) -s $(which zsh)
 
 mise up
+
+mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
+git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
+vi +':call dein#install()' +q
+~/.vim/setup.sh update
 ```
 
 ### Instruction for the client desktop and laptop PCs (debian+gnome3)
