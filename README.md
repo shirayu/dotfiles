@@ -13,7 +13,7 @@ sudo timedatectl set-timezone Asia/Tokyo
 
 git clone https://github.com/shirayu/dot_vim.git ~/.vim
 git clone https://github.com/shirayu/dotfiles.git ~/.dotfiles
-curl https://mise.run | sh # https://mise.jdx.dev/getting-started.html
+curl https://mise.run | sh
 bash ~/.dotfiles/generate_links.sh
 sudo chsh $(whoami) -s $(which zsh)
 
