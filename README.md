@@ -7,7 +7,7 @@ This is my dotfiles. (Except for [.vim](https://github.com/shirayu/dot_vim))
 
 ```bash
 sudo apt update
-sudo apt install -y git htop jq make rsync shellcheck task-japanese zsh locales
+sudo apt install -y git htop jq make rsync shellcheck task-japanese zsh locales tmux
 sudo /usr/sbin/dpkg-reconfigure locales
 sudo timedatectl set-timezone Asia/Tokyo
 
@@ -15,7 +15,7 @@ git clone https://github.com/shirayu/dot_vim.git ~/.vim
 git clone https://github.com/shirayu/dotfiles.git ~/.dotfiles
 curl https://mise.run | sh # https://mise.jdx.dev/getting-started.html
 bash ~/.dotfiles/generate_links.sh
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 
 mise up
 ```
