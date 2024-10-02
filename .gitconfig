@@ -13,6 +13,9 @@
 [core]
 	autocrlf = false
         editor = vim -c \"set fenc=utf-8\"
+	quotepath = false
+	ignorecase = false
+	safecrlf = true
 
 [pager]
 	diff = (diff-highlight 2>/dev/null || cat) | less -+F -+X -R
