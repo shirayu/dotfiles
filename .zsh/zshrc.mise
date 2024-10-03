@@ -12,8 +12,10 @@ if [ -e $HOME/.local/bin/mise ]; then
     type "uv" >/dev/null && eval "$(uv generate-shell-completion zsh)"
 fi
 
-# mise install python 3.x.y
-## Need?
-##  sudo apt install build-essential libbz2-dev libdb-dev libreadline-dev libffi-dev libgdbm-dev liblzma-dev ibncursesw5-dev libsqlite3-dev libssl-dev zlib1g-dev uuid-dev
-
-# mise global python 3.x.y
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
