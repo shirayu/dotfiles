@@ -23,6 +23,9 @@ if [ -f "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc" ]; then
     source "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc"
 fi
 
+# less
+export LESSHISTFILE=/dev/null
+
 # SHELL
 export SHELL=$(which zsh)
 
