@@ -13,5 +13,5 @@ mise cache clear
 mise self-update -y
 MISE_USE_VERSIONS_HOST=false mise up
 
-npm update -g
+pnpm -g upgrade
 mise reshim
