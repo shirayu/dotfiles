@@ -1,5 +1,4 @@
 [tools]
-node = "22.3.0"
 pnpm = "latest"
 typos = "latest"
 shfmt = "latest"
@@ -10,3 +9,4 @@ yarn = "latest"
 task = "latest"
 uv = "latest"
 python = "3.12.7"
+node = "22.9.0"
