@@ -2,9 +2,8 @@
 export PATH=/sbin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH=$HOME/local/sbin:$PATH
-export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/sbin:$PATH
 export PATH=/snap/bin:$PATH
 
 # brew coreutils
@@ -16,11 +15,11 @@ fi
 export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
 
 # Google Cloud SDK
-if [ -f "$HOME/local/opt/google-cloud-sdk/path.zsh.inc" ]; then
-    source "$HOME/local/opt/google-cloud-sdk/path.zsh.inc"
+if [ -f "$HOME/.local/opt/google-cloud-sdk/path.zsh.inc" ]; then
+    source "$HOME/.local/opt/google-cloud-sdk/path.zsh.inc"
 fi
-if [ -f "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc" ]; then
-    source "$HOME/local/opt/google-cloud-sdk/completion.zsh.inc"
+if [ -f "$HOME/.local/opt/google-cloud-sdk/completion.zsh.inc" ]; then
+    source "$HOME/.local/opt/google-cloud-sdk/completion.zsh.inc"
 fi
 
 # less
@@ -30,12 +29,12 @@ export LESSHISTFILE=/dev/null
 export SHELL=$(which zsh)
 
 # OTHER PATHS
-export INCLUDE=~/local/include:$INCLUDE
-export CPLUS_INCLUDE_PATH=~/local/include:$CPLUS_INCLUDE_PATH
-export CPLUS_LIBRARY_PATH=~/local/lib:$CPLUS_LIBRARY_PATH
-export LIBRARY_PATH=~/local/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=~/local/lib:$LD_LIBRARY_PATH
-export LD_RUN_PATH=~/local/lib:$LD_RUN_PATH
+export INCLUDE=~/.local/include:$INCLUDE
+export CPLUS_INCLUDE_PATH=~/.local/include:$CPLUS_INCLUDE_PATH
+export CPLUS_LIBRARY_PATH=~/.local/lib:$CPLUS_LIBRARY_PATH
+export LIBRARY_PATH=~/.local/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=~/.local/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=~/.local/lib:$LD_RUN_PATH
 
 CUDNN_ROOT=/usr/local/cuda
 if [ -e "${CUDNN_ROOT}" ]; then
@@ -63,10 +62,6 @@ case $OSTYPE in
         fi
         ;;
 esac
-
-if [ -e "$HOME/local/opt/tmsu/bin" ]; then
-    export PATH="$HOME/local/opt/tmsu/bin:$PATH"
-fi
 
 # WSL2
 # https://qiita.com/Engr_Coal33/items/6aabb6932b53bd43b843

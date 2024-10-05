@@ -1,4 +1,4 @@
 if [ -z "${BASH_EXECUTION_STRING}" ]; then
-    ZSH="$HOME/local/bin/zsh"
+    ZSH="$HOME/.local/bin/zsh"
     [ -x "${ZSH}" ] && SHELL="${ZSH}" exec "${ZSH}" -l
 fi

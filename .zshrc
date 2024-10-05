@@ -19,10 +19,6 @@ zshaddhistory() {
     ]]
 }
 
-# Loading complement setting, and set it.
-if [ -e "$HOME/local/opt/tmsu/misc/zsh" ]; then
-    FPATH="$HOME/local/opt/tmsu/misc/zsh:$FPATH"
-fi
 autoload -Uz compinit && compinit -u -C
 
 autoload -U add-zsh-hook
