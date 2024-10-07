@@ -39,6 +39,7 @@ fi
 
 atexit() {
     [[ -n ${TMP_DIR-} ]] && rm -rf "${TMP_DIR}"
+    rm "${LOCK_FILE}"
 }
 trap atexit EXIT
 trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
@@ -75,4 +76,3 @@ diff "${FILE_DIRNAME}/${FILE_BASENAME}.dump" "${TMP_DIR}/${FILE_BASENAME}.dump" 
 
 echo "Found diff. Do rsync."
 rsync --delete -av "${TMP_DIR}/" "${FILE_DIRNAME}"
-rm "${LOCK_FILE}"
