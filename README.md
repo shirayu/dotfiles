@@ -7,7 +7,7 @@ This is my dotfiles. (Except for [.vim](https://github.com/shirayu/dot_vim))
 
 ```bash
 sudo apt update
-sudo apt install -y git htop jq make rsync shellcheck task-japanese zsh locales tmux
+sudo apt install -y git htop jq make rsync shellcheck task-japanese zsh locales tmux wget unar unzip
 sudo /usr/sbin/dpkg-reconfigure locales
 sudo timedatectl set-timezone Asia/Tokyo
 
