@@ -60,7 +60,7 @@ function myless() {
     elif [[ $extension == "zst" ]]; then
         zstdless "$@"
     elif [[ $extension == "bz2" ]]; then
-        bzcat "$@"
+        bzless "$@"
     else
         less -R "$@"
     fi
