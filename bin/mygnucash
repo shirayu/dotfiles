@@ -6,18 +6,20 @@ FILE_FULLPATH=${1:-"$HOME/secret/money/gnucash/yuta.sqlite3.gnucash"}
 
 FILE_BASENAME=$(basename "${FILE_FULLPATH}")
 FILE_DIRNAME=$(dirname "${FILE_FULLPATH}")
-LOCK_DIR="/tmp/mygnucash"
-LOCK_FILE="${LOCK_DIR}/${FILE_BASENAME}.lock"
+LOCK_DIR="/tmp"
+LOCK_FILE="${LOCK_DIR}/mygnucash.${USER}__${FILE_BASENAME}.lock"
 
 type sqlite3 >/dev/null || (
     zenity --width 600 --error --text "No sqlite3"
     exit 1
 )
 
-if [ -e "${LOCK_FILE}" ]; then
-    zenity --width 600 --error --text "Already running for ${FILE_FULLPATH}"
+exec 9>"${LOCK_FILE}"
+
+flock -n 9 || {
+    zenity --width 600 --error --text "Locked:\n${LOCK_FILE}\n\nAlready running for ${FILE_FULLPATH}"
     exit 1
-fi
+}
 
 if [[ ! -f "${FILE_DIRNAME}/${FILE_BASENAME}" ]]; then
     zenity --width 600 --error --text "No such file:\n${FILE_DIRNAME}/${FILE_BASENAME}"
@@ -39,7 +41,6 @@ fi
 
 atexit() {
     [[ -n ${TMP_DIR-} ]] && rm -rf "${TMP_DIR}"
-    rm "${LOCK_FILE}"
 }
 trap atexit EXIT
 trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
