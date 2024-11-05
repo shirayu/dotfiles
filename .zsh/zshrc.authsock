@@ -1,17 +1,22 @@
 function _authsock() {
-    #if error
-    if [ ! -e "${SSH_SOCK_LIST}" ]; then
-        return
-    elif [ ! -e "${SSH_AUTH_SOCK}" ]; then
-        while [ "$(wc -l <${SSH_SOCK_LIST})" != "0" ]; do
-            export SSH_AUTH_SOCK=$(head -n1 "${SSH_SOCK_LIST}")
-            if [ -e "${SSH_AUTH_SOCK}" ]; then
-                break
-            fi
+    args=($(echo "$1" | xargs))
+    if [[ $args[1] == "ssh" ]]; then
+        if [[ -e "/usr/bin/gnome-keyring-daemon" && $SSH_AUTH_SOCK != *"/keyring/ssh"* ]]; then
+            eval $(/usr/bin/gnome-keyring-daemon)
+            return
+        elif [ ! -e "${SSH_SOCK_LIST}" ]; then
+            return
+        elif [ ! -e "${SSH_AUTH_SOCK}" ]; then
+            while [ "$(wc -l <${SSH_SOCK_LIST})" != "0" ]; do
+                export SSH_AUTH_SOCK=$(head -n1 "${SSH_SOCK_LIST}")
+                if [ -e "${SSH_AUTH_SOCK}" ]; then
+                    break
+                fi
 
-            #if the socket is invalid, erase it
-            sed -i '1d' "${SSH_SOCK_LIST}"
-        done
+                #if the socket is invalid, erase it
+                sed -i '1d' "${SSH_SOCK_LIST}"
+            done
+        fi
     fi
 }
 add-zsh-hook preexec _authsock
