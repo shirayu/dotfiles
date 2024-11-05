@@ -10,6 +10,16 @@ if [ -e $HOME/.local/bin/mise ]; then
 
     type "mise" >/dev/null && eval "$(task --completion zsh)"
     type "uv" >/dev/null && eval "$(uv generate-shell-completion zsh)"
+
+    _uv_run_mod() {
+        if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+            _arguments '*:filename:_files'
+        else
+            _uv "$@"
+        fi
+    }
+    compdef _uv_run_mod uv
+
 fi
 
 # pnpm
