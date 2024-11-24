@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 if [[ $(type pip) ]]; then
     echo "Updating pip"
     pip list -o --format json \
