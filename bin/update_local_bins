@@ -16,6 +16,11 @@ if [[ $(type uv) ]]; then
     uv cache prune
 fi
 
+if [[ $(type npm) ]]; then
+    echo "Updating npm"
+    npm -g upgrade
+fi
+
 if [[ $(type pnpm) ]]; then
     echo "Updating pnpm"
     pnpm -g upgrade
