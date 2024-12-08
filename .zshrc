@@ -52,3 +52,8 @@ source "$ZSH_SETTING_PATH/zshrc.tmux"
 if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux
 fi
+
+ZSH_SYNTAX_PLUGIN=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -e ${ZSH_SYNTAX_PLUGIN} ]]; then
+    source "${ZSH_SYNTAX_PLUGIN}"
+fi
