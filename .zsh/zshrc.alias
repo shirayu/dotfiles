@@ -18,6 +18,12 @@ else
     esac
 fi
 
+if type 'eza' >/dev/null 2>&1; then
+    alias "ls=eza --time-style=long-iso"
+else
+    alias "ls=ls --time-style=long-iso"
+fi
+
 # if which nvim >/dev/null 2>/dev/null; then
 #     alias "vi=nvim"
 # else
