@@ -1,4 +1,5 @@
 [tools]
+actionlint = "latest"
 node = "lts"
 peco = "latest"
 pnpm = "latest"
