@@ -20,3 +20,15 @@ function _authsock() {
     fi
 }
 add-zsh-hook preexec _authsock
+
+# https://qiita.com/sonots/items/2d7950a68da0a02ba7e4
+PATH_SSH_AGENT="$HOME/.ssh/agent"
+if [ -S "$SSH_AUTH_SOCK" ]; then
+    case $SSH_AUTH_SOCK in
+        /tmp/*/agent.[0-9]*)
+            ln -snf "$SSH_AUTH_SOCK" "${PATH_SSH_AGENT}" && export SSH_AUTH_SOCK="${PATH_SSH_AGENT}"
+            ;;
+    esac
+elif [ -S "${PATH_SSH_AGENT}" ]; then
+    export SSH_AUTH_SOCK="${PATH_SSH_AGENT}"
+fi
