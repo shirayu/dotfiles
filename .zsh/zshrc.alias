@@ -19,7 +19,39 @@ else
 fi
 
 if type 'eza' >/dev/null 2>&1; then
-    alias "ls=eza --time-style=long-iso"
+    alias "ls=_ls_with_eza --time-style=long-iso"
+    _ls_with_eza() {
+        local args=()
+        for arg in "$@"; do
+            local use_l_opt=false
+            local use_t_opt=false
+
+            case "$arg" in
+                -l)
+                    use_l_opt=true
+                    ;;
+                -t)
+                    use_t_opt=true
+                    ;;
+                -lt | -tl)
+                    use_l_opt=true
+                    use_t_opt=true
+                    ;;
+                *)
+                    args+=("$arg")
+                    ;;
+            esac
+
+            if $use_t_opt; then
+                args+=("--sort=modified")
+                args+=("-r")
+            fi
+            if $use_l_opt; then
+                args+=("-l")
+            fi
+        done
+        eza "${args[@]}"
+    }
 else
     alias "ls=ls --time-style=long-iso"
 fi
