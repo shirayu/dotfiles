@@ -52,6 +52,10 @@ if type 'eza' >/dev/null 2>&1; then
         done
         eza "${args[@]}"
     }
+    _eza_mod() {
+        _arguments '*:filename:_files'
+    }
+    compdef _eza_mod _ls_with_eza
 else
     alias "ls=ls --time-style=long-iso"
 fi
