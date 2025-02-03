@@ -144,3 +144,4 @@ function crontab() {
 
 alias "pip=python3 -m pip"
 alias "pip3=python3 -m pip"
+alias "gedit=gnome-text-editor"
