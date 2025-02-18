@@ -82,16 +82,6 @@ if type 'xsel' >/dev/null 2>&1; then
     alias pbcopy='xsel --clipboard --input'
 fi
 
-function sleep_until() {
-    sec=$(($(date -d "$*" +%s) - $(date +%s)))
-    if [[ ${sec} -lt 0 ]]; then
-        echo "Invalid argument" >&2
-        return 1
-    fi
-    echo "Sleep time: $((sec / 3600))h $(((sec % 3600) / 60))m $((sec % 60))s" >&2
-    sleep ${sec}
-}
-
 function lv() {
     extension=${1##*.}
     if [[ $extension == "xz" ]]; then
