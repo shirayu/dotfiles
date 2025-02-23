@@ -1,8 +1,10 @@
 [tools]
-actionlint = "latest"
-node = "lts"
-peco = "latest"
+# order: pnpm > node
 pnpm = "latest"
+node = "lts"
+
+actionlint = "latest"
+peco = "latest"
 python = "3.13.2"
 shfmt = "latest"
 task = "latest"
