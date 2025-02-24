@@ -4,6 +4,7 @@ pnpm = "latest"
 node = "lts"
 
 actionlint = "latest"
+hadolint = "latest"
 peco = "latest"
 python = "3.13.2"
 shfmt = "latest"
