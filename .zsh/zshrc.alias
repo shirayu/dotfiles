@@ -60,13 +60,12 @@ else
     alias "ls=ls --time-style=long-iso"
 fi
 
-# if which nvim >/dev/null 2>/dev/null; then
-#     alias "vi=nvim"
-# else
-alias "vi=vim"
-# fi
-alias 'vim-sjis=vim -c ":e ++enc=cp932" '
-alias "renamer.vim=vim +Renamer"
+if which nvim >/dev/null 2>/dev/null; then
+     alias "vi=nvim"
+else
+    alias "vi=vim"
+fi
+alias "renamer.vi=vi +Renamer"
 function jvgrep() {
     if [[ $# -eq 0 ]]; then
         echo "No filename is given for jvgrep" >&2
