@@ -1,15 +1,13 @@
 [tools]
-# order: pnpm > node
-pnpm = "latest"
-node = "lts"
-
 actionlint = "latest"
 hadolint = "latest"
+neovim = "latest"
+node = "lts"
 peco = "latest"
+pnpm = "latest"
 python = "3.13.2"
 shfmt = "latest"
 task = "latest"
 typos = "latest"
 usage = "latest"
 uv = "latest"
-neovim = "latest"
