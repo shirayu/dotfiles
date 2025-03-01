@@ -2,6 +2,14 @@
 
 set -x
 
+if [[ $(type mise) ]]; then
+    echo "Updating mise"
+    mise cache clear
+    mise self-update -y
+    MISE_USE_VERSIONS_HOST=false mise up
+    mise reshim
+fi
+
 if [[ $(type pip) ]]; then
     echo "Updating pip"
     pip list -o --format json \
@@ -24,12 +32,4 @@ fi
 if [[ $(type pnpm) ]]; then
     echo "Updating pnpm"
     pnpm -g upgrade
-fi
-
-if [[ $(type mise) ]]; then
-    echo "Updating mise"
-    mise cache clear
-    mise self-update -y
-    MISE_USE_VERSIONS_HOST=false mise up
-    mise reshim
 fi
