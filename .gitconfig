@@ -12,7 +12,7 @@
 
 [core]
 	autocrlf = false
-        editor = vim -c \"set fenc=utf-8\"
+	editor = nvim
 	quotepath = false
 	ignorecase = false
 	safecrlf = true
