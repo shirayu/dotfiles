@@ -40,7 +40,11 @@ if [ -e "${CUDNN_ROOT}" ]; then
     export LD_LIBRARY_PATH=${CUDNN_ROOT}/lib64:$LD_LIBRARY_PATH
 fi
 
-export EDITOR=vim
+if which nvim >/dev/null 2>/dev/null; then
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
 export DISPLAY=:0.0
 #umask 66
 
