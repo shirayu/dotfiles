@@ -61,7 +61,8 @@ else
 fi
 
 if which nvim >/dev/null 2>/dev/null; then
-     alias "vi=nvim"
+    alias "vi=nvim"
+    alias "vim=nvim"
 else
     alias "vi=vim"
 fi
