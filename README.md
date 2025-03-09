@@ -1,7 +1,7 @@
 
 # dotfiles
 
-This is my dotfiles. (Except for [.vim](https://github.com/shirayu/dot_vim))
+This is my dotfiles. (Except for [~/.config/nvim](https://github.com/shirayu/config_nvim))
 
 ## Setup
 
@@ -11,7 +11,7 @@ sudo apt install -y git htop jq make rsync shellcheck task-japanese zsh zsh-synt
 sudo /usr/sbin/dpkg-reconfigure locales
 sudo timedatectl set-timezone Asia/Tokyo
 
-git clone https://github.com/shirayu/dot_vim.git ~/.vim
+git clone https://github.com/shirayu/config_nvim ~/.config/nvim
 git clone https://github.com/shirayu/dotfiles.git ~/.dotfiles
 curl https://mise.run | sh
 bash ~/.dotfiles/generate_links.sh
@@ -19,10 +19,7 @@ sudo chsh $(whoami) -s $(which zsh)
 
 mise up
 
-mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
-git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
-vi +':call dein#install()' +q
-~/.vim/setup.sh update
+~/.config/nvim/setup.sh update
 ```
 
 ### Instruction for the client desktop and laptop PCs (debian+gnome3)

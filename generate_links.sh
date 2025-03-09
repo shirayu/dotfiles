@@ -11,13 +11,6 @@ fi
 find "${SRC}" -mindepth 1 -maxdepth 1 -type f -name '\.*' -not -name '\.gitignore' -print0 | xargs -0 -I {} ln -snf {} ~
 find "${SRC}" -mindepth 1 -maxdepth 1 -type d -name '\.*' -not -name '\.git' -not -name '.mypy_cache' -print0 | xargs -0 -I {} ln -snf {} ~
 
-if [ -d "$SRC/dot_vim" ]; then
-    ln -snf "$SRC/dot_vim/" ~/.vim
-fi
-if [ -f ~/.vim/vimrc ]; then
-    ln -snf ~/.vim/vimrc ~/.vimrc
-fi
-
 mkdir -p ~/.local/bin
 ln -snf "$SRC"/bin/* ~/.local/bin
 
