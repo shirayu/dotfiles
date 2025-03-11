@@ -12,7 +12,7 @@ sudo /usr/sbin/dpkg-reconfigure locales
 sudo timedatectl set-timezone Asia/Tokyo
 
 git clone https://github.com/shirayu/config_nvim ~/.config/nvim
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')/ font "Moralerspace Argon HWNF 14"
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')/ font "Moralerspace Argon HWNF 13"
 
 git clone https://github.com/shirayu/dotfiles.git ~/.dotfiles
 curl https://mise.run | sh
