@@ -1,5 +1,5 @@
 function _authsock() {
-    args=($(echo "$1" | xargs))
+    args=($(echo "$1" | xargs -0))
     if [[ $args[1] == "ssh" ]]; then
         if [[ -e "/usr/bin/gnome-keyring-daemon" && $SSH_AUTH_SOCK != *"/keyring/ssh"* ]]; then
             eval $(/usr/bin/gnome-keyring-daemon)
