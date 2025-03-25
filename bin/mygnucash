@@ -55,10 +55,8 @@ echo "${FILE_DIRNAME} -> ${TMP_DIR}"
 find "${FILE_DIRNAME}" -name '*log' -mtime +2 -type f | xargs rm
 rsync -av "${FILE_DIRNAME}/" "${TMP_DIR}"
 
-# https://gitlab.gnome.org/GNOME/gnome-control-center/-/issues/2498#note_1779435
-WEBKIT_DISABLE_COMPOSITING_MODE=1 \
-    WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1 \
-    WEBKIT_FORCE_SANDBOX=0 \
+# https://bugs.mageia.org/show_bug.cgi?id=33964#c2
+__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json \
     FQ_LOAD_QUOTELET='-defaults YahooJapan' \
     gnucash "${TMP_DIR}/${FILE_BASENAME}"
 
