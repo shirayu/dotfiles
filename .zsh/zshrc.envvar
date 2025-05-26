@@ -12,6 +12,10 @@ if [ -e /usr/local/opt/coreutils/libexec/gnubin ]; then
     export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 fi
 
+if [ -e /opt/llama.cpp/bin ]; then
+    export PATH=/opt/llama.cpp/bin:${PATH}
+fi
+
 # Google Cloud SDK
 if [ -f "$HOME/.local/opt/google-cloud-sdk/path.zsh.inc" ]; then
     source "$HOME/.local/opt/google-cloud-sdk/path.zsh.inc"
