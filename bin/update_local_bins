@@ -31,5 +31,5 @@ fi
 
 if [[ $(type pnpm) ]]; then
     echo "Updating pnpm"
-    pnpm -g upgrade
+    pnpm -g up --latest
 fi
