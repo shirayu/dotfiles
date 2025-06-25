@@ -27,6 +27,7 @@ fi
 if [[ $(type npm) ]]; then
     echo "Updating npm"
     npm -g upgrade
+    npm -g uninstall corepack
 fi
 
 if [[ $(type pnpm) ]]; then
