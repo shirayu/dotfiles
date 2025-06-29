@@ -3,7 +3,7 @@ actionlint = "latest"
 go = "latest"
 hadolint = "latest"
 neovim = "latest"
-node = "lts"
+node = { version = "lts", postinstall = "corepack false" }
 peco = "latest"
 pnpm = "latest"
 python = "3.13.5"
