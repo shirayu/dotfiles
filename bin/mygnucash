@@ -66,9 +66,9 @@ create_sqlite_dump() {
     local tmp_dump
     
     if mountpoint -q /dev/shm; then
-        tmp_dump=$(mktemp -p /dev/shm)
+        tmp_dump=$(mktemp -p /dev/shm .tmp_gnucash_dump.XXXXXX)
     else
-        tmp_dump=$(mktemp)
+        tmp_dump=$(mktemp .tmp_gnucash_dump.XXXXXX)
     fi
     
     # 関数内でtrap設定
