@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 
-FILE_FULLPATH=${1:-"$HOME/secret/money/gnucash/yuta.sqlite3.gnucash"}
+# Parse command line arguments
+DUMP_MODE=0
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --dump)
+            DUMP_MODE=1
+            shift
+            ;;
+        *)
+            FILE_FULLPATH="$1"
+            shift
+            ;;
+    esac
+done
+
+FILE_FULLPATH=${FILE_FULLPATH:-"$HOME/secret/money/gnucash/yuta.sqlite3.gnucash"}
 
 ########## Check ##########
 
@@ -45,6 +60,27 @@ atexit() {
 trap atexit EXIT
 trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
 
+create_sqlite_dump() {
+    local sqlite_file="$1"
+    local output_file="$2"
+    local tmp_dump
+    
+    if mountpoint -q /dev/shm; then
+        tmp_dump=$(mktemp -p /dev/shm)
+    else
+        tmp_dump=$(mktemp)
+    fi
+    
+    # 関数内でtrap設定
+    trap "rm -f '${tmp_dump}'" EXIT INT TERM
+    
+    sqlite3 "${sqlite_file}" .dump >"${tmp_dump}"
+    mv "${tmp_dump}" "${output_file}"
+    
+    # 成功時はtrap解除
+    trap - EXIT INT TERM
+}
+
 mkdir -p "${LOCK_DIR}"
 date '+%Y-%m-%d-%H:%M:%S' >"${LOCK_FILE}"
 
@@ -55,6 +91,13 @@ echo "${FILE_DIRNAME} -> ${TMP_DIR}"
 find "${FILE_DIRNAME}" -name '*log' -mtime +2 -type f | xargs rm
 rsync -av "${FILE_DIRNAME}/" "${TMP_DIR}"
 
+if [[ ${DUMP_MODE} == "1" ]]; then
+    echo "Dump mode: Updating ${FILE_FULLPATH}.dump"
+    create_sqlite_dump "${FILE_FULLPATH}" "${FILE_FULLPATH}.dump"
+    rm "${LOCK_FILE}"
+    exit 0
+fi
+
 # https://bugs.mageia.org/show_bug.cgi?id=33964#c2
 __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json \
     FQ_LOAD_QUOTELET='-defaults YahooJapan' \
@@ -64,7 +107,7 @@ if [[ ${NOSAVE} == "1" ]]; then
     exit
 fi
 
-sqlite3 "${TMP_DIR}/${FILE_BASENAME}" .dump >"${TMP_DIR}/${FILE_BASENAME}.dump"
+create_sqlite_dump "${TMP_DIR}/${FILE_BASENAME}" "${TMP_DIR}/${FILE_BASENAME}.dump"
 
 while [ ! -d "${FILE_DIRNAME}" ]; do
     zenity --width 600 --error --text "No such directory:\n${FILE_DIRNAME}"
