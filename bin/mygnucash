@@ -64,19 +64,19 @@ create_sqlite_dump() {
     local sqlite_file="$1"
     local output_file="$2"
     local tmp_dump
-    
+
     if mountpoint -q /dev/shm; then
         tmp_dump=$(mktemp -p /dev/shm .tmp_gnucash_dump.XXXXXX)
     else
         tmp_dump=$(mktemp .tmp_gnucash_dump.XXXXXX)
     fi
-    
+
     # 関数内でtrap設定
     trap "rm -f '${tmp_dump}'" EXIT INT TERM
-    
+
     sqlite3 "${sqlite_file}" .dump >"${tmp_dump}"
     mv "${tmp_dump}" "${output_file}"
-    
+
     # 成功時はtrap解除
     trap - EXIT INT TERM
 }
@@ -84,19 +84,18 @@ create_sqlite_dump() {
 mkdir -p "${LOCK_DIR}"
 date '+%Y-%m-%d-%H:%M:%S' >"${LOCK_FILE}"
 
-TMP_DIR=$(mktemp -d)
-
-echo "${FILE_DIRNAME} -> ${TMP_DIR}"
-# shellcheck disable=SC2038
-find "${FILE_DIRNAME}" -name '*log' -mtime +2 -type f | xargs rm
-rsync -av "${FILE_DIRNAME}/" "${TMP_DIR}"
-
 if [[ ${DUMP_MODE} == "1" ]]; then
     echo "Dump mode: Updating ${FILE_FULLPATH}.dump"
     create_sqlite_dump "${FILE_FULLPATH}" "${FILE_FULLPATH}.dump"
     rm "${LOCK_FILE}"
     exit 0
 fi
+TMP_DIR=$(mktemp -d)
+
+echo "${FILE_DIRNAME} -> ${TMP_DIR}"
+# shellcheck disable=SC2038
+find "${FILE_DIRNAME}" -name '*log' -mtime +2 -type f | xargs rm
+rsync -av "${FILE_DIRNAME}/" "${TMP_DIR}"
 
 # https://bugs.mageia.org/show_bug.cgi?id=33964#c2
 __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json \
