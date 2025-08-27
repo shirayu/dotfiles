@@ -23,3 +23,5 @@ chmod a+x ~/.local/bin/adb-sync
 mkdir -p ~/.config/fontconfig && ln -s "${SRC}/dot_config/fontconfig/fonts.conf" ~/.config/fontconfig/fonts.conf
 
 mkdir -p ~/.config/mise && ln -s "${SRC}/dot_config/mise/mise_config.toml" ~/.config/mise/config.toml
+
+mkdir -p ~/.claude/ && ln -s "${SRC}/dot_config/claude/settings.json" ~/.claude/settings.json
