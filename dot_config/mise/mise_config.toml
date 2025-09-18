@@ -1,5 +1,6 @@
 [tools]
 actionlint = "latest"
+gh = "latest"
 go = "latest"
 hadolint = "latest"
 neovim = "latest"
