@@ -1,0 +1,16 @@
+
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+
+# 行長
+--max-columns=128
+--max-columns-preview
+
+# 1行にファイル名も表示
+--no-heading
+
+--no-ignore
+--hidden
+--type-not=minified
+
+--engine=auto

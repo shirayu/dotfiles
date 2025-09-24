@@ -27,3 +27,4 @@ mkdir -p ~/.config/mise && ln -s "${SRC}/dot_config/mise/mise_config.toml" ~/.co
 ln -s "${SRC}/dot_config/pnpm" ~/.config/pnpm
 
 mkdir -p ~/.claude/ && ln -s "${SRC}/dot_config/claude/settings.json" ~/.claude/settings.json
+mkdir -p ~/.claude/ && ln -s "${SRC}/dot_config/ripgrep" ~/.config/ripgrep

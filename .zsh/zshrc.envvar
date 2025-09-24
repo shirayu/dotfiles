@@ -76,3 +76,5 @@ if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
     export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
     alias "nvidia-smi=/usr/lib/wsl/lib/nvidia-smi"
 fi
+
+export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgrep/config"

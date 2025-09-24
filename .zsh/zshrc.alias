@@ -67,16 +67,6 @@ else
     alias "vi=vim"
 fi
 alias "renamer.vi=vi +Renamer"
-function jvgrep() {
-    if [[ $# -eq 0 ]]; then
-        echo "No filename is given for jvgrep" >&2
-        return 1
-    fi
-    if [[ -p /dev/stdin ]]; then
-        set -- "$@" "-"
-    fi
-    GREP_COLORS="mt=0;7;31" grep -n -R -H --binary-files=without-match --color=always "$@"
-}
 
 if type 'xsel' >/dev/null 2>&1; then
     alias pbcopy='xsel --clipboard --input'
