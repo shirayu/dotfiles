@@ -1,10 +1,11 @@
 {
-    "cleanupPeriodDays": 3650,
-    "permissions": {
-        "allow": [],
-        "deny": []
-    },
-    "env": {
-        "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": true
-    }
+  "cleanupPeriodDays": 3650,
+  "env": {
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true"
+  },
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "alwaysThinkingEnabled": false
 }

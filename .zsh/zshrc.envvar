@@ -78,3 +78,4 @@ if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
 fi
 
 export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgrep/config"
+export CLAUDE_BASH_NO_LOGIN=1

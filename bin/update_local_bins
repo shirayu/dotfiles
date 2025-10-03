@@ -21,7 +21,7 @@ if [[ $(type uv) ]]; then
     echo "Updating uv"
     UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-"600"}
     UV_HTTP_TIMEOUT="${UV_HTTP_TIMEOUT}" uv tool upgrade --all
-    uv cache prune
+    # uv cache prune
 fi
 
 if [[ $(type npm) ]]; then
