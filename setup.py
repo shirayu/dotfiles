@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import shutil
+import subprocess
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -29,6 +30,8 @@ class DotfileConfig:
 
     links: List[LinkConfig]
     deprecated: List[str] = field(default_factory=list)
+    exist_files: List[str] = field(default_factory=list)
+    exist_commands: List[str] = field(default_factory=list)
 
 
 # ----------------------------------------------------------------------
@@ -67,7 +70,12 @@ def _load_config(config_path: Path) -> DotfileConfig:
         print(f"エラー: link 設定のフィールドが不正です: {e}", file=sys.stderr)
         sys.exit(1)
 
-    return DotfileConfig(links=link_configs, deprecated=data.get("deprecated", []))
+    return DotfileConfig(
+        links=link_configs,
+        deprecated=data.get("deprecated", []),
+        exist_files=data.get("exist_files", []),
+        exist_commands=data.get("exist_commands", []),
+    )
 
 
 def _remove_existing_target(target_path: Path, dry_run: bool, action: str):
@@ -297,6 +305,7 @@ def handle_deprecated(config: DotfileConfig) -> bool:
     for item in config.deprecated:
         item_path = resolve_path(item)
 
+        # 存在確認 (ファイル/リンクのどちらも)
         if item_path.exists() or item_path.is_symlink():
             print(f"  [DETECTED] 存在します: '{item_path.relative_to(HOME_DIR)}'")
             deprecated_found.append(item_path)
@@ -313,6 +322,84 @@ def handle_deprecated(config: DotfileConfig) -> bool:
 
     print("\n## 🏁 非推奨ファイルの確認が完了しました。")
     return len(deprecated_found) == 0
+
+
+def handle_exists(config: DotfileConfig) -> bool:
+    """必須のパスが存在するかをチェックします。"""
+    if not config.exist_commands:
+        print("\n## 🔎 必須ファイルの確認: 対象なし")
+        return True
+
+    print("\n## 🔎 必須ファイルの確認を開始します...")
+
+    missing_paths = []
+    all_exist = True
+
+    for item in config.exist_files:
+        item_path = resolve_path(item)
+
+        if not item_path.exists():
+            print(f"  [MISSING] 🚨 存在しません: '{item}'")
+            missing_paths.append(item)
+            all_exist = False
+        else:
+            print(f"  [OK] 存在します: '{item}'")
+
+    if not all_exist:
+        print("\n### 🚨 以下の必須ファイル/ディレクトリが見つかりませんでした。")
+        print("➡️ **手動で作成またはインストールしてください。**")
+        for item in missing_paths:
+            print(f"  - {item}")
+        return False
+    else:
+        print("\n## 🏁 必須ファイルの確認が完了しました。全て存在します。")
+        return True
+
+
+def check_commands_exist(config: DotfileConfig) -> bool:
+    """
+    設定されたコマンド群の中から、実行可能ファイルとして存在しないものをチェックします。
+    コマンドの実行ではなく、存在チェックを行います。（whichコマンド相当）
+    """
+    if not config.exist_commands:
+        print("\n## ⚙️ 外部コマンドの存在確認: 対象なし")
+        return True
+
+    print("\n## ⚙️ 外部コマンドの存在確認を開始します...")
+
+    missing_commands = []
+    all_exist = True
+
+    for full_command in config.exist_commands:
+        # コマンドの先頭部分（実行ファイル名）のみを取得
+        # 例: "git submodule update" -> "git"
+        command_name = full_command.split()[0]
+
+        try:
+            # shutil.which は、OSのPATHから実行可能ファイルを探す
+            if shutil.which(command_name):
+                print(f"  [OK] 存在します: '{command_name}' (実行: '{full_command}')")
+            else:
+                print(
+                    f"  [MISSING] 🚨 見つかりません: '{command_name}' (実行: '{full_command}')"
+                )
+                missing_commands.append(command_name)
+                all_exist = False
+        except Exception:
+            # 予期せぬエラー (稀だが)
+            print(f"  [ERROR] 🚨 確認中にエラーが発生: '{command_name}'")
+            missing_commands.append(command_name)
+            all_exist = False
+
+    if not all_exist:
+        print("\n### 🚨 以下のコマンド実行ファイルが見つかりませんでした。")
+        print("➡️ **PATHに追加されているか、手動でインストールしてください。**")
+        for name in missing_commands:
+            print(f"  - {name}")
+        return False
+
+    print("\n## 🏁 外部コマンドの存在確認が完了しました。")
+    return True
 
 
 # ----------------------------------------------------------------------
@@ -357,6 +444,12 @@ def main():
 
     # 2. 非推奨ファイルの確認 (削除は手動)
     ok = ok and handle_deprecated(config)
+
+    # 3. 必須ファイルの存在確認
+    ok = ok and handle_exists(config)
+
+    # 4. 外部コマンドの実行ファイル存在確認
+    ok = ok and check_commands_exist(config)
 
     print("\n✅ 全ての処理が完了しました。")
     if not ok:

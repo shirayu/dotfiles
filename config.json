@@ -22,5 +22,12 @@
     "deprecated": [
         "~/.vimrc",
         "~/.local/bin/adb-sync"
+    ],
+    "exist_files": [
+        "~/.config/nvim/"
+    ],
+    "exist_commands": [
+        "git",
+        "rg"
     ]
 }
