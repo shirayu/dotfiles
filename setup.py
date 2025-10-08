@@ -396,6 +396,8 @@ def check_commands_exist(config: DotfileConfig) -> bool:
         print("➡️ **PATHに追加されているか、手動でインストールしてください。**")
         for name in missing_commands:
             print(f"  - {name}")
+        print()
+        print(f"=> sudo apt install {' '.join(missing_commands)}")
         return False
 
     print("\n## 🏁 外部コマンドの存在確認が完了しました。")

@@ -28,6 +28,18 @@
     ],
     "exist_commands": [
         "git",
+        "htop",
+        "jq",
+        "make",
+        "mise",
+        "nvim",
+        "peco",
+        "rsync",
+        "shellcheck",
+        "tmux",
+        "unar",
+        "wget",
+        "zsh",
         "rg"
     ]
 }
