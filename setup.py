@@ -80,30 +80,26 @@ def _load_config(config_path: Path) -> DotfileConfig:
 
 def _remove_existing_target(target_path: Path, dry_run: bool, action: str):
     """既存ファイルを削除します (上書き/修正のため)。"""
-    target_rel_to_home = target_path.relative_to(HOME_DIR)
-
     if not dry_run:
         try:
             if target_path.is_dir() and not target_path.is_symlink():
                 shutil.rmtree(target_path)
-                print(f"  🗑️ {action}のためディレクトリを削除: {target_rel_to_home}")
+                print(f"  🗑️ {action}のためディレクトリを削除: {target_path}")
             else:
                 os.unlink(target_path)
-                print(f"  🗑️ {action}のためファイル/リンクを削除: {target_rel_to_home}")
+                print(f"  🗑️ {action}のためファイル/リンクを削除: {target_path}")
         except Exception as e:
             # 削除に失敗した場合、致命的エラーとして停止
             print(f"  ❌ 削除失敗 '{target_path.name}': {e}", file=sys.stderr)
             sys.exit(1)
     else:
         print(
-            f"  [DRY-RUN] {action}のため既存ターゲットを削除予定: {target_rel_to_home}"
+            f"  [DRY-RUN] {action}のため既存ターゲットを削除予定: {target_path}"
         )
 
 
 def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
     """シンボリックリンクを作成する共通ロジック。（絶対パスで作成）"""
-    target_rel_to_home = target_path.relative_to(HOME_DIR)
-
     # ソースの絶対パスを取得
     absolute_source = os.fspath(source_path.resolve())
 
@@ -117,7 +113,7 @@ def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
             # 絶対パスでリンクを作成
             os.symlink(absolute_source, target_path)
             print(
-                f"  ✅ リンク作成: '{target_rel_to_home}' -> '{absolute_source}' (絶対パス)"
+                f"  ✅ リンク作成: '{target_path}' -> '{absolute_source}' (絶対パス)"
             )
         except Exception as e:
             # リンク作成に失敗した場合、致命的エラーとして停止
@@ -125,7 +121,7 @@ def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
             sys.exit(1)
     else:
         print(
-            f"  [DRY-RUN] リンク作成予定: '{target_rel_to_home}' -> '{absolute_source}' (絶対パス)"
+            f"  [DRY-RUN] リンク作成予定: '{target_path}' -> '{absolute_source}' (絶対パス)"
         )
 
 
@@ -138,8 +134,6 @@ def _process_link_item_single(
 ):
     """単一のシンボリックリンクを作成、または自動修正します。"""
 
-    target_rel_to_home = target_path.relative_to(HOME_DIR)
-
     is_existing_dir_not_link = target_path.is_dir() and not target_path.is_symlink()
 
     # source: "bin", target: "~/.local/bin" のような、非-allモードでディレクトリ全体をリンクしようとするケース
@@ -147,7 +141,7 @@ def _process_link_item_single(
         not all_mode
         and source_path.is_dir()
         and is_existing_dir_not_link
-        and target_rel_to_home.name == source_path.name
+        and target_path.name == source_path.name
     )
 
     # 既存のリンクが存在するか、かつ不正なリンクかをチェック
@@ -178,7 +172,7 @@ def _process_link_item_single(
 
     if status == "AMBIGUOUS_DIR":
         print(
-            f"  - 既存ディレクトリ: '{target_rel_to_home}' は実体ディレクトリです。リンクは作成せずスキップします。"
+            f"  - 既存ディレクトリ: '{target_path}' は実体ディレクトリです。リンクは作成せずスキップします。"
         )
         return  # スキップ
 
@@ -187,11 +181,11 @@ def _process_link_item_single(
         if not dry_run:
             target_path.parent.mkdir(parents=True, exist_ok=True)
             print(
-                f"  - 親ディレクトリ '{target_path.parent.relative_to(HOME_DIR)}/' を作成しました。"
+                f"  - 親ディレクトリ '{target_path.parent}/' を作成しました。"
             )
         else:
             print(
-                f"  [DRY-RUN] 親ディレクトリ作成予定: '{target_path.parent.relative_to(HOME_DIR)}/'"
+                f"  [DRY-RUN] 親ディレクトリ作成予定: '{target_path.parent}/'"
             )
 
     if status == "MISSING":
@@ -200,13 +194,13 @@ def _process_link_item_single(
 
     elif status == "BROKEN":
         # 不正なリンクを削除し、修正 (上書き)
-        print(f"  🔄 不正なリンク '{target_rel_to_home}' を修正します...")
+        print(f"  🔄 不正なリンク '{target_path}' を修正します...")
         _remove_existing_target(target_path, dry_run, action="リンク修正")
 
         # 🚨 削除後の安全チェックを追加
         if not dry_run and target_path.exists():
             print(
-                f"  ❌ 致命的エラー: ターゲット '{target_rel_to_home}' が削除後も残っています。続行できません。",
+                f"  ❌ 致命的エラー: ターゲット '{target_path}' が削除後も残っています。続行できません。",
                 file=sys.stderr,
             )
             sys.exit(1)
@@ -215,13 +209,13 @@ def _process_link_item_single(
 
     elif status == "CONFLICT":
         # 実体ファイル/ディレクトリを削除し、上書き
-        print(f"  ⚠️ 競合ファイル '{target_rel_to_home}' を上書きします...")
+        print(f"  ⚠️ 競合ファイル '{target_path}' を上書きします...")
         _remove_existing_target(target_path, dry_run, action="上書き")
 
         # 🚨 削除後の安全チェックを追加
         if not dry_run and target_path.exists():
             print(
-                f"  ❌ 致命的エラー: ターゲット '{target_rel_to_home}' が削除後も残っています。続行できません。",
+                f"  ❌ 致命的エラー: ターゲット '{target_path}' が削除後も残っています。続行できません。",
                 file=sys.stderr,
             )
             sys.exit(1)
@@ -307,7 +301,7 @@ def handle_deprecated(config: DotfileConfig) -> bool:
 
         # 存在確認 (ファイル/リンクのどちらも)
         if item_path.exists() or item_path.is_symlink():
-            print(f"  [DETECTED] 存在します: '{item_path.relative_to(HOME_DIR)}'")
+            print(f"  [DETECTED] 存在します: '{item_path}'")
             deprecated_found.append(item_path)
 
     if deprecated_found:
@@ -318,7 +312,7 @@ def handle_deprecated(config: DotfileConfig) -> bool:
         print("➡️ **手動で削除してください。**")
 
         for path in deprecated_found:
-            print(f"  - {path.relative_to(HOME_DIR)}")
+            print(f"  - {path}")
 
     print("\n## 🏁 非推奨ファイルの確認が完了しました。")
     return len(deprecated_found) == 0
