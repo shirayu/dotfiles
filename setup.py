@@ -1,0 +1,371 @@
+#!/usr/bin/env python3
+
+import argparse
+import json
+import os
+import shutil
+import sys
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import List
+
+# ----------------------------------------------------------------------
+# 1. Dataclasses for Configuration
+# ----------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class LinkConfig:
+    """config.json の 'links' セクションの項目を保持します。"""
+
+    source: str
+    target: str
+    all: bool = field(default=False)
+
+
+@dataclass(frozen=True)
+class DotfileConfig:
+    """config.json 全体の設定を保持します。"""
+
+    links: List[LinkConfig]
+    deprecated: List[str] = field(default_factory=list)
+
+
+# ----------------------------------------------------------------------
+# 2. Utility & Setup Functions
+# ----------------------------------------------------------------------
+
+# ホームディレクトリのパスをキャッシュ
+HOME_DIR = Path.home()
+CONFIG_FILE_NAME = "config.json"
+
+
+def resolve_path(path_str: str) -> Path:
+    """パス文字列内の '~' をホームディレクトリに展開し、Pathオブジェクトを返します。"""
+    return Path(path_str.replace("~/", str(HOME_DIR) + os.sep))
+
+
+def _load_config(config_path: Path) -> DotfileConfig:
+    """設定ファイルを読み込み、DotfileConfig dataclass に変換します。"""
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        print(
+            f"エラー: 設定ファイル '{config_path}' が見つかりません。", file=sys.stderr
+        )
+        sys.exit(1)
+    except json.JSONDecodeError:
+        print(
+            f"エラー: 設定ファイル '{config_path}' の形式が不正です。", file=sys.stderr
+        )
+        sys.exit(1)
+
+    try:
+        link_configs = [LinkConfig(**link_data) for link_data in data.get("links", [])]
+    except TypeError as e:
+        print(f"エラー: link 設定のフィールドが不正です: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    return DotfileConfig(links=link_configs, deprecated=data.get("deprecated", []))
+
+
+def _remove_existing_target(target_path: Path, dry_run: bool, action: str):
+    """既存ファイルを削除します (上書き/修正のため)。"""
+    target_rel_to_home = target_path.relative_to(HOME_DIR)
+
+    if not dry_run:
+        try:
+            if target_path.is_dir() and not target_path.is_symlink():
+                shutil.rmtree(target_path)
+                print(f"  🗑️ {action}のためディレクトリを削除: {target_rel_to_home}")
+            else:
+                os.unlink(target_path)
+                print(f"  🗑️ {action}のためファイル/リンクを削除: {target_rel_to_home}")
+        except Exception as e:
+            # 削除に失敗した場合、致命的エラーとして停止
+            print(f"  ❌ 削除失敗 '{target_path.name}': {e}", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print(
+            f"  [DRY-RUN] {action}のため既存ターゲットを削除予定: {target_rel_to_home}"
+        )
+
+
+def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
+    """シンボリックリンクを作成する共通ロジック。（絶対パスで作成）"""
+    target_rel_to_home = target_path.relative_to(HOME_DIR)
+
+    # ソースの絶対パスを取得
+    absolute_source = os.fspath(source_path.resolve())
+
+    if not dry_run:
+        try:
+            os.unlink(target_path)
+        except Exception:
+            pass
+
+        try:
+            # 絶対パスでリンクを作成
+            os.symlink(absolute_source, target_path)
+            print(
+                f"  ✅ リンク作成: '{target_rel_to_home}' -> '{absolute_source}' (絶対パス)"
+            )
+        except Exception as e:
+            # リンク作成に失敗した場合、致命的エラーとして停止
+            print(f"  ❌ リンク作成失敗 '{target_path.name}': {e}", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print(
+            f"  [DRY-RUN] リンク作成予定: '{target_rel_to_home}' -> '{absolute_source}' (絶対パス)"
+        )
+
+
+def _process_link_item_single(
+    source_path: Path,
+    target_path: Path,
+    base_dir: Path,
+    dry_run: bool,
+    all_mode: bool,
+):
+    """単一のシンボリックリンクを作成、または自動修正します。"""
+
+    target_rel_to_home = target_path.relative_to(HOME_DIR)
+
+    is_existing_dir_not_link = target_path.is_dir() and not target_path.is_symlink()
+
+    # source: "bin", target: "~/.local/bin" のような、非-allモードでディレクトリ全体をリンクしようとするケース
+    is_common_dir_link_ambiguity = (
+        not all_mode
+        and source_path.is_dir()
+        and is_existing_dir_not_link
+        and target_rel_to_home.name == source_path.name
+    )
+
+    # 既存のリンクが存在するか、かつ不正なリンクかをチェック
+    is_broken_link = False
+    if target_path.is_symlink():
+        # resolve(strict=False) は、リンクが切れていてもパスを解決しようとする
+        # resolve() は、リンクが切れていると FileNotFoundError を出すため、このチェックはより正確
+        if target_path.resolve(strict=False) != source_path.resolve():
+            is_broken_link = True
+
+    # --- ターゲットの状況を判定 ---
+    if not target_path.exists():
+        status = "MISSING"
+    elif target_path.is_symlink() and not is_broken_link:
+        status = "CORRECT"
+    elif is_broken_link:
+        status = "BROKEN"
+    elif is_common_dir_link_ambiguity:
+        status = "AMBIGUOUS_DIR"
+    else:
+        status = "CONFLICT"
+
+    # --- Run/Dry-Run Mode: 実行またはシミュレーション ---
+
+    # 処理の分岐
+    if status == "CORRECT":
+        return  # 既に正しいリンク
+
+    if status == "AMBIGUOUS_DIR":
+        print(
+            f"  - 既存ディレクトリ: '{target_rel_to_home}' は実体ディレクトリです。リンクは作成せずスキップします。"
+        )
+        return  # スキップ
+
+    # ターゲットの親ディレクトリが存在しない場合は作成
+    if not target_path.parent.exists():
+        if not dry_run:
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+            print(
+                f"  - 親ディレクトリ '{target_path.parent.relative_to(HOME_DIR)}/' を作成しました。"
+            )
+        else:
+            print(
+                f"  [DRY-RUN] 親ディレクトリ作成予定: '{target_path.parent.relative_to(HOME_DIR)}/'"
+            )
+
+    if status == "MISSING":
+        # リンクを作成する
+        _create_symlink_action(source_path, target_path, dry_run)
+
+    elif status == "BROKEN":
+        # 不正なリンクを削除し、修正 (上書き)
+        print(f"  🔄 不正なリンク '{target_rel_to_home}' を修正します...")
+        _remove_existing_target(target_path, dry_run, action="リンク修正")
+
+        # 🚨 削除後の安全チェックを追加
+        if not dry_run and target_path.exists():
+            print(
+                f"  ❌ 致命的エラー: ターゲット '{target_rel_to_home}' が削除後も残っています。続行できません。",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+        _create_symlink_action(source_path, target_path, dry_run)
+
+    elif status == "CONFLICT":
+        # 実体ファイル/ディレクトリを削除し、上書き
+        print(f"  ⚠️ 競合ファイル '{target_rel_to_home}' を上書きします...")
+        _remove_existing_target(target_path, dry_run, action="上書き")
+
+        # 🚨 削除後の安全チェックを追加
+        if not dry_run and target_path.exists():
+            print(
+                f"  ❌ 致命的エラー: ターゲット '{target_rel_to_home}' が削除後も残っています。続行できません。",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+        _create_symlink_action(source_path, target_path, dry_run)
+
+
+def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool):
+    """LinkConfig の設定一つ分 (source/target) を処理します。"""
+    source_name = link_conf.source.strip()
+    target_template = link_conf.target.strip()
+
+    target_template_path = resolve_path(target_template)
+    source_path = base_dir / source_name
+
+    print(
+        f"\n--- 処理中: source='{source_name}', target='{target_template}' ({'ALL' if link_conf.all else 'SINGLE'}) ---"
+    )
+
+    if not source_path.exists():
+        print(f"警告: ソース '{source_name}' が存在しません。スキップします。")
+        return
+
+    if link_conf.all:
+        if not source_path.is_dir():
+            print(
+                f"警告: 'all: true' ですが、ソース '{source_name}' はディレクトリではありません。スキップ。"
+            )
+            return
+
+        # ディレクトリ直下の全ファイルを対象
+        for item in source_path.iterdir():
+            target_path = target_template_path / item.name
+            _process_link_item_single(item, target_path, base_dir, dry_run, True)
+    else:
+        # 修正されたロジック: SINGLEモード
+
+        # target がディレクトリ終端であれば、source の「最終的な名前」をターゲットに付加する
+        if target_template.endswith(("/", os.sep)):
+            # source_path.name は 'home_config/.tmux.conf' の場合は '.tmux.conf' になる
+            target_path = target_template_path / source_path.name
+        else:
+            target_path = target_template_path
+
+        _process_link_item_single(source_path, target_path, base_dir, dry_run, False)
+
+
+# ----------------------------------------------------------------------
+# 4. Main Operations
+# ----------------------------------------------------------------------
+
+
+def run_symlink_process(config: DotfileConfig, base_dir: Path, dry_run: bool):
+    """全てのシンボリックリンクの作成、またはシミュレーションを行います。"""
+
+    if dry_run:
+        print(
+            "## 🧪 ドライランモード: 実行内容をシミュレーションします。ファイルシステムは変更されません。"
+        )
+    else:
+        print(
+            "## 🔗 リンク作成モード: シンボリックリンクの作成を開始します。競合ファイル/不正リンクは自動的に上書き・修正されます。"
+        )
+
+    for link_conf in config.links:
+        _process_link_config(link_conf, base_dir, dry_run)
+
+    print("\n## 🏁 リンク処理が完了しました。")
+
+
+def handle_deprecated(config: DotfileConfig) -> bool:
+    """非推奨ファイルをチェックし、手動での削除を促します。（削除ロジックは含まない）"""
+    if not config.deprecated:
+        print("\n## 🗑️ 非推奨ファイルの処理: 対象なし")
+        return True
+
+    print("\n## 🗑️ 非推奨ファイルの確認を開始します...")
+
+    deprecated_found = []
+
+    for item in config.deprecated:
+        item_path = resolve_path(item)
+
+        if item_path.exists() or item_path.is_symlink():
+            print(f"  [DETECTED] 存在します: '{item_path.relative_to(HOME_DIR)}'")
+            deprecated_found.append(item_path)
+
+    if deprecated_found:
+        print("\n### 🚨 以下の非推奨ファイル/リンクが検出されました。")
+        print(
+            "これらは設定から削除対象としてマークされていますが、まだ存在しています。"
+        )
+        print("➡️ **手動で削除してください。**")
+
+        for path in deprecated_found:
+            print(f"  - {path.relative_to(HOME_DIR)}")
+
+    print("\n## 🏁 非推奨ファイルの確認が完了しました。")
+    return len(deprecated_found) == 0
+
+
+# ----------------------------------------------------------------------
+# 5. Main Execution
+# ----------------------------------------------------------------------
+
+
+def main():
+    """argparse を使用したメイン処理を実行します。"""
+    parser = argparse.ArgumentParser(
+        description="ドットファイル管理スクリプト (シンボリックリンク作成/ドライラン)",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        type=str,
+        default=CONFIG_FILE_NAME,
+        help=f"設定ファイル名 (デフォルト: {CONFIG_FILE_NAME})",
+    )
+    parser.add_argument(
+        "-d",
+        "--dry-run",
+        action="store_true",
+        help="ファイルシステムを変更せず、実行する操作をシミュレーションします。",
+    )
+
+    args = parser.parse_args()
+    ok: bool = True
+
+    # スクリプトの実行ディレクトリをドットファイルのベースとする
+    base_dir = Path.cwd()
+    config = _load_config(Path(args.config))
+
+    dry_run_mode = args.dry_run
+
+    print(f"ドットファイルベースディレクトリ: {base_dir}")
+    print(f"ホームディレクトリ: {HOME_DIR}\n")
+
+    # 1. シンボリックリンクの処理 (作成/シミュレーション)
+    run_symlink_process(config, base_dir, dry_run_mode)
+
+    # 2. 非推奨ファイルの確認 (削除は手動)
+    ok = ok and handle_deprecated(config)
+
+    print("\n✅ 全ての処理が完了しました。")
+    if not ok:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\n処理を中断しました。", file=sys.stderr)
+        sys.exit(1)

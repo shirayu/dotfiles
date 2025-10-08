@@ -1,0 +1,26 @@
+{
+    "links": [
+        {
+            "source": "bin",
+            "target": "~/.local/bin"
+        },
+        {
+            "source": "dot_config",
+            "target": "~/.config",
+            "all": true
+        },
+        {
+            "source": "home_config",
+            "target": "~/",
+            "all": true
+        },
+        {
+            "source": "configs/claude/settings.json ",
+            "target": "~/.claude/settings.json"
+        }
+    ],
+    "deprecated": [
+        "~/.vimrc",
+        "~/.local/bin/adb-sync"
+    ]
+}

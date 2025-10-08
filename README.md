@@ -16,7 +16,7 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 
 git clone https://github.com/shirayu/dotfiles.git ~/.dotfiles
 curl https://mise.run | sh
-bash ~/.dotfiles/generate_links.sh
+./setup.py
 sudo chsh $(whoami) -s $(which zsh)
 
 mise up
