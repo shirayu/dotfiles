@@ -8,7 +8,6 @@ import shutil
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List
 
 # ----------------------------------------------------------------------
 # 1. Dataclasses for Configuration
@@ -22,17 +21,17 @@ class LinkConfig:
     source: str
     target: str
     all: bool = field(default=False)
-    hosts: List[str] = field(default_factory=list)
+    hosts: list[str] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
 class DotfileConfig:
     """config.json 全体の設定を保持します。"""
 
-    links: List[LinkConfig]
-    deprecated: List[str] = field(default_factory=list)
-    exist_files: List[str] = field(default_factory=list)
-    exist_commands: List[str] = field(default_factory=list)
+    links: list[LinkConfig]
+    deprecated: list[str] = field(default_factory=list)
+    exist_files: list[str] = field(default_factory=list)
+    exist_commands: list[str] = field(default_factory=list)
 
 
 # ----------------------------------------------------------------------
@@ -57,17 +56,13 @@ def resolve_path(path_str: str) -> Path:
 def _load_config(config_path: Path) -> DotfileConfig:
     """設定ファイルを読み込み、DotfileConfig dataclass に変換します。"""
     try:
-        with open(config_path, "r", encoding="utf-8") as f:
+        with open(config_path, encoding="utf-8") as f:
             data = json.load(f)
     except FileNotFoundError:
-        print(
-            f"エラー: 設定ファイル '{config_path}' が見つかりません。", file=sys.stderr
-        )
+        print(f"エラー: 設定ファイル '{config_path}' が見つかりません。", file=sys.stderr)
         sys.exit(1)
     except json.JSONDecodeError:
-        print(
-            f"エラー: 設定ファイル '{config_path}' の形式が不正です。", file=sys.stderr
-        )
+        print(f"エラー: 設定ファイル '{config_path}' の形式が不正です。", file=sys.stderr)
         sys.exit(1)
 
     try:
@@ -122,9 +117,7 @@ def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
             print(f"  ❌ リンク作成失敗 '{target_path.name}': {e}", file=sys.stderr)
             sys.exit(1)
     else:
-        print(
-            f"  [DRY-RUN] リンク作成予定: '{target_path}' -> '{absolute_source}' (絶対パス)"
-        )
+        print(f"  [DRY-RUN] リンク作成予定: '{target_path}' -> '{absolute_source}' (絶対パス)")
 
 
 def _process_link_item_single(
@@ -139,10 +132,7 @@ def _process_link_item_single(
 
     # source: "bin", target: "~/.local/bin" のような、非-allモードでディレクトリ全体をリンクしようとするケース
     is_common_dir_link_ambiguity = (
-        not all_mode
-        and source_path.is_dir()
-        and is_existing_dir_not_link
-        and target_path.name == source_path.name
+        not all_mode and source_path.is_dir() and is_existing_dir_not_link and target_path.name == source_path.name
     )
 
     # 既存のリンクが存在するか、かつ不正なリンクかをチェック
@@ -172,9 +162,7 @@ def _process_link_item_single(
         return  # 既に正しいリンク
 
     if status == "AMBIGUOUS_DIR":
-        print(
-            f"  - 既存ディレクトリ: '{target_path}' は実体ディレクトリです。リンクは作成せずスキップします。"
-        )
+        print(f"  - 既存ディレクトリ: '{target_path}' は実体ディレクトリです。リンクは作成せずスキップします。")
         return  # スキップ
 
     # ターゲットの親ディレクトリが存在しない場合は作成
@@ -229,7 +217,8 @@ def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool, c
     if link_conf.hosts:
         if current_hostname not in link_conf.hosts:
             print(
-                f"\n--- スキップ: source='{source_name}' (ホスト '{current_hostname}' は対象外。対象ホスト: {link_conf.hosts}) ---"
+                f"\n--- スキップ: source='{source_name}' "
+                "(ホスト '{current_hostname}' は対象外。対象ホスト: {link_conf.hosts}) ---"
             )
             return
 
@@ -249,9 +238,7 @@ def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool, c
 
     if link_conf.all:
         if not source_path.is_dir():
-            print(
-                f"警告: 'all: true' ですが、ソース '{source_name}' はディレクトリではありません。スキップ。"
-            )
+            print(f"警告: 'all: true' ですが、ソース '{source_name}' はディレクトリではありません。スキップ。")
             return
 
         # ディレクトリ直下の全ファイルを対象
@@ -280,12 +267,11 @@ def run_symlink_process(config: DotfileConfig, base_dir: Path, dry_run: bool):
     """全てのシンボリックリンクの作成、またはシミュレーションを行います。"""
 
     if dry_run:
-        print(
-            "## 🧪 ドライランモード: 実行内容をシミュレーションします。ファイルシステムは変更されません。"
-        )
+        print("## 🧪 ドライランモード: 実行内容をシミュレーションします。ファイルシステムは変更されません。")
     else:
         print(
-            "## 🔗 リンク作成モード: シンボリックリンクの作成を開始します。競合ファイル/不正リンクは自動的に上書き・修正されます。"
+            "## 🔗 リンク作成モード: シンボリックリンクの作成を開始します。"
+            "競合ファイル/不正リンクは自動的に上書き・修正されます。"
         )
 
     current_hostname = get_hostname()
@@ -317,9 +303,7 @@ def handle_deprecated(config: DotfileConfig) -> bool:
 
     if deprecated_found:
         print("\n### 🚨 以下の非推奨ファイル/リンクが検出されました。")
-        print(
-            "これらは設定から削除対象としてマークされていますが、まだ存在しています。"
-        )
+        print("これらは設定から削除対象としてマークされていますが、まだ存在しています。")
         print("➡️ **手動で削除してください。**")
 
         for path in deprecated_found:
@@ -385,9 +369,7 @@ def check_commands_exist(config: DotfileConfig) -> bool:
             if shutil.which(command_name):
                 print(f"  [OK] 存在します: '{command_name}' (実行: '{full_command}')")
             else:
-                print(
-                    f"  [MISSING] 🚨 見つかりません: '{command_name}' (実行: '{full_command}')"
-                )
+                print(f"  [MISSING] 🚨 見つかりません: '{command_name}' (実行: '{full_command}')")
                 missing_commands.append(command_name)
                 all_exist = False
         except Exception:
