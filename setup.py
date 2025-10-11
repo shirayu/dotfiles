@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import platform
 import shutil
 import sys
 from dataclasses import dataclass, field
@@ -21,6 +22,7 @@ class LinkConfig:
     source: str
     target: str
     all: bool = field(default=False)
+    hosts: List[str] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -40,6 +42,11 @@ class DotfileConfig:
 # ホームディレクトリのパスをキャッシュ
 HOME_DIR = Path.home()
 CONFIG_FILE_NAME = "config.json"
+
+
+def get_hostname() -> str:
+    """現在のホスト名を取得します。"""
+    return platform.node()
 
 
 def resolve_path(path_str: str) -> Path:
@@ -213,10 +220,18 @@ def _process_link_item_single(
         _create_symlink_action(source_path, target_path, dry_run)
 
 
-def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool):
+def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool, current_hostname: str):
     """LinkConfig の設定一つ分 (source/target) を処理します。"""
     source_name = link_conf.source.strip()
     target_template = link_conf.target.strip()
+
+    # ホスト名フィルタリング：hostsが指定されている場合、現在のホストが含まれているかチェック
+    if link_conf.hosts:
+        if current_hostname not in link_conf.hosts:
+            print(
+                f"\n--- スキップ: source='{source_name}' (ホスト '{current_hostname}' は対象外。対象ホスト: {link_conf.hosts}) ---"
+            )
+            return
 
     target_template_path = resolve_path(target_template)
     if str(source_name).startswith("/") or str(source_name).startswith("~"):
@@ -273,8 +288,11 @@ def run_symlink_process(config: DotfileConfig, base_dir: Path, dry_run: bool):
             "## 🔗 リンク作成モード: シンボリックリンクの作成を開始します。競合ファイル/不正リンクは自動的に上書き・修正されます。"
         )
 
+    current_hostname = get_hostname()
+    print(f"現在のホスト名: {current_hostname}")
+
     for link_conf in config.links:
-        _process_link_config(link_conf, base_dir, dry_run)
+        _process_link_config(link_conf, base_dir, dry_run, current_hostname)
 
     print("\n## 🏁 リンク処理が完了しました。")
 
