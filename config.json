@@ -1,6 +1,10 @@
 {
     "links": [
         {
+            "source": "~/backup/system/kotonoha/fonts",
+            "target": "~/.local/share/fonts"
+        },
+        {
             "source": "bin",
             "target": "~/.local/bin"
         },

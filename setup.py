@@ -219,7 +219,10 @@ def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool):
     target_template = link_conf.target.strip()
 
     target_template_path = resolve_path(target_template)
-    source_path = base_dir / source_name
+    if str(source_name).startswith("/") or str(source_name).startswith("~"):
+        source_path = resolve_path(source_name)
+    else:
+        source_path = base_dir / source_name
 
     print(
         f"\n--- 処理中: source='{source_name}', target='{target_template}' ({'ALL' if link_conf.all else 'SINGLE'}) ---"
