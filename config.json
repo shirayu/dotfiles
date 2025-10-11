@@ -15,7 +15,7 @@
             "all": true
         },
         {
-            "source": "configs/claude/settings.json ",
+            "source": "configs/claude/settings.json",
             "target": "~/.claude/settings.json"
         }
     ],
