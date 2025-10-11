@@ -4,7 +4,6 @@ import argparse
 import json
 import os
 import shutil
-import subprocess
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -93,9 +92,7 @@ def _remove_existing_target(target_path: Path, dry_run: bool, action: str):
             print(f"  ❌ 削除失敗 '{target_path.name}': {e}", file=sys.stderr)
             sys.exit(1)
     else:
-        print(
-            f"  [DRY-RUN] {action}のため既存ターゲットを削除予定: {target_path}"
-        )
+        print(f"  [DRY-RUN] {action}のため既存ターゲットを削除予定: {target_path}")
 
 
 def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
@@ -112,9 +109,7 @@ def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
         try:
             # 絶対パスでリンクを作成
             os.symlink(absolute_source, target_path)
-            print(
-                f"  ✅ リンク作成: '{target_path}' -> '{absolute_source}' (絶対パス)"
-            )
+            print(f"  ✅ リンク作成: '{target_path}' -> '{absolute_source}' (絶対パス)")
         except Exception as e:
             # リンク作成に失敗した場合、致命的エラーとして停止
             print(f"  ❌ リンク作成失敗 '{target_path.name}': {e}", file=sys.stderr)
@@ -128,7 +123,6 @@ def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
 def _process_link_item_single(
     source_path: Path,
     target_path: Path,
-    base_dir: Path,
     dry_run: bool,
     all_mode: bool,
 ):
@@ -180,13 +174,9 @@ def _process_link_item_single(
     if not target_path.parent.exists():
         if not dry_run:
             target_path.parent.mkdir(parents=True, exist_ok=True)
-            print(
-                f"  - 親ディレクトリ '{target_path.parent}/' を作成しました。"
-            )
+            print(f"  - 親ディレクトリ '{target_path.parent}/' を作成しました。")
         else:
-            print(
-                f"  [DRY-RUN] 親ディレクトリ作成予定: '{target_path.parent}/'"
-            )
+            print(f"  [DRY-RUN] 親ディレクトリ作成予定: '{target_path.parent}/'")
 
     if status == "MISSING":
         # リンクを作成する
@@ -249,7 +239,7 @@ def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool):
         # ディレクトリ直下の全ファイルを対象
         for item in source_path.iterdir():
             target_path = target_template_path / item.name
-            _process_link_item_single(item, target_path, base_dir, dry_run, True)
+            _process_link_item_single(item, target_path, dry_run, True)
     else:
         # 修正されたロジック: SINGLEモード
 
@@ -260,7 +250,7 @@ def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool):
         else:
             target_path = target_template_path
 
-        _process_link_item_single(source_path, target_path, base_dir, dry_run, False)
+        _process_link_item_single(source_path, target_path, dry_run, False)
 
 
 # ----------------------------------------------------------------------
