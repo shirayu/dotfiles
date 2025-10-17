@@ -59,10 +59,14 @@ def _load_config(config_path: Path) -> DotfileConfig:
         with open(config_path, encoding="utf-8") as f:
             data = json.load(f)
     except FileNotFoundError:
-        print(f"エラー: 設定ファイル '{config_path}' が見つかりません。", file=sys.stderr)
+        print(
+            f"エラー: 設定ファイル '{config_path}' が見つかりません。", file=sys.stderr
+        )
         sys.exit(1)
     except json.JSONDecodeError:
-        print(f"エラー: 設定ファイル '{config_path}' の形式が不正です。", file=sys.stderr)
+        print(
+            f"エラー: 設定ファイル '{config_path}' の形式が不正です。", file=sys.stderr
+        )
         sys.exit(1)
 
     try:
@@ -82,13 +86,14 @@ def _load_config(config_path: Path) -> DotfileConfig:
 def _remove_existing_target(target_path: Path, dry_run: bool, action: str):
     """既存ファイルを削除します (上書き/修正のため)。"""
     if not dry_run:
+        if target_path.is_dir():
+            print(
+                f"  ❌ {action}のためディレクトリは削除は安全のため自動では行いません: {target_path}"
+            )
+            sys.exit(1)
         try:
-            if target_path.is_dir() and not target_path.is_symlink():
-                shutil.rmtree(target_path)
-                print(f"  🗑️ {action}のためディレクトリを削除: {target_path}")
-            else:
-                os.unlink(target_path)
-                print(f"  🗑️ {action}のためファイル/リンクを削除: {target_path}")
+            os.unlink(target_path)
+            print(f"  🗑️ {action}のためファイル/リンクを削除: {target_path}")
         except Exception as e:
             # 削除に失敗した場合、致命的エラーとして停止
             print(f"  ❌ 削除失敗 '{target_path.name}': {e}", file=sys.stderr)
@@ -117,7 +122,9 @@ def _create_symlink_action(source_path: Path, target_path: Path, dry_run: bool):
             print(f"  ❌ リンク作成失敗 '{target_path.name}': {e}", file=sys.stderr)
             sys.exit(1)
     else:
-        print(f"  [DRY-RUN] リンク作成予定: '{target_path}' -> '{absolute_source}' (絶対パス)")
+        print(
+            f"  [DRY-RUN] リンク作成予定: '{target_path}' -> '{absolute_source}' (絶対パス)"
+        )
 
 
 def _process_link_item_single(
@@ -132,7 +139,10 @@ def _process_link_item_single(
 
     # source: "bin", target: "~/.local/bin" のような、非-allモードでディレクトリ全体をリンクしようとするケース
     is_common_dir_link_ambiguity = (
-        not all_mode and source_path.is_dir() and is_existing_dir_not_link and target_path.name == source_path.name
+        not all_mode
+        and source_path.is_dir()
+        and is_existing_dir_not_link
+        and target_path.name == source_path.name
     )
 
     # 既存のリンクが存在するか、かつ不正なリンクかをチェック
@@ -162,7 +172,9 @@ def _process_link_item_single(
         return  # 既に正しいリンク
 
     if status == "AMBIGUOUS_DIR":
-        print(f"  - 既存ディレクトリ: '{target_path}' は実体ディレクトリです。リンクは作成せずスキップします。")
+        print(
+            f"  - 既存ディレクトリ: '{target_path}' は実体ディレクトリです。リンクは作成せずスキップします。"
+        )
         return  # スキップ
 
     # ターゲットの親ディレクトリが存在しない場合は作成
@@ -208,7 +220,9 @@ def _process_link_item_single(
         _create_symlink_action(source_path, target_path, dry_run)
 
 
-def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool, current_hostname: str):
+def _process_link_config(
+    link_conf: LinkConfig, base_dir: Path, dry_run: bool, current_hostname: str
+):
     """LinkConfig の設定一つ分 (source/target) を処理します。"""
     source_name = link_conf.source.strip()
     target_template = link_conf.target.strip()
@@ -238,7 +252,9 @@ def _process_link_config(link_conf: LinkConfig, base_dir: Path, dry_run: bool, c
 
     if link_conf.all:
         if not source_path.is_dir():
-            print(f"警告: 'all: true' ですが、ソース '{source_name}' はディレクトリではありません。スキップ。")
+            print(
+                f"警告: 'all: true' ですが、ソース '{source_name}' はディレクトリではありません。スキップ。"
+            )
             return
 
         # ディレクトリ直下の全ファイルを対象
@@ -267,7 +283,9 @@ def run_symlink_process(config: DotfileConfig, base_dir: Path, dry_run: bool):
     """全てのシンボリックリンクの作成、またはシミュレーションを行います。"""
 
     if dry_run:
-        print("## 🧪 ドライランモード: 実行内容をシミュレーションします。ファイルシステムは変更されません。")
+        print(
+            "## 🧪 ドライランモード: 実行内容をシミュレーションします。ファイルシステムは変更されません。"
+        )
     else:
         print(
             "## 🔗 リンク作成モード: シンボリックリンクの作成を開始します。"
@@ -303,7 +321,9 @@ def handle_deprecated(config: DotfileConfig) -> bool:
 
     if deprecated_found:
         print("\n### 🚨 以下の非推奨ファイル/リンクが検出されました。")
-        print("これらは設定から削除対象としてマークされていますが、まだ存在しています。")
+        print(
+            "これらは設定から削除対象としてマークされていますが、まだ存在しています。"
+        )
         print("➡️ **手動で削除してください。**")
 
         for path in deprecated_found:
@@ -369,7 +389,9 @@ def check_commands_exist(config: DotfileConfig) -> bool:
             if shutil.which(command_name):
                 print(f"  [OK] 存在します: '{command_name}' (実行: '{full_command}')")
             else:
-                print(f"  [MISSING] 🚨 見つかりません: '{command_name}' (実行: '{full_command}')")
+                print(
+                    f"  [MISSING] 🚨 見つかりません: '{command_name}' (実行: '{full_command}')"
+                )
                 missing_commands.append(command_name)
                 all_exist = False
         except Exception:
