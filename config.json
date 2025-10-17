@@ -22,6 +22,10 @@
             "all": true
         },
         {
+            "source": "configs/codex/config.toml",
+            "target": "~/.codex/config.toml"
+        },
+        {
             "source": "configs/claude/settings.json",
             "target": "~/.claude/settings.json"
         }
