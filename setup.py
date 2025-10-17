@@ -16,7 +16,7 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class LinkConfig:
-    """config.json の 'links' セクションの項目を保持します。"""
+    """config の 'links' セクションの項目を保持します。"""
 
     source: str
     target: str
@@ -26,7 +26,7 @@ class LinkConfig:
 
 @dataclass(frozen=True)
 class DotfileConfig:
-    """config.json 全体の設定を保持します。"""
+    """config 全体の設定を保持します。"""
 
     links: list[LinkConfig]
     deprecated: list[str] = field(default_factory=list)
@@ -40,7 +40,7 @@ class DotfileConfig:
 
 # ホームディレクトリのパスをキャッシュ
 HOME_DIR = Path.home()
-CONFIG_FILE_NAME = "config.json"
+CONFIG_FILE_NAME = "setup_config.json"
 
 
 def get_hostname() -> str:

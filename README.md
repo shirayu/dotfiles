@@ -24,6 +24,10 @@ mise up
 ~/.config/nvim/setup.sh update
 ```
 
+### Setting
+
+`./setup_config.json`
+
 ### Instruction for the client desktop and laptop PCs (debian+gnome3)
 
 - Register ``mysshagent.sh`` in ``.zsh`` folder to ``gnome-session-properties``
