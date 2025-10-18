@@ -22,11 +22,11 @@
             "all": true
         },
         {
-            "source": "configs/codex/config.toml",
-            "target": "~/.codex/config.toml"
+            "source": "other_config/codex/AGENTS.md",
+            "target": "~/.codex/AGENTS.md"
         },
         {
-            "source": "configs/claude/settings.json",
+            "source": "other_config/claude/settings.json",
             "target": "~/.claude/settings.json"
         }
     ],
