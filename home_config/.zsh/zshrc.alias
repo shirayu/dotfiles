@@ -128,3 +128,8 @@ alias "gedit=gnome-text-editor"
 if which nvitop >/dev/null 2>/dev/null; then
     alias "nvtop=nvitop"
 fi
+
+# podman
+if which podman >/dev/null 2>/dev/null; then
+    eval "$(podman completion zsh)"
+fi

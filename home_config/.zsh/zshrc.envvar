@@ -24,11 +24,6 @@ if [ -f "$HOME/.local/opt/google-cloud-sdk/completion.zsh.inc" ]; then
     source "$HOME/.local/opt/google-cloud-sdk/completion.zsh.inc"
 fi
 
-# podman
-if which podman >/dev/null 2>/dev/null; then
-    eval "$(podman completion zsh)"
-fi
-
 # less
 export LESSHISTFILE=/dev/null
 
