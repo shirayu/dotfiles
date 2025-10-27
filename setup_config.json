@@ -22,7 +22,7 @@
             "all": true
         },
         {
-            "source": "other_config/codex/AGENTS.md",
+            "source": "other_config/AGENTS.md",
             "target": "~/.codex/AGENTS.md"
         },
         {
