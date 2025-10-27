@@ -26,6 +26,10 @@
             "target": "~/.codex/AGENTS.md"
         },
         {
+            "source": "other_config/AGENTS.md",
+            "target": "~/.gemini/GEMINI.md"
+        },
+        {
             "source": "other_config/claude/settings.json",
             "target": "~/.claude/settings.json"
         }
