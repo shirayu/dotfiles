@@ -2,6 +2,11 @@
 
 set -x
 
+if [[ $(type claude) ]]; then
+    echo "Updating claude"
+    claude update
+fi
+
 if [[ $(type mise) ]]; then
     echo "Updating mise"
     mise cache clear
