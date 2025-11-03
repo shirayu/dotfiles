@@ -428,9 +428,15 @@ def main():
         "-c",
         "--config",
         type=str,
-        default=CONFIG_FILE_NAME,
-        help=f"設定ファイル名 (デフォルト: {CONFIG_FILE_NAME})",
+        default=Path(__file__).parent.joinpath(CONFIG_FILE_NAME),
+        help="設定ファイル名",
     )
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=Path(__file__).parent,
+    )
+
     parser.add_argument(
         "-d",
         "--dry-run",
@@ -441,17 +447,15 @@ def main():
     args = parser.parse_args()
     ok: bool = True
 
-    # スクリプトの実行ディレクトリをドットファイルのベースとする
-    base_dir = Path.cwd()
     config = _load_config(Path(args.config))
 
     dry_run_mode = args.dry_run
 
-    print(f"ドットファイルベースディレクトリ: {base_dir}")
+    print(f"ドットファイルベースディレクトリ: {args.root}")
     print(f"ホームディレクトリ: {HOME_DIR}\n")
 
     # 1. シンボリックリンクの処理 (作成/シミュレーション)
-    run_symlink_process(config, base_dir, dry_run_mode)
+    run_symlink_process(config, args.root, dry_run_mode)
 
     # 2. 非推奨ファイルの確認 (削除は手動)
     ok = ok and handle_deprecated(config)
