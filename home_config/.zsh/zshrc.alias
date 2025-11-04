@@ -133,3 +133,15 @@ fi
 if which podman >/dev/null 2>/dev/null; then
     eval "$(podman completion zsh)"
 fi
+
+type "task" >/dev/null && eval "$(task --completion zsh)"
+
+type "uv" >/dev/null && eval "$(uv generate-shell-completion zsh)"
+_uv_run_mod() {
+    if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+        _arguments '*:filename:_files'
+    else
+        _uv "$@"
+    fi
+}
+type "uv" >/dev/null && compdef _uv_run_mod uv

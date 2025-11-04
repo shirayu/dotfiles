@@ -3,27 +3,6 @@
 if [ -e $HOME/.local/bin/mise ]; then
     eval "$($HOME/.local/bin/mise activate zsh --shims)"
     eval "$($HOME/.local/bin/mise activate zsh)"
-
-    eval "$(mise completion zsh)"
-
-    type "mise" >/dev/null && eval "$(task --completion zsh)"
-    type "uv" >/dev/null && eval "$(uv generate-shell-completion zsh)"
-
-    _uv_run_mod() {
-        if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
-            _arguments '*:filename:_files'
-        else
-            _uv "$@"
-        fi
-    }
-    compdef _uv_run_mod uv
-
 fi
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+type "mise" >/dev/null && eval "$(mise completion zsh)"
