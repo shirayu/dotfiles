@@ -9,7 +9,8 @@
         },
         {
             "source": "bin",
-            "target": "~/.local/bin"
+            "target": "~/.local/bin",
+            "all": true
         },
         {
             "source": "dot_config",
