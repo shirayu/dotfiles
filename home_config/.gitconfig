@@ -1,6 +1,7 @@
 [user]
 	name = Yuta Hayashibe
 	email = yuta@hayashibe.jp
+	signingkey = ~/.ssh/github.pub
 [init]
 	defaultBranch = main
 [commit]
@@ -52,3 +53,5 @@
 
 [http "https://gitlab.llm-jp.nii.ac.jp/"]
         sslCAInfo=~/.dotfiles/ca/nii-ca.pem
+[gpg]
+	format = ssh
