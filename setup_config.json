@@ -36,6 +36,8 @@
         }
     ],
     "deprecated": [
+        "~/.gitconfig",
+        "~/.gitattributes",
         "~/.vimrc",
         "~/.local/bin/adb-sync"
     ],
