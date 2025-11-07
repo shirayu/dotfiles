@@ -46,6 +46,7 @@
         "~/.config/nvim/"
     ],
     "exist_commands": [
+        "parallel",
         "git",
         "htop",
         "jq",
@@ -59,6 +60,7 @@
         "unar",
         "wget",
         "zsh",
+        "zsh-syntax-highlighting",
         "rg"
     ]
 }
