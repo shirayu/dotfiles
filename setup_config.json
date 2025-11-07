@@ -60,7 +60,6 @@
         "unar",
         "wget",
         "zsh",
-        "zsh-syntax-highlighting",
         "rg"
     ]
 }
