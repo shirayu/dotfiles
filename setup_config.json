@@ -40,6 +40,11 @@
         "~/.gitconfig",
         "~/.gitattributes",
         "~/.vimrc",
+        "~/.viminfo",
+        "~/.vim",
+        "~/.tig_history",
+        "~/.apikey.sample.sh",
+        "~/.ollama",
         "~/.local/bin/adb-sync"
     ],
     "exist_files": [
