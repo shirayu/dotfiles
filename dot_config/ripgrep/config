@@ -9,8 +9,9 @@
 # 1行にファイル名も表示
 --no-heading
 
---no-ignore
 --hidden
 --type-not=minified
 
 --engine=auto
+
+--sort=path
