@@ -7,7 +7,7 @@ neovim = "latest"
 node = { version = "lts", postinstall = "corepack false" }
 peco = "latest"
 pnpm = "latest"
-python = "3.13.7"
+python = "3.13.9"
 shfmt = "latest"
 task = "latest"
 typos = "latest"
