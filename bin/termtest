@@ -92,6 +92,7 @@ for i in $(seq 255 128); do
 done
 resetOutput
 
+# ------ Additional test
 echo
 echo -e "Normal \e[1mBold\e[22m \e[2mDim\e[22m \e[3mItalic\e[23m \e[4mUnderline\e[24m \e[5mBlink\e[25m \e[7mInvert\e[27m \e[8mHidden\e[28m \e[9mStrikethrough\e[29m"
 
