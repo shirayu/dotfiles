@@ -92,4 +92,19 @@ for i in $(seq 255 128); do
 done
 resetOutput
 
+echo
 echo -e "Normal \e[1mBold\e[22m \e[2mDim\e[22m \e[3mItalic\e[23m \e[4mUnderline\e[24m \e[5mBlink\e[25m \e[7mInvert\e[27m \e[8mHidden\e[28m \e[9mStrikethrough\e[29m"
+
+echo
+echo -e "Check Alignment:\n[Normal] -> ABCDEF\n[Emoji ] -> 🍎🍏🍊\n[Kanji ] -> 漢字試\n[Check ] -> 123456"
+
+echo
+python3 -c 'for i in range(10): print(f"\033[48;5;{232+i}m  Layer {i}  \033[0m")'
+
+echo
+echo -e "\e]8;;https://google.com\aClick here to test Link\e]8;;\a"
+
+echo
+echo -ne "Loading: [          ]"
+echo -ne "\033[11D##########]"
+echo -e "\033[1m DONE\033[0m"
