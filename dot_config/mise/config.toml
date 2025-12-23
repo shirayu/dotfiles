@@ -1,5 +1,6 @@
 [tools]
 actionlint = "latest"
+delta = "latest"
 gh = "latest"
 go = "latest"
 hadolint = "latest"
