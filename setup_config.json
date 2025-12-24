@@ -45,7 +45,8 @@
         "~/.tig_history",
         "~/.apikey.sample.sh",
         "~/.ollama",
-        "~/.local/bin/adb-sync"
+        "~/.local/bin/adb-sync",
+        "~/.local/bin/colortest"
     ],
     "exist_files": [
         "~/.config/nvim/"
