@@ -1,41 +1,47 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
 set -x
 
-if [[ $(type claude) ]]; then
-    echo "Updating claude"
+exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+if exists claude; then
+    echo "Updating claude..."
     claude update
 fi
 
-if [[ $(type mise) ]]; then
-    echo "Updating mise"
+if exists mise; then
+    echo "Updating mise..."
     mise cache clear
     mise self-update -y
-    MISE_USE_VERSIONS_HOST=false mise up
+    MISE_USE_VERSIONS_HOST=false mise upgrade
     mise reshim
 fi
 
-if [[ $(type pip) ]]; then
-    echo "Updating pip"
+if exists pip; then
+    echo "Updating pip packages..."
     pip list -o --format json \
         | python -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
         | xargs --no-run-if-empty -t pip install -U
 fi
 
-if [[ $(type uv) ]]; then
-    echo "Updating uv"
-    UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-"600"}
-    UV_HTTP_TIMEOUT="${UV_HTTP_TIMEOUT}" uv tool upgrade --all
-    # uv cache prune
+if exists uv; then
+    echo "Updating uv tools..."
+    export UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-600}
+    uv tool upgrade --all
 fi
 
-if [[ $(type npm) ]]; then
-    echo "Updating npm"
+if exists npm; then
+    echo "Updating npm global packages..."
     npm -g upgrade
-    npm -g uninstall corepack
+    npm -g uninstall corepack || true
 fi
 
-if [[ $(type pnpm) ]]; then
-    echo "Updating pnpm"
+if exists pnpm; then
+    echo "Updating pnpm global packages..."
     pnpm -g up --latest
 fi
+
+echo "All updates completed!"
