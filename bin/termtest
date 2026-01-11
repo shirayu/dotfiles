@@ -95,6 +95,7 @@ resetOutput
 # ------ Additional test
 echo
 echo -e "Normal \e[1mBold\e[22m \e[2mDim\e[22m \e[3mItalic\e[23m \e[4mUnderline\e[24m \e[5mBlink\e[25m \e[7mInvert\e[27m \e[8mHidden\e[28m \e[9mStrikethrough\e[29m"
+echo -e "通常 \e[1m太字\e[22m \e[2m淡色\e[22m \e[3m斜体\e[23m \e[4m下線\e[24m \e[5m点滅\e[25m \e[7m反転\e[27m \e[8m隠し\e[28m \e[9m打消\e[29m"
 
 echo
 echo -e "Check Alignment:\n[Normal] -> ABCDEF\n[Emoji ] -> 🍎🍏🍊\n[Kanji ] -> 漢字試\n[Check ] -> 123456"
