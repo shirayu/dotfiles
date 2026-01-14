@@ -66,6 +66,8 @@
         "unar",
         "wget",
         "zsh",
+        "curl",
+        "fdfind",
         "rg"
     ]
 }
