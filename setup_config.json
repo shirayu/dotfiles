@@ -57,6 +57,7 @@
         "htop",
         "jq",
         "make",
+        "cmake",
         "mise",
         "nvim",
         "peco",
