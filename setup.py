@@ -30,9 +30,17 @@ class DotfileConfig:
 
     links: list[LinkConfig]
     deprecated_files: list[str] = field(default_factory=list)
-    deprecated_commands: list[str] = field(default_factory=list)
+    deprecated_commands: list["DeprecatedCommand"] = field(default_factory=list)
     exist_files: list[str] = field(default_factory=list)
     exist_commands: list[str] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class DeprecatedCommand:
+    """非推奨コマンドの設定を保持します。"""
+
+    command: str
+    hint: str = ""
 
 
 # ----------------------------------------------------------------------
@@ -76,10 +84,21 @@ def _load_config(config_path: Path) -> DotfileConfig:
         print(f"エラー: link 設定のフィールドが不正です: {e}", file=sys.stderr)
         sys.exit(1)
 
+    try:
+        deprecated_commands = [
+            DeprecatedCommand(**item) for item in data.get("deprecated_commands", [])
+        ]
+    except TypeError as e:
+        print(
+            f"エラー: deprecated_commands 設定のフィールドが不正です: {e}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
     return DotfileConfig(
         links=link_configs,
         deprecated_files=data.get("deprecated_files", []),
-        deprecated_commands=data.get("deprecated_commands", []),
+        deprecated_commands=deprecated_commands,
         exist_files=data.get("exist_files", []),
         exist_commands=data.get("exist_commands", []),
     )
@@ -347,13 +366,17 @@ def handle_deprecated_commands(config: DotfileConfig) -> bool:
 
     deprecated_found = []
 
-    for full_command in config.deprecated_commands:
-        command_name = full_command.split()[0]
+    for item in config.deprecated_commands:
+        command_name = item.command.split()[0]
         if shutil.which(command_name):
-            print(f"  [DETECTED] 存在します: '{command_name}' (設定: '{full_command}')")
+            print(
+                f"  [DETECTED] 存在します: '{command_name}' (設定: '{item.command}')"
+            )
+            if item.hint:
+                print(f"    👉 {item.hint}")
             deprecated_found.append(command_name)
         else:
-            print(f"  [OK] 存在しません: '{command_name}' (設定: '{full_command}')")
+            print(f"  [OK] 存在しません: '{command_name}' (設定: '{item.command}')")
 
     if deprecated_found:
         print("\n### 🚨 以下の非推奨コマンドが検出されました。")

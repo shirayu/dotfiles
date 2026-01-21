@@ -49,7 +49,14 @@
         "~/.local/bin/colortest"
     ],
     "deprecated_commands": [
-        "ifconfig"
+        {
+            "command": "ifconfig",
+            "hint": "Run `apt uninstall net-tools` and `apt install iproute2` for `ip` command"
+        },
+        {
+            "command": "iwconfig",
+            "hint": "Run `apt uninstall wireless-tools` and `apt install iw` for `iw` command"
+        }
     ],
     "exist_files": [
         "~/.config/nvim/"
