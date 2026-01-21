@@ -29,7 +29,7 @@ class DotfileConfig:
     """config 全体の設定を保持します。"""
 
     links: list[LinkConfig]
-    deprecated: list[str] = field(default_factory=list)
+    deprecated_files: list[str] = field(default_factory=list)
     deprecated_commands: list[str] = field(default_factory=list)
     exist_files: list[str] = field(default_factory=list)
     exist_commands: list[str] = field(default_factory=list)
@@ -78,7 +78,7 @@ def _load_config(config_path: Path) -> DotfileConfig:
 
     return DotfileConfig(
         links=link_configs,
-        deprecated=data.get("deprecated", []),
+        deprecated_files=data.get("deprecated_files", []),
         deprecated_commands=data.get("deprecated_commands", []),
         exist_files=data.get("exist_files", []),
         exist_commands=data.get("exist_commands", []),
@@ -303,9 +303,9 @@ def run_symlink_process(config: DotfileConfig, base_dir: Path, dry_run: bool):
     print("\n## 🏁 リンク処理が完了しました。")
 
 
-def handle_deprecated(config: DotfileConfig) -> bool:
+def handle_deprecated_files(config: DotfileConfig) -> bool:
     """非推奨ファイルをチェックし、手動での削除を促します。（削除ロジックは含まない）"""
-    if not config.deprecated:
+    if not config.deprecated_files:
         print("\n## 🗑️ 非推奨ファイルの処理: 対象なし")
         return True
 
@@ -313,7 +313,7 @@ def handle_deprecated(config: DotfileConfig) -> bool:
 
     deprecated_found = []
 
-    for item in config.deprecated:
+    for item in config.deprecated_files:
         item_path = resolve_path(item)
 
         # 存在確認 (ファイル/リンクのどちらも)
@@ -490,7 +490,7 @@ def main():
     run_symlink_process(config, args.root, dry_run_mode)
 
     # 2. 非推奨ファイルの確認 (削除は手動)
-    ok = ok and handle_deprecated(config)
+    ok = ok and handle_deprecated_files(config)
 
     # 2.1 非推奨コマンドの確認 (削除は手動)
     ok = ok and handle_deprecated_commands(config)

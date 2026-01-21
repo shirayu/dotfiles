@@ -35,7 +35,7 @@
             "target": "~/.claude/settings.json"
         }
     ],
-    "deprecated": [
+    "deprecated_files": [
         "~/.screenrc",
         "~/.gitconfig",
         "~/.gitattributes",
