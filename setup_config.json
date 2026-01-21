@@ -48,6 +48,9 @@
         "~/.local/bin/adb-sync",
         "~/.local/bin/colortest"
     ],
+    "deprecated_commands": [
+        "ifconfig"
+    ],
     "exist_files": [
         "~/.config/nvim/"
     ],

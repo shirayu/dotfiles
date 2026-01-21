@@ -30,6 +30,7 @@ class DotfileConfig:
 
     links: list[LinkConfig]
     deprecated: list[str] = field(default_factory=list)
+    deprecated_commands: list[str] = field(default_factory=list)
     exist_files: list[str] = field(default_factory=list)
     exist_commands: list[str] = field(default_factory=list)
 
@@ -78,6 +79,7 @@ def _load_config(config_path: Path) -> DotfileConfig:
     return DotfileConfig(
         links=link_configs,
         deprecated=data.get("deprecated", []),
+        deprecated_commands=data.get("deprecated_commands", []),
         exist_files=data.get("exist_files", []),
         exist_commands=data.get("exist_commands", []),
     )
@@ -333,6 +335,32 @@ def handle_deprecated(config: DotfileConfig) -> bool:
     return len(deprecated_found) == 0
 
 
+def handle_deprecated_commands(config: DotfileConfig) -> bool:
+    """非推奨コマンドの存在をチェックし、手動での削除を促します。"""
+    if not config.deprecated_commands:
+        print("\n## 🧯 非推奨コマンドの確認: 対象なし")
+        return True
+
+    print("\n## 🧯 非推奨コマンドの確認を開始します...")
+
+    deprecated_found = []
+
+    for full_command in config.deprecated_commands:
+        command_name = full_command.split()[0]
+        if shutil.which(command_name):
+            print(f"  [DETECTED] 存在します: '{command_name}' (設定: '{full_command}')")
+            deprecated_found.append(command_name)
+
+    if deprecated_found:
+        print("\n### 🚨 以下の非推奨コマンドが検出されました。")
+        print("➡️ **手動で削除/無効化してください。**")
+        for name in deprecated_found:
+            print(f"  - {name}")
+
+    print("\n## 🏁 非推奨コマンドの確認が完了しました。")
+    return len(deprecated_found) == 0
+
+
 def handle_exists(config: DotfileConfig) -> bool:
     """必須のパスが存在するかをチェックします。"""
     if not config.exist_commands:
@@ -459,6 +487,9 @@ def main():
 
     # 2. 非推奨ファイルの確認 (削除は手動)
     ok = ok and handle_deprecated(config)
+
+    # 2.1 非推奨コマンドの確認 (削除は手動)
+    ok = ok and handle_deprecated_commands(config)
 
     # 3. 必須ファイルの存在確認
     ok = ok and handle_exists(config)
