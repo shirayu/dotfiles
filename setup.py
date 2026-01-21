@@ -320,6 +320,8 @@ def handle_deprecated(config: DotfileConfig) -> bool:
         if item_path.exists() or item_path.is_symlink():
             print(f"  [DETECTED] 存在します: '{item_path}'")
             deprecated_found.append(item_path)
+        else:
+            print(f"  [OK] 存在しません: '{item_path}'")
 
     if deprecated_found:
         print("\n### 🚨 以下の非推奨ファイル/リンクが検出されました。")
@@ -350,6 +352,8 @@ def handle_deprecated_commands(config: DotfileConfig) -> bool:
         if shutil.which(command_name):
             print(f"  [DETECTED] 存在します: '{command_name}' (設定: '{full_command}')")
             deprecated_found.append(command_name)
+        else:
+            print(f"  [OK] 存在しません: '{command_name}' (設定: '{full_command}')")
 
     if deprecated_found:
         print("\n### 🚨 以下の非推奨コマンドが検出されました。")
