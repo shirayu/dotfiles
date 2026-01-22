@@ -1,10 +1,7 @@
 function _authsock() {
     args=($(echo "$1" | xargs -0))
     if [[ $args[1] == "ssh" ]]; then
-        if [[ -e "/usr/bin/gnome-keyring-daemon" && $SSH_AUTH_SOCK != *"/keyring/ssh"* ]]; then
-            eval $(/usr/bin/gnome-keyring-daemon)
-            return
-        elif [ ! -e "${SSH_SOCK_LIST}" ]; then
+        if [ ! -e "${SSH_SOCK_LIST}" ]; then
             return
         elif [ ! -e "${SSH_AUTH_SOCK}" ]; then
             while [ "$(wc -l <${SSH_SOCK_LIST})" != "0" ]; do
