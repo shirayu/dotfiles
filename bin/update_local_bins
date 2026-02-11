@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# MISE_USE_VERSIONS_HOST=false
+
 set -x
 
 exists() {
@@ -15,7 +17,7 @@ if exists mise; then
     echo "Updating mise..."
     mise cache clear
     mise self-update -y
-    MISE_USE_VERSIONS_HOST=false mise upgrade
+    mise upgrade
     mise reshim
 fi
 
