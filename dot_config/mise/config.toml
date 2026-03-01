@@ -5,7 +5,7 @@ gh = "latest"
 go = "latest"
 hadolint = "latest"
 neovim = "latest"
-node = { version = "lts", postinstall = "corepack false" }
+node = "lts"
 peco = "latest"
 pnpm = "latest"
 python = "3.13.12"
