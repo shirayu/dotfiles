@@ -37,6 +37,7 @@
     ],
     "deprecated_files": [
         "~/.screenrc",
+        "~/.markdownlintrc",
         "~/.gitconfig",
         "~/.gitattributes",
         "~/.vimrc",
