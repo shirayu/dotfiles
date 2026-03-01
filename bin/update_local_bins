@@ -19,6 +19,7 @@ if exists mise; then
     mise self-update -y
     mise upgrade
     mise reshim
+    mise lock
 fi
 
 if exists pip; then
