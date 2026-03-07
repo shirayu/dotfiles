@@ -15,6 +15,7 @@ fi
 
 if exists mise; then
     echo "Updating mise..."
+    export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
     mise cache clear
     mise self-update -y
     mise upgrade
@@ -24,9 +25,10 @@ fi
 
 if exists pip; then
     echo "Updating pip packages..."
-    pip list -o --format json \
-        | python -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
-        | xargs --no-run-if-empty -t pip install -U
+    GLOBAL_PYTHON=$(MISE_CONFIG_FILE=~/.config/mise/config.toml mise which python3)
+    $GLOBAL_PYTHON -m pip list -o --format json \
+        | $GLOBAL_PYTHON -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
+        | xargs --no-run-if-empty -t "${GLOBAL_PYTHON}" -m pip install -U
 fi
 
 if exists uv; then
