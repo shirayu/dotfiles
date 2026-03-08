@@ -60,7 +60,9 @@
         }
     ],
     "exist_files": [
-        "~/.config/nvim/"
+        "~/.config/nvim/",
+        "~/.ssh/github",
+        "~/.ssh/github.pub"
     ],
     "exist_commands": [
         "parallel",
