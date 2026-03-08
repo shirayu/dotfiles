@@ -68,7 +68,9 @@ else
 fi
 alias "renamer.vi=vi +Renamer"
 
-if type 'xsel' >/dev/null 2>&1; then
+if [[ -n ${WSL_INTEROP:-} ]] && type 'clip.exe' >/dev/null 2>&1; then
+    alias pbcopy='clip.exe'
+elif type 'xsel' >/dev/null 2>&1; then
     alias pbcopy='xsel --clipboard --input'
 fi
 
