@@ -58,36 +58,37 @@ url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2
 url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-pc-windows-msvc.zip"
 
 [[tools.gh]]
-version = "2.87.3"
+version = "2.88.1"
 backend = "aqua:cli/cli"
 
 [tools.gh."platforms.linux-arm64"]
-checksum = "sha256:5f5d89563bf26751e2173b37e594065504e85b6b781c1f1832d24bf2c2b4554f"
-url = "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_linux_arm64.tar.gz"
+checksum = "sha256:039ce25aab0cfa0ea5160e3db75ed44699bde4b20ff63ec5991f82201f1b33b8"
+url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_arm64.tar.gz"
 
 [tools.gh."platforms.linux-arm64-musl"]
-checksum = "sha256:5f5d89563bf26751e2173b37e594065504e85b6b781c1f1832d24bf2c2b4554f"
-url = "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_linux_arm64.tar.gz"
+checksum = "sha256:039ce25aab0cfa0ea5160e3db75ed44699bde4b20ff63ec5991f82201f1b33b8"
+url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_arm64.tar.gz"
 
 [tools.gh."platforms.linux-x64"]
-checksum = "sha256:c6e5537631fca45f277ef405ce8751d139b491e9402cc20891a003525a8773b2"
-url = "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_linux_amd64.tar.gz"
+checksum = "sha256:36352a993b97e9758793cdb87f9ba674bd6d88c914488e122be78a1962203803"
+url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_amd64.tar.gz"
+provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64-musl"]
-checksum = "sha256:c6e5537631fca45f277ef405ce8751d139b491e9402cc20891a003525a8773b2"
-url = "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_linux_amd64.tar.gz"
+checksum = "sha256:36352a993b97e9758793cdb87f9ba674bd6d88c914488e122be78a1962203803"
+url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_amd64.tar.gz"
 
 [tools.gh."platforms.macos-arm64"]
-checksum = "sha256:dedfc6f569e9dbc5b92d47dce44acadbdf5b6b7a861510db0c748dfac55002f6"
-url = "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_macOS_arm64.zip"
+checksum = "sha256:bdbeed4821d450ef0d14821d856c05b308ab449fbf60527f298d96fbf5d2447b"
+url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_macOS_arm64.zip"
 
 [tools.gh."platforms.macos-x64"]
-checksum = "sha256:7b8d5495fe9689494b1c69559c0d28209bc057bb028008e903ec4b3e19bd8c75"
-url = "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_macOS_amd64.zip"
+checksum = "sha256:ff0fc4bdb9699f0c02e5bcdcbd09d0f8e4c4659aa5d30bcd39a3557ed7379b2e"
+url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_macOS_amd64.zip"
 
 [tools.gh."platforms.windows-x64"]
-checksum = "sha256:c590bcb488f80a85c8febd5cde27edd68fdd481bd004aaf9adc50dcf1b21c09c"
-url = "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_windows_amd64.zip"
+checksum = "sha256:8fdaac525d8919f9f8c265f99ffa26189e5f1fd3a35636adad4fd890a141a555"
+url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_windows_amd64.zip"
 
 [[tools.go]]
 version = "1.26.1"
@@ -225,107 +226,107 @@ checksum = "sha256:5bd9aa4bc02338a6ec8ab1ef212c7b2e54c23e2416254c7681f03e9fa6857
 url = "https://github.com/peco/peco/releases/download/v0.6.0/peco_0.6.0_windows_amd64.zip"
 
 [[tools.pnpm]]
-version = "10.31.0"
+version = "10.32.1"
 backend = "aqua:pnpm/pnpm"
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:5e8f5b3fc8fc00963686a8502ddf5882681b29dcfe392671336b660f78127152"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.31.0/pnpm-linux-arm64"
+checksum = "sha256:c0db0b837971fde6f9781af8914e54eb163721193a36d35cbcf1794b3474a407"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-arm64"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:5e8f5b3fc8fc00963686a8502ddf5882681b29dcfe392671336b660f78127152"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.31.0/pnpm-linux-arm64"
+checksum = "sha256:c0db0b837971fde6f9781af8914e54eb163721193a36d35cbcf1794b3474a407"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-arm64"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:21f99c8eb302967af820ce575a48717d017203269916f932e34f5ff86334008d"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.31.0/pnpm-linux-x64"
+checksum = "sha256:c5607a86bfb948297e96b393a53c90107766fe56329e62967b1f239d861d4363"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-x64"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:21f99c8eb302967af820ce575a48717d017203269916f932e34f5ff86334008d"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.31.0/pnpm-linux-x64"
+checksum = "sha256:c5607a86bfb948297e96b393a53c90107766fe56329e62967b1f239d861d4363"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-x64"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:6f2a7f51faa0bbee013fcad9be2f0d503e3a77d872c8f9551866285c64b98cd2"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.31.0/pnpm-macos-arm64"
+checksum = "sha256:b0904b4e0cf36704fcdc24bcdb5f03388799a631510d1fb0d459ea69c7b1e2d9"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-macos-arm64"
 
 [tools.pnpm."platforms.macos-x64"]
-checksum = "sha256:1e8e40e0c127248300975ffc50de9d7d49fade78b55240cab1db02a9324f65d6"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.31.0/pnpm-macos-x64"
+checksum = "sha256:8b83277343bbc400fdb90608bd51b4f56e380e6624ac5fd0e11d6c08815e3f04"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-macos-x64"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:26cfa9cb3963e4841fbd0da3b5114b1c72631b41b5617ed07f451d5974cfa494"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.31.0/pnpm-win-x64.exe"
+checksum = "sha256:849141504c83bcd08a3d84dc20d43cff2584d672138d28c33ad62bdac809e7f2"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-win-x64.exe"
 
 [[tools.python]]
 version = "3.13.12"
 backend = "core:python"
 
 [tools.python."platforms.linux-arm64"]
-checksum = "sha256:207c5504dfd2627949be652f2740bddab5ba6e6bea6ce45de9db1858f67c9b42"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:0ebc0049121318b5de80b887d22abaed55dd302014f73cd6811c9981a83d960e"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.linux-arm64-musl"]
-checksum = "sha256:207c5504dfd2627949be652f2740bddab5ba6e6bea6ce45de9db1858f67c9b42"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:0ebc0049121318b5de80b887d22abaed55dd302014f73cd6811c9981a83d960e"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.linux-x64"]
-checksum = "sha256:4ecfaffe0db6d4363c2bca7a40f017c56fdad1f399d6218b7ddc1f47f071ffc6"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:904adc9bc4371c01b20f7e75a19b10f07fb577889be02bf21f7f449229b97611"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.linux-x64-musl"]
-checksum = "sha256:4ecfaffe0db6d4363c2bca7a40f017c56fdad1f399d6218b7ddc1f47f071ffc6"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:904adc9bc4371c01b20f7e75a19b10f07fb577889be02bf21f7f449229b97611"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.macos-arm64"]
-checksum = "sha256:0103ab534b93472b1e2036fbb127a0dd4df73f437a4d8d7ce6fbe7e3d1f4fbbd"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-aarch64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:21f41942eda3c54cbd8f13bd28b36c496c58bf1895c169fac7f3bcc6a54079fd"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-aarch64-apple-darwin-install_only_stripped.tar.gz"
 
 [tools.python."platforms.macos-x64"]
-checksum = "sha256:ca97cdd8338716dac48204f1b33e51ec4f072eeeb91cecdb9ea3bfecae1c538a"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-x86_64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:c63a5f761bb212191971e6746d08aad0d052754df61c0e74f0776caf4ce837c8"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-apple-darwin-install_only_stripped.tar.gz"
 
 [tools.python."platforms.windows-x64"]
-checksum = "sha256:eb1e212b97b001efc1281bb01fd26ca1ecdfe9ef2875b52c58d39e9719ab75df"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+checksum = "sha256:09df14cdd7ad59863596189623b2f34f6a2925b9317279ce53346a38dd62e60f"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 
 [[tools.shfmt]]
-version = "3.12.0"
+version = "3.13.0"
 backend = "aqua:mvdan/sh"
 
 [tools.shfmt."platforms.linux-arm64"]
-checksum = "sha256:5f3fe3fa6a9f766e6a182ba79a94bef8afedafc57db0b1ad32b0f67fae971ba4"
-url = "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64"
+checksum = "sha256:2091a31afd47742051a77bf7cfd175533ab07e924c20ef3151cd108fa1cab5b0"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_arm64"
 
 [tools.shfmt."platforms.linux-arm64-musl"]
-checksum = "sha256:5f3fe3fa6a9f766e6a182ba79a94bef8afedafc57db0b1ad32b0f67fae971ba4"
-url = "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64"
+checksum = "sha256:2091a31afd47742051a77bf7cfd175533ab07e924c20ef3151cd108fa1cab5b0"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_arm64"
 
 [tools.shfmt."platforms.linux-x64"]
-checksum = "sha256:d9fbb2a9c33d13f47e7618cf362a914d029d02a6df124064fff04fd688a745ea"
-url = "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_amd64"
+checksum = "sha256:70aa99784703a8d6569bbf0b1e43e1a91906a4166bf1a79de42050a6d0de7551"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_amd64"
 
 [tools.shfmt."platforms.linux-x64-musl"]
-checksum = "sha256:d9fbb2a9c33d13f47e7618cf362a914d029d02a6df124064fff04fd688a745ea"
-url = "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_amd64"
+checksum = "sha256:70aa99784703a8d6569bbf0b1e43e1a91906a4166bf1a79de42050a6d0de7551"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_amd64"
 
 [tools.shfmt."platforms.macos-arm64"]
-checksum = "sha256:d903802e0ce3ecbc82b98512f55ba370b0d37a93f3f78de394f5b657052b33dd"
-url = "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_darwin_arm64"
+checksum = "sha256:650970603b5946dc6041836ddcfa7a19d99b5da885e4687f64575508e99cf718"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_darwin_arm64"
 
 [tools.shfmt."platforms.macos-x64"]
-checksum = "sha256:c31548693de6584e6164b7ed5fbb7b4a083f2d937ca94b4e0ddf59aa461a85e4"
-url = "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_darwin_amd64"
+checksum = "sha256:b6890a0009abf71d36d7c536ad56e3132c547ceb77cd5d5ee62b3469ab4e9417"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_darwin_amd64"
 
 [tools.shfmt."platforms.windows-x64"]
-checksum = "sha256:c8bda517ba1c640ce4a715c0fa665439ddbe4357ba5e9b77b0e51e70e2b9c94b"
-url = "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_windows_amd64.exe"
+checksum = "sha256:62241aaf6b0ca236f8625d8892784b73fa67ad40bc677a1ad1a64ae395f6a7d5"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_windows_amd64.exe"
 
 [[tools.task]]
-version = "3.49.0"
+version = "3.49.1"
 backend = "ubi:go-task/task"
 
 [tools.task."platforms.linux-x64-task"]
-checksum = "blake3:b9ca22b4ec0d5f0edee24f9121d150de5b29668505d959862b99f3ae10583c1f"
+checksum = "blake3:8d6def2a4fc0fbc4a72214601804e5204ac6e079564db3a126cfb523974075a9"
 
 [[tools.typos]]
 version = "1.44.0"
