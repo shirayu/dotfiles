@@ -33,3 +33,10 @@ function git() {
         /usr/bin/git "$@"
     fi
 }
+
+alias codex="codex --dangerously-bypass-approvals-and-sandbox"
+alias copilot="copilot --allow-all-tools"
+alias claude="claude --dangerously-skip-permissions"
+
+# GitHub Personal Access Token (PAT)
+# export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxx
