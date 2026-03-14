@@ -1,18 +1,18 @@
 [tools]
+"aqua:go-task/task" = "latest"
+"aqua:hadolint/hadolint" = "latest"
+"aqua:jdx/usage" = "latest"
 actionlint = "latest"
 delta = "latest"
 gh = "latest"
 go = "latest"
-hadolint = "latest"
 neovim = "latest"
 node = "lts"
 peco = "latest"
 pnpm = "latest"
 python = "3.13.12"
 shfmt = "latest"
-task = "latest"
 typos = "latest"
-usage = "latest"
 uv = "latest"
 
 [settings]

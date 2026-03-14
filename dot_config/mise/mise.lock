@@ -32,6 +32,102 @@ url = "https://github.com/rhysd/actionlint/releases/download/v1.7.11/actionlint_
 checksum = "sha256:5414b7124a91f4b5abee62e5c9d84802237734f8d15b9b7032732a32c3ebffa3"
 url = "https://github.com/rhysd/actionlint/releases/download/v1.7.11/actionlint_1.7.11_windows_amd64.zip"
 
+[[tools."aqua:go-task/task"]]
+version = "3.49.1"
+backend = "aqua:go-task/task"
+
+[tools."aqua:go-task/task"."platforms.linux-arm64"]
+checksum = "sha256:aa6732c9c66397c5380ec2b60c070fd599075b2a8538dba03f3a21edc99ab0cb"
+url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_arm64.tar.gz"
+
+[tools."aqua:go-task/task"."platforms.linux-arm64-musl"]
+checksum = "sha256:aa6732c9c66397c5380ec2b60c070fd599075b2a8538dba03f3a21edc99ab0cb"
+url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_arm64.tar.gz"
+
+[tools."aqua:go-task/task"."platforms.linux-x64"]
+checksum = "sha256:4e7d24f1bf38218aec8f244eb7ba671f898830f9f87b3c9b30ff1c09e3135576"
+url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_amd64.tar.gz"
+
+[tools."aqua:go-task/task"."platforms.linux-x64-musl"]
+checksum = "sha256:4e7d24f1bf38218aec8f244eb7ba671f898830f9f87b3c9b30ff1c09e3135576"
+url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_amd64.tar.gz"
+
+[tools."aqua:go-task/task"."platforms.macos-arm64"]
+checksum = "sha256:0f556b66df69d53b790c7fd26bfab73543b4a5ce1767df6b2e8499619e2a205b"
+url = "https://github.com/go-task/task/releases/download/v3.49.1/task_darwin_arm64.tar.gz"
+
+[tools."aqua:go-task/task"."platforms.macos-x64"]
+checksum = "sha256:8bc4dd3baed1c71956ade0bb0a9c1b94e3ed7b65e7f2ff3aab13d0562c820e59"
+url = "https://github.com/go-task/task/releases/download/v3.49.1/task_darwin_amd64.tar.gz"
+
+[tools."aqua:go-task/task"."platforms.windows-x64"]
+checksum = "sha256:725c551f699d4d6c0dc57bd8148f72bef8d5b2fb650d9c985f271a61522fd521"
+url = "https://github.com/go-task/task/releases/download/v3.49.1/task_windows_amd64.zip"
+
+[[tools."aqua:hadolint/hadolint"]]
+version = "2.14.0"
+backend = "aqua:hadolint/hadolint"
+
+[tools."aqua:hadolint/hadolint"."platforms.linux-arm64"]
+checksum = "sha256:331f1d3511b84a4f1e3d18d52fec284723e4019552f4f47b19322a53ce9a40ed"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-arm64"
+
+[tools."aqua:hadolint/hadolint"."platforms.linux-arm64-musl"]
+checksum = "sha256:331f1d3511b84a4f1e3d18d52fec284723e4019552f4f47b19322a53ce9a40ed"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-arm64"
+
+[tools."aqua:hadolint/hadolint"."platforms.linux-x64"]
+checksum = "sha256:6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64"
+
+[tools."aqua:hadolint/hadolint"."platforms.linux-x64-musl"]
+checksum = "sha256:6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64"
+
+[tools."aqua:hadolint/hadolint"."platforms.macos-arm64"]
+checksum = "sha256:3625e2e9f43dcfe7bd38738a5f5520ed50ce39ed28485266e6803dd7bc197b10"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-macos-arm64"
+
+[tools."aqua:hadolint/hadolint"."platforms.macos-x64"]
+checksum = "sha256:2b69a853433f1eca522ffb921cd490bd1321424d03331fd8390f93b7fb4a02e9"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-macos-x86_64"
+
+[tools."aqua:hadolint/hadolint"."platforms.windows-x64"]
+checksum = "sha256:8e0ee174f88edb14f207a68430c7a53c2883ed509cdbde9a3a26fffa140fa5e4"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-windows-x86_64.exe"
+
+[[tools."aqua:jdx/usage"]]
+version = "3.0.0"
+backend = "aqua:jdx/usage"
+
+[tools."aqua:jdx/usage"."platforms.linux-arm64"]
+checksum = "sha256:6c32e248c2203d3d0b43bed07a9c6d25b05773e8443fb99b4c4a724f9c8fc64a"
+url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-aarch64-unknown-linux-musl.tar.gz"
+
+[tools."aqua:jdx/usage"."platforms.linux-arm64-musl"]
+checksum = "sha256:6c32e248c2203d3d0b43bed07a9c6d25b05773e8443fb99b4c4a724f9c8fc64a"
+url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-aarch64-unknown-linux-musl.tar.gz"
+
+[tools."aqua:jdx/usage"."platforms.linux-x64"]
+checksum = "sha256:e9d4c42cbc28668da0c1ee02eaea1948ab043ee1ef2637fa90737095da487e1c"
+url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-x86_64-unknown-linux-musl.tar.gz"
+
+[tools."aqua:jdx/usage"."platforms.linux-x64-musl"]
+checksum = "sha256:e9d4c42cbc28668da0c1ee02eaea1948ab043ee1ef2637fa90737095da487e1c"
+url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-x86_64-unknown-linux-musl.tar.gz"
+
+[tools."aqua:jdx/usage"."platforms.macos-arm64"]
+checksum = "sha256:4de86e95923dd57d8171a5ae40ca65492ef84b69175fefd7ab14442ab3ea0fc2"
+url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-universal-apple-darwin.tar.gz"
+
+[tools."aqua:jdx/usage"."platforms.macos-x64"]
+checksum = "sha256:4de86e95923dd57d8171a5ae40ca65492ef84b69175fefd7ab14442ab3ea0fc2"
+url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-universal-apple-darwin.tar.gz"
+
+[tools."aqua:jdx/usage"."platforms.windows-x64"]
+checksum = "sha256:b0a8cb81f4a259f8eaee134d9d427ed8284177141d615669dce2bde184ab06b3"
+url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-x86_64-pc-windows-msvc.zip"
+
 [[tools.delta]]
 version = "0.18.2"
 backend = "aqua:dandavison/delta"
@@ -121,13 +217,6 @@ url = "https://dl.google.com/go/go1.26.1.darwin-amd64.tar.gz"
 [tools.go."platforms.windows-x64"]
 checksum = "sha256:9b68112c913f45b7aebbf13c036721264bbba7e03a642f8f7490c561eebd1ecc"
 url = "https://dl.google.com/go/go1.26.1.windows-amd64.zip"
-
-[[tools.hadolint]]
-version = "2.14.0"
-backend = "ubi:hadolint/hadolint"
-
-[tools.hadolint."platforms.linux-x64-hadolint"]
-checksum = "blake3:caca77767db81a741c4cad24c12dd1003e6e07a572f3b3486a6a07d63c191abc"
 
 [[tools.neovim]]
 version = "0.11.6"
@@ -321,13 +410,6 @@ url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_darwi
 checksum = "sha256:62241aaf6b0ca236f8625d8892784b73fa67ad40bc677a1ad1a64ae395f6a7d5"
 url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_windows_amd64.exe"
 
-[[tools.task]]
-version = "3.49.1"
-backend = "ubi:go-task/task"
-
-[tools.task."platforms.linux-x64-task"]
-checksum = "blake3:8d6def2a4fc0fbc4a72214601804e5204ac6e079564db3a126cfb523974075a9"
-
 [[tools.typos]]
 version = "1.44.0"
 backend = "aqua:crate-ci/typos"
@@ -360,41 +442,35 @@ url = "https://github.com/crate-ci/typos/releases/download/v1.44.0/typos-v1.44.0
 checksum = "sha256:afd85c8f3c5c925ee7452389acdf70b048d8c6eae5e52a581e63a7d1b7655f17"
 url = "https://github.com/crate-ci/typos/releases/download/v1.44.0/typos-v1.44.0-x86_64-pc-windows-msvc.zip"
 
-[[tools.usage]]
-version = "2.18.2"
-backend = "ubi:jdx/usage"
-
-[tools.usage."platforms.linux-x64-usage"]
-checksum = "blake3:9b26ba5addd5c937dd7b1a13256258e6513934336137ec369ad2241642098ad6"
-
 [[tools.uv]]
-version = "0.10.9"
+version = "0.10.10"
 backend = "aqua:astral-sh/uv"
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:05b0d3087e913ebe11756365a90dd47c05d6728752fdbe129ad4c3ccd769826d"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d08c08b82cdcaf2bd3d928ffe844d3558dda53f90066db6ef9174157cc763252"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:05b0d3087e913ebe11756365a90dd47c05d6728752fdbe129ad4c3ccd769826d"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d08c08b82cdcaf2bd3d928ffe844d3558dda53f90066db6ef9174157cc763252"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"
+provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:a92f61e9ac9b0f29668c15f56152e4a60143fca148ff5bfadb86718472c3f376"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:8a09f0ef51ee7f7170731b4cb8bde5bf9ba6da5304f49a7df6cdab42a1f37b5d"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-apple-darwin.tar.gz"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:9cc2de7d195fa157f98b306a8a1cb151ded93f488939b93363cebc8b9d598c28"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:dd18420591d625f9b4ca2b57a7a6fe3cce43910f02e02d90e47a4101428de14a"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-apple-darwin.tar.gz"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:f58dc40896000229db7c52b8bdd931394040ef2ad59abd1eda841f6d70b13d7a"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:d31a30f1dfb96e630a08d5a9b3f3f551254b7ed6e9b7e495f46a4232661c7252"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-pc-windows-msvc.zip"
