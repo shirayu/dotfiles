@@ -14,6 +14,7 @@ python = "3.13.12"
 shfmt = "latest"
 typos = "latest"
 uv = "latest"
+zizmor = "latest"
 
 [settings]
 lockfile = true
