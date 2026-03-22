@@ -129,29 +129,24 @@ checksum = "sha256:b0a8cb81f4a259f8eaee134d9d427ed8284177141d615669dce2bde184ab0
 url = "https://github.com/jdx/usage/releases/download/v3.0.0/usage-x86_64-pc-windows-msvc.zip"
 
 [[tools.delta]]
-version = "0.18.2"
+version = "0.19.0"
 backend = "aqua:dandavison/delta"
 
-[tools.delta."platforms.linux-arm64"]
-url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-unknown-linux-gnu.tar.gz"
-
-[tools.delta."platforms.linux-arm64-musl"]
-url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-unknown-linux-gnu.tar.gz"
-
 [tools.delta."platforms.linux-x64"]
-url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:b4096cf910255e64941e06f217b87bbfbdd9ab7c0a1a9e373d3220b98055170c"
+url = "https://github.com/dandavison/delta/releases/download/0.19.0/delta-0.19.0-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.delta."platforms.linux-x64-musl"]
-url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:b4096cf910255e64941e06f217b87bbfbdd9ab7c0a1a9e373d3220b98055170c"
+url = "https://github.com/dandavison/delta/releases/download/0.19.0/delta-0.19.0-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.delta."platforms.macos-arm64"]
-url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-apple-darwin.tar.gz"
-
-[tools.delta."platforms.macos-x64"]
-url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:b7c04ef8ebac03096e995b11fcdd38664ea0866bde0ff095e0f23f18d2b99ba5"
+url = "https://github.com/dandavison/delta/releases/download/0.19.0/delta-0.19.0-aarch64-apple-darwin.tar.gz"
 
 [tools.delta."platforms.windows-x64"]
-url = "https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:c704699d76def630edfd65bf356e710c28acd147ca30a4f425762c934e8e107d"
+url = "https://github.com/dandavison/delta/releases/download/0.19.0/delta-0.19.0-x86_64-pc-windows-msvc.zip"
 
 [[tools.gh]]
 version = "2.88.1"
@@ -390,32 +385,32 @@ version = "3.13.12"
 backend = "core:python"
 
 [tools.python."platforms.linux-arm64"]
-checksum = "sha256:0ebc0049121318b5de80b887d22abaed55dd302014f73cd6811c9981a83d960e"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:e90de3ba83ab6cc4068bdd5fafcd6be9ebc8acf88dd720dfe6f9db166fd908dc"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260320/cpython-3.13.12+20260320-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.linux-arm64-musl"]
-checksum = "sha256:0ebc0049121318b5de80b887d22abaed55dd302014f73cd6811c9981a83d960e"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:e90de3ba83ab6cc4068bdd5fafcd6be9ebc8acf88dd720dfe6f9db166fd908dc"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260320/cpython-3.13.12+20260320-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.linux-x64"]
-checksum = "sha256:904adc9bc4371c01b20f7e75a19b10f07fb577889be02bf21f7f449229b97611"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:bf44c6afeabc8926086eaf00fcc98fadece6e74194989231186225e31e57773f"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260320/cpython-3.13.12+20260320-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.linux-x64-musl"]
-checksum = "sha256:904adc9bc4371c01b20f7e75a19b10f07fb577889be02bf21f7f449229b97611"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:bf44c6afeabc8926086eaf00fcc98fadece6e74194989231186225e31e57773f"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260320/cpython-3.13.12+20260320-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 
 [tools.python."platforms.macos-arm64"]
-checksum = "sha256:21f41942eda3c54cbd8f13bd28b36c496c58bf1895c169fac7f3bcc6a54079fd"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-aarch64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:3b51d3715da5f943c39f987a27a1399a78917ecaf3c450b86d6c215aa8bd7ec7"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260320/cpython-3.13.12+20260320-aarch64-apple-darwin-install_only_stripped.tar.gz"
 
 [tools.python."platforms.macos-x64"]
-checksum = "sha256:c63a5f761bb212191971e6746d08aad0d052754df61c0e74f0776caf4ce837c8"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:1b9b6274f5cc621e40c8c39606729aed81554eff7da33ca573885a5eecb698e5"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260320/cpython-3.13.12+20260320-x86_64-apple-darwin-install_only_stripped.tar.gz"
 
 [tools.python."platforms.windows-x64"]
-checksum = "sha256:09df14cdd7ad59863596189623b2f34f6a2925b9317279ce53346a38dd62e60f"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.13.12+20260310-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+checksum = "sha256:bf79931699ac5aca5a58111d27352f44128074bee816cced45a72921c67ae69e"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260320/cpython-3.13.12+20260320-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 
 [[tools.shfmt]]
 version = "3.13.0"
@@ -514,37 +509,37 @@ checksum = "sha256:afd85c8f3c5c925ee7452389acdf70b048d8c6eae5e52a581e63a7d1b7655
 url = "https://github.com/crate-ci/typos/releases/download/v1.44.0/typos-v1.44.0-x86_64-pc-windows-msvc.zip"
 
 [[tools.uv]]
-version = "0.10.11"
+version = "0.10.12"
 backend = "aqua:astral-sh/uv"
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:5d80a7f6343d2676dfde1e5126582070a2bbc62df6f60d5527a169be3788532a"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.11/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:55bd1c1c10ec8b95a8c184f5e18b566703c6ab105f0fc118aaa4d748aabf28e4"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:5d80a7f6343d2676dfde1e5126582070a2bbc62df6f60d5527a169be3788532a"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.11/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:55bd1c1c10ec8b95a8c184f5e18b566703c6ab105f0fc118aaa4d748aabf28e4"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:d78246139dc6cf3ed6d03c84da762686bced7ad1de67977ee372a45b95a1f6d0"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.11/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:d78246139dc6cf3ed6d03c84da762686bced7ad1de67977ee372a45b95a1f6d0"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.11/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:437a7d498dd6564d5bf986074249ba1fc600e73da55ae04d7bd4c24d5f149b95"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.11/uv-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:ae738b5661a900579ec621d3918c0ef17bdec0da2a8a6d8b161137cd15f25414"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-aarch64-apple-darwin.tar.gz"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:ff90020b554cf02ef8008535c9aab6ef27bb7be6b075359300dec79c361df897"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.11/uv-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:17443e293f2ae407bb2d8d34b875ebfe0ae01cf1296de5647e69e7b2e2b428f0"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-apple-darwin.tar.gz"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:9ee74df98582f37fdd6069e1caac80d2616f9a489f5dbb2b1c152f30be69c58e"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.11/uv-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:4c1d55501869b3330d4aabf45ad6024ce2367e0f3af83344395702d272c22e88"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-pc-windows-msvc.zip"
 
 [[tools.zizmor]]
 version = "1.23.1"
