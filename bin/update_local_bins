@@ -18,9 +18,10 @@ if exists mise; then
     export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
     mise cache clear
     mise self-update -y
+    rm "${HOME}/.config/mise/mise.lock"
     mise upgrade
     mise reshim
-    mise lock
+    mise lock -g
 fi
 
 if exists pip; then
