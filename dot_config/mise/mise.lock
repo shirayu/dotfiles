@@ -97,36 +97,36 @@ checksum = "sha256:8e0ee174f88edb14f207a68430c7a53c2883ed509cdbde9a3a26fffa140fa
 url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-windows-x86_64.exe"
 
 [[tools."aqua:jdx/usage"]]
-version = "3.1.0"
+version = "3.2.0"
 backend = "aqua:jdx/usage"
 
 [tools."aqua:jdx/usage"."platforms.linux-arm64"]
-checksum = "sha256:91a89899b5d489df1c69e6a1abe485c70addaf2f1f8d4b2a41da124c7e9c43f2"
-url = "https://github.com/jdx/usage/releases/download/v3.1.0/usage-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:9cc22814763948582a31b054e6aa3adfc7a820a3cafb82b317dd4a8931277c0f"
+url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-aarch64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.linux-arm64-musl"]
-checksum = "sha256:91a89899b5d489df1c69e6a1abe485c70addaf2f1f8d4b2a41da124c7e9c43f2"
-url = "https://github.com/jdx/usage/releases/download/v3.1.0/usage-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:9cc22814763948582a31b054e6aa3adfc7a820a3cafb82b317dd4a8931277c0f"
+url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-aarch64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.linux-x64"]
-checksum = "sha256:2be4d047dca2051d9166113f4776dc859481813d1ae5ee137ec384801af42022"
-url = "https://github.com/jdx/usage/releases/download/v3.1.0/usage-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:7f48ee228ae95b07c193ec61def326575682b37032473c5af4b3b93a114aec81"
+url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-x86_64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.linux-x64-musl"]
-checksum = "sha256:2be4d047dca2051d9166113f4776dc859481813d1ae5ee137ec384801af42022"
-url = "https://github.com/jdx/usage/releases/download/v3.1.0/usage-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:7f48ee228ae95b07c193ec61def326575682b37032473c5af4b3b93a114aec81"
+url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-x86_64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.macos-arm64"]
-checksum = "sha256:d9f286a40b5c04b5e0b124a33bb46545b6a595b518e109077e34333816bb1465"
-url = "https://github.com/jdx/usage/releases/download/v3.1.0/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:f0a566bc05fc485b23a339abddbaef04225e7730574dbb603fdc021e084d26f9"
+url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-universal-apple-darwin.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.macos-x64"]
-checksum = "sha256:d9f286a40b5c04b5e0b124a33bb46545b6a595b518e109077e34333816bb1465"
-url = "https://github.com/jdx/usage/releases/download/v3.1.0/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:f0a566bc05fc485b23a339abddbaef04225e7730574dbb603fdc021e084d26f9"
+url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-universal-apple-darwin.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.windows-x64"]
-checksum = "sha256:a4f4e4e33a64e86f92051c16336349a41064380f1c6a7ea48cb105ed8454e9f3"
-url = "https://github.com/jdx/usage/releases/download/v3.1.0/usage-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:9aba23a5d549695cfb5f034849e143205ccf972e5b5d42c24acd32e084d7a165"
+url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-x86_64-pc-windows-msvc.zip"
 
 [[tools.delta]]
 version = "0.19.1"
@@ -171,7 +171,6 @@ url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_arm6
 [tools.gh."platforms.linux-x64"]
 checksum = "sha256:36352a993b97e9758793cdb87f9ba674bd6d88c914488e122be78a1962203803"
 url = "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_amd64.tar.gz"
-provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64-musl"]
 checksum = "sha256:36352a993b97e9758793cdb87f9ba674bd6d88c914488e122be78a1962203803"
@@ -223,34 +222,27 @@ url = "https://dl.google.com/go/go1.26.1.windows-amd64.zip"
 
 [[tools.neovim]]
 version = "0.11.6"
-backend = "aqua:neovim/neovim"
+backend = "vfox:neovim"
 
 [tools.neovim."platforms.linux-arm64"]
-checksum = "sha256:8ddc0c101846145e830b17bbca50782ca9307eee4fab539d9e2ddaf8793c06f1"
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-arm64.tar.gz"
 
 [tools.neovim."platforms.linux-arm64-musl"]
-checksum = "sha256:8ddc0c101846145e830b17bbca50782ca9307eee4fab539d9e2ddaf8793c06f1"
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-arm64.tar.gz"
 
 [tools.neovim."platforms.linux-x64"]
-checksum = "sha256:2fc90b962327f73a78afbfb8203fd19db8db9cdf4ee5e2bef84704339add89cc"
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.tar.gz"
 
 [tools.neovim."platforms.linux-x64-musl"]
-checksum = "sha256:2fc90b962327f73a78afbfb8203fd19db8db9cdf4ee5e2bef84704339add89cc"
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.tar.gz"
 
 [tools.neovim."platforms.macos-arm64"]
-checksum = "sha256:d5ee93b67630d5a87f3d336d0f7e8b2fe6973aa653d3cc93b82b820e6538c1dd"
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-macos-arm64.tar.gz"
 
 [tools.neovim."platforms.macos-x64"]
-checksum = "sha256:6e665bb0a711cf974050e0f7183dbb696b1e7425814eb87df7cb094a49054a06"
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-macos-x86_64.tar.gz"
 
 [tools.neovim."platforms.windows-x64"]
-checksum = "sha256:90fc6d7cdf3d3388737caab1e2c554aa24b468f3a5cc38ef63857ddf1103513c"
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-win64.zip"
 
 [[tools.node]]
@@ -334,7 +326,7 @@ provenance = "slsa"
 [tools.pinact."platforms.linux-x64"]
 checksum = "sha256:3829da718de38b1e914b974c3e77045a256999af84789437a7305b09130d8a6a"
 url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v3.9.0/pinact_linux_amd64.tar.gz"
-provenance = "github-attestations"
+provenance = "slsa"
 
 [tools.pinact."platforms.linux-x64-musl"]
 checksum = "sha256:3829da718de38b1e914b974c3e77045a256999af84789437a7305b09130d8a6a"
@@ -452,38 +444,6 @@ url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_darwi
 checksum = "sha256:62241aaf6b0ca236f8625d8892784b73fa67ad40bc677a1ad1a64ae395f6a7d5"
 url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_windows_amd64.exe"
 
-[[tools.task]]
-version = "3.49.1"
-backend = "aqua:go-task/task"
-
-[tools.task."platforms.linux-arm64"]
-checksum = "sha256:aa6732c9c66397c5380ec2b60c070fd599075b2a8538dba03f3a21edc99ab0cb"
-url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_arm64.tar.gz"
-
-[tools.task."platforms.linux-arm64-musl"]
-checksum = "sha256:aa6732c9c66397c5380ec2b60c070fd599075b2a8538dba03f3a21edc99ab0cb"
-url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_arm64.tar.gz"
-
-[tools.task."platforms.linux-x64"]
-checksum = "sha256:4e7d24f1bf38218aec8f244eb7ba671f898830f9f87b3c9b30ff1c09e3135576"
-url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_amd64.tar.gz"
-
-[tools.task."platforms.linux-x64-musl"]
-checksum = "sha256:4e7d24f1bf38218aec8f244eb7ba671f898830f9f87b3c9b30ff1c09e3135576"
-url = "https://github.com/go-task/task/releases/download/v3.49.1/task_linux_amd64.tar.gz"
-
-[tools.task."platforms.macos-arm64"]
-checksum = "sha256:0f556b66df69d53b790c7fd26bfab73543b4a5ce1767df6b2e8499619e2a205b"
-url = "https://github.com/go-task/task/releases/download/v3.49.1/task_darwin_arm64.tar.gz"
-
-[tools.task."platforms.macos-x64"]
-checksum = "sha256:8bc4dd3baed1c71956ade0bb0a9c1b94e3ed7b65e7f2ff3aab13d0562c820e59"
-url = "https://github.com/go-task/task/releases/download/v3.49.1/task_darwin_amd64.tar.gz"
-
-[tools.task."platforms.windows-x64"]
-checksum = "sha256:725c551f699d4d6c0dc57bd8148f72bef8d5b2fb650d9c985f271a61522fd521"
-url = "https://github.com/go-task/task/releases/download/v3.49.1/task_windows_amd64.zip"
-
 [[tools.typos]]
 version = "1.44.0"
 backend = "aqua:crate-ci/typos"
@@ -531,7 +491,6 @@ url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-aarch64-unkn
 [tools.uv."platforms.linux-x64"]
 checksum = "sha256:adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46"
 url = "https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-unknown-linux-musl.tar.gz"
-provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
 checksum = "sha256:adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46"
