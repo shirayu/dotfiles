@@ -158,7 +158,7 @@ url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-w
 
 [[tools.neovim]]
 version = "0.11.6"
-backend = "vfox:neovim"
+backend = "vfox:mise-plugins/vfox-neovim"
 
 [tools.neovim."platforms.linux-arm64"]
 url = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-arm64.tar.gz"
