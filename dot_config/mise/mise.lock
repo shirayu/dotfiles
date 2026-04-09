@@ -107,36 +107,36 @@ url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_windows_am
 provenance = "github-attestations"
 
 [[tools.go]]
-version = "1.26.1"
+version = "1.26.2"
 backend = "core:go"
 
 [tools.go."platforms.linux-arm64"]
-checksum = "sha256:a290581cfe4fe28ddd737dde3095f3dbeb7f2e4065cab4eae44dfc53b760c2f7"
-url = "https://dl.google.com/go/go1.26.1.linux-arm64.tar.gz"
+checksum = "sha256:c958a1fe1b361391db163a485e21f5f228142d6f8b584f6bef89b26f66dc5b23"
+url = "https://dl.google.com/go/go1.26.2.linux-arm64.tar.gz"
 
 [tools.go."platforms.linux-arm64-musl"]
-checksum = "sha256:a290581cfe4fe28ddd737dde3095f3dbeb7f2e4065cab4eae44dfc53b760c2f7"
-url = "https://dl.google.com/go/go1.26.1.linux-arm64.tar.gz"
+checksum = "sha256:c958a1fe1b361391db163a485e21f5f228142d6f8b584f6bef89b26f66dc5b23"
+url = "https://dl.google.com/go/go1.26.2.linux-arm64.tar.gz"
 
 [tools.go."platforms.linux-x64"]
-checksum = "sha256:031f088e5d955bab8657ede27ad4e3bc5b7c1ba281f05f245bcc304f327c987a"
-url = "https://dl.google.com/go/go1.26.1.linux-amd64.tar.gz"
+checksum = "sha256:990e6b4bbba816dc3ee129eaeaf4b42f17c2800b88a2166c265ac1a200262282"
+url = "https://dl.google.com/go/go1.26.2.linux-amd64.tar.gz"
 
 [tools.go."platforms.linux-x64-musl"]
-checksum = "sha256:031f088e5d955bab8657ede27ad4e3bc5b7c1ba281f05f245bcc304f327c987a"
-url = "https://dl.google.com/go/go1.26.1.linux-amd64.tar.gz"
+checksum = "sha256:990e6b4bbba816dc3ee129eaeaf4b42f17c2800b88a2166c265ac1a200262282"
+url = "https://dl.google.com/go/go1.26.2.linux-amd64.tar.gz"
 
 [tools.go."platforms.macos-arm64"]
-checksum = "sha256:353df43a7811ce284c8938b5f3c7df40b7bfb6f56cb165b150bc40b5e2dd541f"
-url = "https://dl.google.com/go/go1.26.1.darwin-arm64.tar.gz"
+checksum = "sha256:32af1522bf3e3ff3975864780a429cc0b41d190ec7bf90faa661d6d64566e7af"
+url = "https://dl.google.com/go/go1.26.2.darwin-arm64.tar.gz"
 
 [tools.go."platforms.macos-x64"]
-checksum = "sha256:65773dab2f8cc4cd23d93ba6d0a805de150ca0b78378879292be0b903b8cdd08"
-url = "https://dl.google.com/go/go1.26.1.darwin-amd64.tar.gz"
+checksum = "sha256:bc3f1500d9968c36d705442d90ba91addf9271665033748b82532682e90a7966"
+url = "https://dl.google.com/go/go1.26.2.darwin-amd64.tar.gz"
 
 [tools.go."platforms.windows-x64"]
-checksum = "sha256:9b68112c913f45b7aebbf13c036721264bbba7e03a642f8f7490c561eebd1ecc"
-url = "https://dl.google.com/go/go1.26.1.windows-amd64.zip"
+checksum = "sha256:98eb3570bade15cb826b0909338df6cc6d2cf590bc39c471142002db3832b708"
+url = "https://dl.google.com/go/go1.26.2.windows-amd64.zip"
 
 [[tools.hadolint]]
 version = "2.14.0"
@@ -171,29 +171,29 @@ checksum = "sha256:8e0ee174f88edb14f207a68430c7a53c2883ed509cdbde9a3a26fffa140fa
 url = "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-windows-x86_64.exe"
 
 [[tools.neovim]]
-version = "0.12.0"
+version = "0.12.1"
 backend = "vfox:mise-plugins/vfox-neovim"
 
 [tools.neovim."platforms.linux-arm64"]
-url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-arm64.tar.gz"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-arm64.tar.gz"
 
 [tools.neovim."platforms.linux-arm64-musl"]
-url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-arm64.tar.gz"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-arm64.tar.gz"
 
 [tools.neovim."platforms.linux-x64"]
-url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-x86_64.tar.gz"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz"
 
 [tools.neovim."platforms.linux-x64-musl"]
-url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-x86_64.tar.gz"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz"
 
 [tools.neovim."platforms.macos-arm64"]
-url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-macos-arm64.tar.gz"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-macos-arm64.tar.gz"
 
 [tools.neovim."platforms.macos-x64"]
-url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-macos-x86_64.tar.gz"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-macos-x86_64.tar.gz"
 
 [tools.neovim."platforms.windows-x64"]
-url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-win64.zip"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-win64.zip"
 
 [[tools.node]]
 version = "24.14.1"
@@ -370,36 +370,36 @@ url = "https://github.com/astral-sh/python-build-standalone/releases/download/20
 provenance = "github-attestations"
 
 [[tools.shfmt]]
-version = "3.13.0"
+version = "3.13.1"
 backend = "aqua:mvdan/sh"
 
 [tools.shfmt."platforms.linux-arm64"]
-checksum = "sha256:2091a31afd47742051a77bf7cfd175533ab07e924c20ef3151cd108fa1cab5b0"
-url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_arm64"
+checksum = "sha256:32d92acaa5cd8abb29fc49dac123dc412442d5713967819d8af2c29f1b3857c7"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_linux_arm64"
 
 [tools.shfmt."platforms.linux-arm64-musl"]
-checksum = "sha256:2091a31afd47742051a77bf7cfd175533ab07e924c20ef3151cd108fa1cab5b0"
-url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_arm64"
+checksum = "sha256:32d92acaa5cd8abb29fc49dac123dc412442d5713967819d8af2c29f1b3857c7"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_linux_arm64"
 
 [tools.shfmt."platforms.linux-x64"]
-checksum = "sha256:70aa99784703a8d6569bbf0b1e43e1a91906a4166bf1a79de42050a6d0de7551"
-url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_amd64"
+checksum = "sha256:fb096c5d1ac6beabbdbaa2874d025badb03ee07929f0c9ff67563ce8c75398b1"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_linux_amd64"
 
 [tools.shfmt."platforms.linux-x64-musl"]
-checksum = "sha256:70aa99784703a8d6569bbf0b1e43e1a91906a4166bf1a79de42050a6d0de7551"
-url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_linux_amd64"
+checksum = "sha256:fb096c5d1ac6beabbdbaa2874d025badb03ee07929f0c9ff67563ce8c75398b1"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_linux_amd64"
 
 [tools.shfmt."platforms.macos-arm64"]
-checksum = "sha256:650970603b5946dc6041836ddcfa7a19d99b5da885e4687f64575508e99cf718"
-url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_darwin_arm64"
+checksum = "sha256:9680526be4a66ea1ffe988ed08af58e1400fe1e4f4aef5bd88b20bb9b3da33f8"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_darwin_arm64"
 
 [tools.shfmt."platforms.macos-x64"]
-checksum = "sha256:b6890a0009abf71d36d7c536ad56e3132c547ceb77cd5d5ee62b3469ab4e9417"
-url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_darwin_amd64"
+checksum = "sha256:6feedafc72915794163114f512348e2437d080d0047ef8b8fa2ec63b575f12af"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_darwin_amd64"
 
 [tools.shfmt."platforms.windows-x64"]
-checksum = "sha256:62241aaf6b0ca236f8625d8892784b73fa67ad40bc677a1ad1a64ae395f6a7d5"
-url = "https://github.com/mvdan/sh/releases/download/v3.13.0/shfmt_v3.13.0_windows_amd64.exe"
+checksum = "sha256:60cd368533d0ad73fa86d93d5bbf95ef40587245ce684ed138c1b31557b5fe97"
+url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_windows_amd64.exe"
 
 [[tools.task]]
 version = "3.49.1"
@@ -498,42 +498,42 @@ checksum = "sha256:9aba23a5d549695cfb5f034849e143205ccf972e5b5d42c24acd32e084d7a
 url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-x86_64-pc-windows-msvc.zip"
 
 [[tools.uv]]
-version = "0.11.3"
+version = "0.11.5"
 backend = "aqua:astral-sh/uv"
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:8ecec82cb9a744d5fabff6d16d7777218a7730f699d2aa0d2f751c17858e2efa"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.3/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d73860013061c62d6a89f3370527d4c407214038af331147773ae2fd8f6394c1"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.5/uv-aarch64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:8ecec82cb9a744d5fabff6d16d7777218a7730f699d2aa0d2f751c17858e2efa"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.3/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d73860013061c62d6a89f3370527d4c407214038af331147773ae2fd8f6394c1"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.5/uv-aarch64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:8b40cf16b849634b81a530a3d0a0bcae5f24996ef9ae782976fd69b6266d3b8e"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.3/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:ee8a52743ce3979e52872b49c5e58ffa541048cb95132142bff23fe5608d73ea"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.5/uv-x86_64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:8b40cf16b849634b81a530a3d0a0bcae5f24996ef9ae782976fd69b6266d3b8e"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.3/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:ee8a52743ce3979e52872b49c5e58ffa541048cb95132142bff23fe5608d73ea"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.5/uv-x86_64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:2bc3d0c7bf2bd08325b1e170abac6f7e5b3346e1d4eab3370d17cefec934996f"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.3/uv-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:470993e87503874c7c48861daa308b48a7c367e117235bbecf19368b9fdd35b2"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.5/uv-aarch64-apple-darwin.tar.gz"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:b0e05e0b43a000fdc2132ee3f3400ba5dee427bc2337d3ec4eb8cf4f3d5722af"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.3/uv-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:b8964bed538143f9016d807e421e28f0237a29589851fc79e8159751ac64779a"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.5/uv-x86_64-apple-darwin.tar.gz"
 provenance = "github-attestations"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:ae681c0aaec7cc96af184648cb88d73f8393ed60fa5880abdd6bdb910f9b227c"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.3/uv-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:3fa5b6ea9de9256a035e0471f5ef0bb5d95344659723d6eb063e27c76431515d"
+url = "https://github.com/astral-sh/uv/releases/download/0.11.5/uv-x86_64-pc-windows-msvc.zip"
 provenance = "github-attestations"
 
 [[tools.zizmor]]
