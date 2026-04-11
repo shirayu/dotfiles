@@ -24,13 +24,13 @@ if exists mise; then
     mise lock -g
 fi
 
-if exists pip; then
-    echo "Updating pip packages..."
-    GLOBAL_PYTHON=$(MISE_CONFIG_FILE=~/.config/mise/config.toml mise which python3)
-    $GLOBAL_PYTHON -m pip list -o --format json \
-        | $GLOBAL_PYTHON -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
-        | xargs --no-run-if-empty -t "${GLOBAL_PYTHON}" -m pip install -U
-fi
+# if exists pip; then
+#     echo "Updating pip packages..."
+#     GLOBAL_PYTHON=$(MISE_CONFIG_FILE=~/.config/mise/config.toml mise which python3)
+#     $GLOBAL_PYTHON -m pip list -o --format json \
+#         | $GLOBAL_PYTHON -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
+#         | xargs --no-run-if-empty -t "${GLOBAL_PYTHON}" -m pip install -U
+# fi
 
 if exists uv; then
     echo "Updating uv tools..."
