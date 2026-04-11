@@ -18,4 +18,5 @@ uv = "latest"
 zizmor = "latest"
 
 [settings]
+install_before = "7d"
 lockfile = true
