@@ -68,42 +68,42 @@ checksum = "sha256:ac8ebb4a9f1cbee8b9ea897ba119808a244181adae6f3bed1f3b6b923c50b
 url = "https://github.com/dandavison/delta/releases/download/0.19.2/delta-0.19.2-x86_64-pc-windows-msvc.zip"
 
 [[tools.gh]]
-version = "2.89.0"
+version = "2.90.0"
 backend = "aqua:cli/cli"
 
 [tools.gh."platforms.linux-arm64"]
-checksum = "sha256:9e64a623dfc242990aa5d9b3f507111149c4282f66b68eaad1dc79eeb13b9ce5"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_arm64.tar.gz"
+checksum = "sha256:1139e1ad912fcddb5ef4b957530184c2c30d9937ff65ff4e641fbf6ca5f28c7c"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-arm64-musl"]
-checksum = "sha256:9e64a623dfc242990aa5d9b3f507111149c4282f66b68eaad1dc79eeb13b9ce5"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_arm64.tar.gz"
+checksum = "sha256:1139e1ad912fcddb5ef4b957530184c2c30d9937ff65ff4e641fbf6ca5f28c7c"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64"]
-checksum = "sha256:d0422caade520530e76c1c558da47daebaa8e1203d6b7ff10ad7d6faba3490d8"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz"
+checksum = "sha256:b2aef7b23ec6899bf27f37a32c57a7935d0a178568ac33dc9bb03842f724195a"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64-musl"]
-checksum = "sha256:d0422caade520530e76c1c558da47daebaa8e1203d6b7ff10ad7d6faba3490d8"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz"
+checksum = "sha256:b2aef7b23ec6899bf27f37a32c57a7935d0a178568ac33dc9bb03842f724195a"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-arm64"]
-checksum = "sha256:2423d02ec0a2094898c378703a1b28a5846c08700f87461363857cb8cb3fda94"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_arm64.zip"
+checksum = "sha256:82a6acdc3f445dc316b70e1bc15b9b7c4b4e26fd30b04de461a7829ad6c6e97f"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_macOS_arm64.zip"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-x64"]
-checksum = "sha256:862e21cac6a71f81e7cd6e5127e3cd344f8537441ad2db94cd208319dd17b6e9"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_amd64.zip"
+checksum = "sha256:e44d23dd5f0f8534d7a9989177f2c60ac8ffbcdfc6a0a6e5d1f23c4a3b83a9e0"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_macOS_amd64.zip"
 provenance = "github-attestations"
 
 [tools.gh."platforms.windows-x64"]
-checksum = "sha256:f3326f6406c98c99701b257d77e2b040eedf83d0176c2c2e9809aa339ceb467e"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_windows_amd64.zip"
+checksum = "sha256:73fcae688eb64ae67828536c9be90db1e5be3f11691a6fa1c1e5418fd24ee10b"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_windows_amd64.zip"
 provenance = "github-attestations"
 
 [[tools.go]]
