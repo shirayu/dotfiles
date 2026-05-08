@@ -295,36 +295,36 @@ url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v3.9.2/pinact
 provenance = "github-attestations"
 
 [[tools.pnpm]]
-version = "11.0.0"
+version = "11.0.3"
 backend = "aqua:pnpm/pnpm"
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:1e6d87ebfd7ff169966ff5b3ad71b780b883c68d3e59987df1096dfd8853df75"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.0/pnpm-linux-arm64.tar.gz"
+checksum = "sha256:1bd8ffddbbd1d7ea179351c8c1dc620990a17550a8597e8961d08c64c9854d55"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.3/pnpm-linux-arm64.tar.gz"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:ebd648694f2b7fd675350f0ce1e26b0e7c7165a7f27f2b01616d5bbe9b7d7534"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.0/pnpm-linux-arm64-musl.tar.gz"
+checksum = "sha256:57a778a4b782234f34cc749f8609576effa7ccecfba43717181eb69eed4000b1"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.3/pnpm-linux-arm64-musl.tar.gz"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:9b44acc77ada40fc41b665fde1d57367a5ebec31bd4b1b00598daed195da3e17"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.0/pnpm-linux-x64.tar.gz"
+checksum = "sha256:5c236f22568453e76f05c2c0a37b483d326ddb3c7759f3b7a7f13a8860109771"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.3/pnpm-linux-x64.tar.gz"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:b145fa7bb90f2082e8d57ec9b220c34b49c7c35dc65ff4b122c3094356848023"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.0/pnpm-linux-x64-musl.tar.gz"
+checksum = "sha256:c90e8a251a60e808e5f65d5365224fa5143275db6c7cb8ac8396ccb30e07ab93"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.3/pnpm-linux-x64-musl.tar.gz"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:3620a0fcaf81ecd3aaeccd5965919d90dbc913f4d07a96e11e7cafc2c785054b"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.0/pnpm-darwin-arm64.tar.gz"
+checksum = "sha256:a24f12a75b371acfbb69cee3ffd54dd7865daa25323d4f12bb22be12edff0ed2"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.3/pnpm-darwin-arm64.tar.gz"
 
 [tools.pnpm."platforms.macos-x64"]
-checksum = "sha256:1701748b75187f1333a9c616827943ff84ff46cc42becc156ff6864b9bd0f948"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.0/pnpm-darwin-x64.tar.gz"
+checksum = "sha256:c05a97abd756b6cd8ca1c1e70bca14eddc1b129b4e5b8cd2131474615e57483a"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.3/pnpm-darwin-x64.tar.gz"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:581e222e622cd0cc4f0ac5f85dd0db76b65117e3b17507979d89e63fdc68edca"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.0/pnpm-win32-x64.zip"
+checksum = "sha256:1acab0c306c08e26be5b702c19466d14f6aa44797a7166191e81138f50291741"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.3/pnpm-win32-x64.zip"
 
 [[tools.python]]
 version = "3.13.12"
@@ -430,36 +430,36 @@ checksum = "sha256:82c20fbd19ac62073b8ecf89e026fbd209f702a2922106e4ff2ed6934d193
 url = "https://github.com/go-task/task/releases/download/v3.50.0/task_windows_amd64.zip"
 
 [[tools.typos]]
-version = "1.45.2"
+version = "1.46.0"
 backend = "aqua:crate-ci/typos"
 
 [tools.typos."platforms.linux-arm64"]
-checksum = "sha256:838aad0c2a22ef4d8b4195fc288e6d7d94ba54871adc6414caa8199780ae1ef5"
-url = "https://github.com/crate-ci/typos/releases/download/v1.45.2/typos-v1.45.2-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:1f8324d5b17c7354c4a83865007efb55c8278ef4cc22bed748df6b92ca439384"
+url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.typos."platforms.linux-arm64-musl"]
-checksum = "sha256:838aad0c2a22ef4d8b4195fc288e6d7d94ba54871adc6414caa8199780ae1ef5"
-url = "https://github.com/crate-ci/typos/releases/download/v1.45.2/typos-v1.45.2-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:1f8324d5b17c7354c4a83865007efb55c8278ef4cc22bed748df6b92ca439384"
+url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.typos."platforms.linux-x64"]
-checksum = "sha256:8463790818b926ef97bd03633ba8943549040d7defd3951e8518903f01d360a8"
-url = "https://github.com/crate-ci/typos/releases/download/v1.45.2/typos-v1.45.2-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:c62a626df385c96574743fd4974aeb271a41a67d080a0398e36e1a42782f614a"
+url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.typos."platforms.linux-x64-musl"]
-checksum = "sha256:8463790818b926ef97bd03633ba8943549040d7defd3951e8518903f01d360a8"
-url = "https://github.com/crate-ci/typos/releases/download/v1.45.2/typos-v1.45.2-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:c62a626df385c96574743fd4974aeb271a41a67d080a0398e36e1a42782f614a"
+url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.typos."platforms.macos-arm64"]
-checksum = "sha256:65f3f46b03383992aa96d07a88e7859ed21fd3e3314691c65079e39461c2b38e"
-url = "https://github.com/crate-ci/typos/releases/download/v1.45.2/typos-v1.45.2-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:322f90609f951bc27e204cf8d0370702510ae99e87285b217916fb2c09d76111"
+url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-aarch64-apple-darwin.tar.gz"
 
 [tools.typos."platforms.macos-x64"]
-checksum = "sha256:3ff87158bdcbc4e0886a0ed291f372cc31cd2ff489d0541cea4c3c251f4f4ad5"
-url = "https://github.com/crate-ci/typos/releases/download/v1.45.2/typos-v1.45.2-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:ca0bba6c8a80b4981951dbc3519987d51ef3a60e0b0a462db005ad99de47b40d"
+url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-x86_64-apple-darwin.tar.gz"
 
 [tools.typos."platforms.windows-x64"]
-checksum = "sha256:c0a53545ffcc5a0d698af4dead167184b0e8c20fd06013fd58dddceadc901689"
-url = "https://github.com/crate-ci/typos/releases/download/v1.45.2/typos-v1.45.2-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:a95e17043bdc0b890936e0213f7a533f4ccdf5430bb7c4a26984de8c77238536"
+url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-x86_64-pc-windows-msvc.zip"
 
 [[tools.usage]]
 version = "3.2.1"
