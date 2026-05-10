@@ -341,7 +341,7 @@ url = "https://github.com/astral-sh/python-build-standalone/releases/download/20
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64"]
-checksum = "blake3:8dd8fae4fb2750ca0a85c86bbb4f92fd3de6e9b57e2131701a84f38f67e68510"
+checksum = "sha256:fe9a9c32d13870af632cbac3dfc7528ae53597e94472aa4c7d6a42e8166136cd"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
@@ -462,36 +462,36 @@ checksum = "sha256:a95e17043bdc0b890936e0213f7a533f4ccdf5430bb7c4a26984de8c77238
 url = "https://github.com/crate-ci/typos/releases/download/v1.46.0/typos-v1.46.0-x86_64-pc-windows-msvc.zip"
 
 [[tools.usage]]
-version = "3.2.1"
+version = "3.3.0"
 backend = "aqua:jdx/usage"
 
 [tools.usage."platforms.linux-arm64"]
-checksum = "sha256:c5a237c272e3b08d05a698aa37e6775ab36152e12e74084363c7a230d9fc7070"
-url = "https://github.com/jdx/usage/releases/download/v3.2.1/usage-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:55a0c94c35bb9e2c5cbc223973667cd450759cd3410d4c5836ef2fdfd95adc57"
+url = "https://github.com/jdx/usage/releases/download/v3.3.0/usage-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.usage."platforms.linux-arm64-musl"]
-checksum = "sha256:c5a237c272e3b08d05a698aa37e6775ab36152e12e74084363c7a230d9fc7070"
-url = "https://github.com/jdx/usage/releases/download/v3.2.1/usage-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:55a0c94c35bb9e2c5cbc223973667cd450759cd3410d4c5836ef2fdfd95adc57"
+url = "https://github.com/jdx/usage/releases/download/v3.3.0/usage-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.usage."platforms.linux-x64"]
-checksum = "sha256:aea16298c6fa7d13e10a04ce7a9e7c743a1d49151a7065aa3f80697c56a89452"
-url = "https://github.com/jdx/usage/releases/download/v3.2.1/usage-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:9a4316d633243aa54308ff3bf6970923b18c105dea34fbc3009d51889e1dd03f"
+url = "https://github.com/jdx/usage/releases/download/v3.3.0/usage-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.usage."platforms.linux-x64-musl"]
-checksum = "sha256:aea16298c6fa7d13e10a04ce7a9e7c743a1d49151a7065aa3f80697c56a89452"
-url = "https://github.com/jdx/usage/releases/download/v3.2.1/usage-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:9a4316d633243aa54308ff3bf6970923b18c105dea34fbc3009d51889e1dd03f"
+url = "https://github.com/jdx/usage/releases/download/v3.3.0/usage-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.usage."platforms.macos-arm64"]
-checksum = "sha256:94c0b8a913618e24c0bc8002a688112210ec3f5e8bbb5431a2687eed9fad2dff"
-url = "https://github.com/jdx/usage/releases/download/v3.2.1/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:ab6c69a6541e18ffca7bd950dd4cc867ea9267d0f91115c13aa650cde6634d62"
+url = "https://github.com/jdx/usage/releases/download/v3.3.0/usage-universal-apple-darwin.tar.gz"
 
 [tools.usage."platforms.macos-x64"]
-checksum = "sha256:94c0b8a913618e24c0bc8002a688112210ec3f5e8bbb5431a2687eed9fad2dff"
-url = "https://github.com/jdx/usage/releases/download/v3.2.1/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:ab6c69a6541e18ffca7bd950dd4cc867ea9267d0f91115c13aa650cde6634d62"
+url = "https://github.com/jdx/usage/releases/download/v3.3.0/usage-universal-apple-darwin.tar.gz"
 
 [tools.usage."platforms.windows-x64"]
-checksum = "sha256:9ac550ddcb67c1bb30e76fbf04126d50704004fc7850e7fa1aaa6994ce4601f5"
-url = "https://github.com/jdx/usage/releases/download/v3.2.1/usage-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:628b8743d552f2cff2dee2b783a4827ef555409def3fb9ec536117d96cda2018"
+url = "https://github.com/jdx/usage/releases/download/v3.3.0/usage-x86_64-pc-windows-msvc.zip"
 
 [[tools.uv]]
 version = "0.11.8"
