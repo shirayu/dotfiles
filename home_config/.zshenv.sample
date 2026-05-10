@@ -34,7 +34,7 @@ function git() {
     fi
 }
 
-alias codex="codex --dangerously-bypass-approvals-and-sandbox"
+alias codex="codex --dangerously-bypass-approvals-and-sandbox -c check_for_update_on_startup=false"
 alias copilot="copilot --allow-all-tools"
 alias claude="claude --dangerously-skip-permissions"
 
