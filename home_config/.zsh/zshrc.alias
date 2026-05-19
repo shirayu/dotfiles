@@ -69,7 +69,7 @@ fi
 alias "renamer.vi=vi +Renamer"
 
 if [[ -n ${WSL_INTEROP:-} ]] && type 'clip.exe' >/dev/null 2>&1; then
-    alias pbcopy='clip.exe'
+    alias pbcopy='iconv -f utf-8 -t utf-16 | clip.exe'
 elif type 'wl-copy' >/dev/null 2>&1; then
     alias pbcopy='wl-copy'
 elif type 'xsel' >/dev/null 2>&1; then
