@@ -23,4 +23,4 @@ DURATION_SEC=$(($(date +%s) - STARTTIME_SEC))
 DURATION=$(date --utc -d @${DURATION_SEC} +%kh%Mm%Ss | sed -e 's/^ \(0h\)?*//' | sed -e 's/^00*m//' | sed -e 's/^0//')
 NAMES=$(ps --pid ${LAST_CHILD_PID} -o comm=,args= | sed 's/ \{2,\}/ /g')
 
-echo "[PID:$LAST_CHILD_PID] started at $STARTTIME (running $DURATION) ${NAMES}"
+echo "[PID: $LAST_CHILD_PID] started at $STARTTIME (running $DURATION) ${NAMES}"
