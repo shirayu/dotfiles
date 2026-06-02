@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+import argparse
+import subprocess
+from datetime import datetime, timedelta
+from pathlib import Path
+
+
+def parse_date(date_str: str) -> datetime:
+    """Parse various string formats into a datetime object."""
+    today = datetime.now()
+    date_str = date_str.lower()
+
+    if date_str in ("today", "tod"):
+        return today
+    elif date_str in ("yesterday", "yes", "y"):
+        return today - timedelta(days=1)
+    elif date_str in ("tomorrow", "tom", "t"):
+        return today + timedelta(days=1)
+
+    # Supported date formats (ordered by priority)
+    formats = [
+        "%Y-%m-%d",  # 2026-06-02
+        "%Y%m%d",  # 20260602
+        "%m-%d",  # 06-02
+        "%m%d",  # 0602
+        "%d",  # 02
+    ]
+
+    for fmt in formats:
+        try:
+            dt = datetime.strptime(date_str, fmt)
+            # Fill in current year/month if they are omitted in the format
+            if "%Y" not in fmt:
+                dt = dt.replace(year=today.year)
+            if "%m" not in fmt:
+                dt = dt.replace(month=today.month)
+            return dt
+        except ValueError:
+            continue
+
+    raise argparse.ArgumentTypeError(
+        f"Invalid date format: '{date_str}'. "
+        f"Use today/y/t, YYYYMMDD, MMDD, or YYYY-MM-DD."
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="A simple CLI tool to manage daily markdown diaries."
+    )
+    parser.add_argument(
+        "date",
+        nargs="?",
+        default="today",
+        help="Target date (e.g., today, y, t, 0601, 2026-06-01). Defaults to today.",
+    )
+    parser.add_argument(
+        "-r",
+        "--root",
+        type=Path,
+        default=Path.home() / "secret" / "diary",
+        help="Target root dir",
+    )
+    parser.add_argument(
+        "--cmd",
+        type=Path,
+        default="nvim",
+    )
+    parser.add_argument(
+        "--arg",
+        default="+",
+    )
+    args = parser.parse_args()
+
+    try:
+        target_date = parse_date(args.date) if isinstance(args.date, str) else args.date
+    except argparse.ArgumentTypeError as e:
+        print(f"Error: {e}")
+        return
+
+    # Extract date components for the path
+    date_str = target_date.strftime("%Y-%m-%d")
+    year = target_date.strftime("%Y")
+    month = target_date.strftime("%m")
+    day = target_date.strftime("%d")
+
+    # Path construction
+    base_dir = args.root / year / month
+    file_path = base_dir / f"{day}.md"
+
+    # Ensure directories exist
+    base_dir.mkdir(parents=True, exist_ok=True)
+
+    # Initialize the file with a markdown header if it doesn't exist
+    if not file_path.exists():
+        file_path.write_text(f"# {date_str}\n\n", encoding="utf-8")
+
+    # Open positioning the cursor at the end of the file
+    subprocess.run([args.cmd, args.arg, str(file_path)])
+
+
+if __name__ == "__main__":
+    main()
