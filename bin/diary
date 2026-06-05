@@ -4,11 +4,12 @@ import re
 import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
+from typing import Optional
 
 
-def parse_date(date_str: str) -> datetime:
+def parse_date(date_str: str, today: Optional[datetime] = None) -> datetime:
     """Parse various string formats into a datetime object."""
-    today = datetime.now()
+    today = today or datetime.now()
     date_str = date_str.lower()
 
     if date_str in ("today", "tod"):
@@ -21,30 +22,54 @@ def parse_date(date_str: str) -> datetime:
         return today + timedelta(days=int(date_str))
 
     # Supported date formats (ordered by priority)
-    formats = [
-        "%Y-%m-%d",  # 2026-06-02
-        "%Y%m%d",  # 20260602
-        "%m-%d",  # 06-02
-        "%m%d",  # 0602
-        "%d",  # 02
-    ]
+    formats = {
+        r"\d{4}-\d{2}-\d{2}": ("%Y-%m-%d", date_str),  # 2026-06-02
+        r"\d{8}": ("%Y%m%d", date_str),  # 20260602
+        r"\d{2}-\d{2}": ("%Y-%m-%d", f"{today.year}-{date_str}"),  # 06-02
+        r"\d{4}": ("%Y%m%d", f"{today.year}{date_str}"),  # 0602
+    }
 
-    for fmt in formats:
+    for pattern, (fmt, value) in formats.items():
+        if re.fullmatch(pattern, date_str):
+            try:
+                return datetime.strptime(value, fmt)
+            except ValueError:
+                break
+
+    if re.fullmatch(r"\d{1,2}", date_str):
         try:
-            dt = datetime.strptime(date_str, fmt)
-            # Fill in current year/month if they are omitted in the format
-            if "%Y" not in fmt:
-                dt = dt.replace(year=today.year)
-            if "%m" not in fmt:
-                dt = dt.replace(month=today.month)
-            return dt
+            return datetime(today.year, today.month, int(date_str))
         except ValueError:
-            continue
+            pass
 
     raise argparse.ArgumentTypeError(
         f"Invalid date format: '{date_str}'. "
         f"Use today/y/t, +1/-1, YYYYMMDD, MMDD, or YYYY-MM-DD."
     )
+
+
+def diary_file_path(root: Path, target_date: datetime) -> Path:
+    """Return the diary file path for the target date."""
+    return (
+        root
+        / target_date.strftime("%Y")
+        / target_date.strftime("%m")
+        / f"{target_date.strftime('%d')}.md"
+    )
+
+
+def ensure_diary_file(root: Path, target_date: datetime) -> Path:
+    """Create the diary file if needed and return its path."""
+    file_path = diary_file_path(root, target_date)
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if not file_path.exists():
+        file_path.write_text(
+            f"# {target_date.strftime('%Y-%m-%d')}\n\n",
+            encoding="utf-8",
+        )
+
+    return file_path
 
 
 def main():
@@ -81,22 +106,7 @@ def main():
         print(f"Error: {e}")
         return
 
-    # Extract date components for the path
-    date_str = target_date.strftime("%Y-%m-%d")
-    year = target_date.strftime("%Y")
-    month = target_date.strftime("%m")
-    day = target_date.strftime("%d")
-
-    # Path construction
-    base_dir = args.root / year / month
-    file_path = base_dir / f"{day}.md"
-
-    # Ensure directories exist
-    base_dir.mkdir(parents=True, exist_ok=True)
-
-    # Initialize the file with a markdown header if it doesn't exist
-    if not file_path.exists():
-        file_path.write_text(f"# {date_str}\n\n", encoding="utf-8")
+    file_path = ensure_diary_file(args.root, target_date)
 
     # Open positioning the cursor at the end of the file
     subprocess.run([args.cmd, args.arg, str(file_path)])

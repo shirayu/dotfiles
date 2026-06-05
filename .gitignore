@@ -3,3 +3,5 @@
 dot_vim
 .tool-versions
 .tmux/original.conf
+
+__pycache__

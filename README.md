@@ -16,6 +16,7 @@ git clone https://github.com/shirayu/config_nvim ~/.config/nvim
 git clone https://github.com/shirayu/dotfiles.git ~/.dotfiles
 curl https://mise.run | sh
 ./setup.py
+./setup.py --test
 sudo chsh $(whoami) -s $(which zsh)
 
 mise up
@@ -26,3 +27,26 @@ mise up
 ### Setting
 
 `./setup_config.json`
+
+## Commands
+
+### diary
+
+Create or open a daily markdown diary.
+
+```bash
+diary              # today
+diary +1           # tomorrow
+diary +3           # 3 days later
+diary -1           # yesterday
+diary 2026-06-05
+diary 0605
+```
+
+Diary files are created under `~/secret/diary/YYYY/MM/DD.md` by default.
+
+## Test
+
+```bash
+./setup.py --test
+```

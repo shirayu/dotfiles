@@ -5,6 +5,7 @@ import json
 import os
 import platform
 import shutil
+import subprocess
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -468,6 +469,19 @@ def check_commands_exist(config: DotfileConfig) -> bool:
     return True
 
 
+def run_tests(base_dir: Path) -> bool:
+    """標準ライブラリの unittest でテストを実行します。"""
+    tests_dir = base_dir / "tests"
+    if not tests_dir.exists():
+        print(f"テストディレクトリが見つかりません: {tests_dir}", file=sys.stderr)
+        return False
+
+    result = subprocess.run(
+        [sys.executable, "-m", "unittest", "discover", "-s", str(tests_dir)]
+    )
+    return result.returncode == 0
+
+
 # ----------------------------------------------------------------------
 # 5. Main Execution
 # ----------------------------------------------------------------------
@@ -498,9 +512,19 @@ def main():
         action="store_true",
         help="ファイルシステムを変更せず、実行する操作をシミュレーションします。",
     )
+    parser.add_argument(
+        "--test",
+        action="store_true",
+        help="セットアップ処理は行わず、テストだけを実行します。",
+    )
 
     args = parser.parse_args()
     ok: bool = True
+
+    if args.test:
+        if not run_tests(args.root):
+            sys.exit(1)
+        return
 
     config = _load_config(Path(args.config))
 
