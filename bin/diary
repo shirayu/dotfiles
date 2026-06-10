@@ -14,10 +14,14 @@ def parse_date(date_str: str, today: Optional[datetime] = None) -> datetime:
 
     if date_str in ("today", "tod"):
         return today
-    elif date_str in ("yesterday", "yes", "y"):
+    elif date_str in ("yesterday", "yes"):
         return today - timedelta(days=1)
-    elif date_str in ("tomorrow", "tom", "t"):
+    elif date_str in ("tomorrow", "tom"):
         return today + timedelta(days=1)
+    elif re.fullmatch(r"y+", date_str):
+        return today - timedelta(days=len(date_str))
+    elif re.fullmatch(r"t+", date_str):
+        return today + timedelta(days=len(date_str))
     elif re.fullmatch(r"[+-]\d+", date_str):
         return today + timedelta(days=int(date_str))
 
@@ -44,7 +48,7 @@ def parse_date(date_str: str, today: Optional[datetime] = None) -> datetime:
 
     raise argparse.ArgumentTypeError(
         f"Invalid date format: '{date_str}'. "
-        f"Use today/y/t, +1/-1, YYYYMMDD, MMDD, or YYYY-MM-DD."
+        f"Use today/y/yy/t/tt, +1/-1, YYYYMMDD, MMDD, or YYYY-MM-DD."
     )
 
 
@@ -80,7 +84,7 @@ def main():
         "date",
         nargs="?",
         default="today",
-        help="Target date (e.g., today, y, t, +1, -1, 0601, 2026-06-01). Defaults to today.",
+        help="Target date (e.g., today, y, yy, t, tt, +1, -1, 0601, 2026-06-01). Defaults to today.",
     )
     parser.add_argument(
         "-r",

@@ -36,7 +36,9 @@ Create or open a daily markdown diary.
 
 ```bash
 diary              # today
+diary yy           # 2 days ago
 diary +1           # tomorrow
+diary tt           # 2 days later
 diary +3           # 3 days later
 diary -1           # yesterday
 diary 2026-06-05
