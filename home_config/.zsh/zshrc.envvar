@@ -71,9 +71,13 @@ case $OSTYPE in
 esac
 
 # WSL2
-# https://qiita.com/Engr_Coal33/items/6aabb6932b53bd43b843
 if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
-    export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+    if [[ -e /mnt/wslg/.X11-unix/X0 ]]; then
+        export DISPLAY=:0
+        export WAYLAND_DISPLAY=wayland-0
+    else
+        export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+    fi
     export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
     alias "nvidia-smi=/usr/lib/wsl/lib/nvidia-smi"
 fi
