@@ -13,6 +13,11 @@ if exists claude; then
     claude update
 fi
 
+if exists agy; then
+    echo "Updating agy..."
+    agy update
+fi
+
 if exists mise; then
     echo "Updating mise..."
     export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
