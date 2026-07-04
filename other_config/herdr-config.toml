@@ -7,20 +7,20 @@ onboarding = false
 [keys]
 prefix = "ctrl+t"
 
-detach = "prefix+ctrl+d"  # tmux used bare Ctrl-d; herdr detach always needs prefix
-reload_config = "prefix+shift+r"
+detach = "prefix+d"  # tmux used bare Ctrl-d; herdr detach always needs prefix
+reload_config = "prefix+shift+e"  # freed up prefix+shift+r for resize_mode below
 
 new_tab = "prefix+c"
-rename_tab = "prefix+t"
+rename_tab = "prefix+shift+t"
 previous_tab = "prefix+p"
 next_tab = "prefix+n"
-close_tab = "prefix+shift+x"  # tmux used K/k with a confirm prompt; confirm is now via ui.confirm_close
+close_tab = "prefix+shift+x"  # tmux's K/k, see ui.confirm_close below
 
 split_vertical = "prefix+v"    # like tmux `|` / `v`: side-by-side panes
 split_horizontal = "prefix+s"  # like tmux `-` / `s`: stacked panes
-close_pane = "prefix+x"        # same key as tmux; confirm also governed by ui.confirm_close
+close_pane = "prefix+x"        # same key as tmux
 zoom = "prefix+z"
-resize_mode = "prefix+r"  # mode you enter and then press arrows in, not tmux's instant Shift+arrow resize
+resize_mode = "prefix+shift+r"  # like tmux's bind r; mode you enter and press arrows in, not instant Shift+arrow
 
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
@@ -28,19 +28,22 @@ focus_pane_left = "prefix+h"
 focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
+last_pane = "prefix+t"  # tmux's Ctrl-t t (last-window); herdr has no tab equivalent, closest is pane-level
 
-# tmux session-like: workspaces group multiple tabs/panes
-new_workspace = "prefix+shift+n"
+# tmux session-like: workspaces group multiple tabs/panes.
+# Mirrors tmux's N/P (switch session) and O (new session).
+next_workspace = "prefix+shift+n"
 previous_workspace = "prefix+shift+p"
-next_workspace = "prefix+shift+o"
+new_workspace = "prefix+shift+o"
 workspace_picker = "prefix+w"
 rename_workspace = "prefix+shift+w"
-close_workspace = "prefix+shift+d"
+close_workspace = "prefix+shift+q"  # moved off shift+d, too close to detach's plain d
 toggle_sidebar = "prefix+b"
 
 [ui]
 pane_borders = true
 pane_gaps = false
+confirm_close = true  # tmux asked "kill-window/-pane?" before destructive closes; keep that habit
 # tmux showed session/window name in the status bar; herdr's sidebar is the
 # equivalent always-on-screen place for that, so keep it visible and roomy
 # enough for names instead of trying to recreate a status-bar string.
