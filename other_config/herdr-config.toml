@@ -1,0 +1,33 @@
+# herdr configuration
+# Keep the feel close to home_config/.tmux.conf + .tmux/screen-keys.conf
+# (GNU screen-like bindings, prefix ctrl+t).
+
+onboarding = false
+
+[keys]
+prefix = "ctrl+t"
+
+detach = "prefix+ctrl+d"
+reload_config = "prefix+r"
+
+new_tab = "prefix+c"
+rename_tab = "prefix+t"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+close_tab = "prefix+shift+x"
+
+split_vertical = "prefix+v"    # like tmux `|` / `v`: side-by-side panes
+split_horizontal = "prefix+s"  # like tmux `-` / `s`: stacked panes
+close_pane = "prefix+x"
+zoom = "prefix+z"
+
+cycle_pane_next = "prefix+tab"
+cycle_pane_previous = "prefix+shift+tab"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+[ui]
+pane_borders = true
+pane_gaps = false

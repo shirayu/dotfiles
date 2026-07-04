@@ -145,3 +145,6 @@ _uv_run_mod() {
     fi
 }
 type "uv" >/dev/null && compdef _uv_run_mod uv
+
+# herdr (experimental, tmux is still the default multiplexer)
+type "herdr" >/dev/null && alias "hd=herdr"

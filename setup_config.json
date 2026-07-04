@@ -33,6 +33,10 @@
         {
             "source": "other_config/claude/settings.json",
             "target": "~/.claude/settings.json"
+        },
+        {
+            "source": "other_config/herdr-config.toml",
+            "target": "~/.config/herdr/config.toml"
         }
     ],
     "deprecated_files": [
