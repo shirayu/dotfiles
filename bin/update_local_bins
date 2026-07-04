@@ -41,6 +41,15 @@ fi
 #         | xargs --no-run-if-empty -t "${GLOBAL_PYTHON}" -m pip install -U
 # fi
 
+if exists gh; then
+    echo "Updating gh extensions..."
+    if gh extension list | grep -q "gfm-preview"; then
+        gh extension upgrade gfm-preview
+    else
+        gh extension install thiagokokada/gh-gfm-preview
+    fi
+fi
+
 if exists uv; then
     echo "Updating uv tools..."
     export UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-600}
