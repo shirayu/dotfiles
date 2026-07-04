@@ -14,13 +14,13 @@ new_tab = "prefix+c"
 rename_tab = "prefix+t"
 previous_tab = "prefix+p"
 next_tab = "prefix+n"
-close_tab = "prefix+shift+x"
+close_tab = "prefix+shift+x"  # tmux used K/k with a confirm prompt; confirm is now via ui.confirm_close
 
 split_vertical = "prefix+v"    # like tmux `|` / `v`: side-by-side panes
 split_horizontal = "prefix+s"  # like tmux `-` / `s`: stacked panes
-close_pane = "prefix+x"
+close_pane = "prefix+x"        # same key as tmux; confirm also governed by ui.confirm_close
 zoom = "prefix+z"
-resize_mode = "prefix+r"
+resize_mode = "prefix+r"  # mode you enter and then press arrows in, not tmux's instant Shift+arrow resize
 
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
@@ -47,3 +47,5 @@ pane_gaps = false
 sidebar_width = 30
 show_agent_labels_on_pane_borders = true
 accent = "blue"  # tmux used blue to highlight the active window
+
+# Not carried over: tmux's choose-window+join-pane (j/J) has no herdr equivalent.
