@@ -51,4 +51,11 @@ sidebar_width = 30
 show_agent_labels_on_pane_borders = true
 accent = "blue"  # tmux used blue to highlight the active window
 
-# Not carried over: tmux's choose-window+join-pane (j/J) has no herdr equivalent.
+# TODO: tmux's status-right showed date/time and user@host; herdr has no
+#       free-form status bar. No off-the-shelf plugin covers this either
+#       (checked awesome-herdr). Revisit if the sidebar/accent setup above
+#       stops feeling like enough.
+# TODO: tmux's status-right also showed mouse-mode on/off; no herdr equivalent found.
+# TODO: tmux showed a 👀 icon on a zoomed pane's status; check whether herdr's
+#       own zoom indicator (border/UI state) is enough or needs a plugin.
+# TODO: tmux's choose-window+join-pane (j/J) has no herdr equivalent yet.
