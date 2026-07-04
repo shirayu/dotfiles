@@ -8,7 +8,7 @@ onboarding = false
 prefix = "ctrl+t"
 
 detach = "prefix+ctrl+d"
-reload_config = "prefix+r"
+reload_config = "prefix+shift+r"
 
 new_tab = "prefix+c"
 rename_tab = "prefix+t"
@@ -20,6 +20,7 @@ split_vertical = "prefix+v"    # like tmux `|` / `v`: side-by-side panes
 split_horizontal = "prefix+s"  # like tmux `-` / `s`: stacked panes
 close_pane = "prefix+x"
 zoom = "prefix+z"
+resize_mode = "prefix+r"
 
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
@@ -28,6 +29,21 @@ focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
 
+# tmux session-like: workspaces group multiple tabs/panes
+new_workspace = "prefix+shift+n"
+previous_workspace = "prefix+shift+p"
+next_workspace = "prefix+shift+o"
+workspace_picker = "prefix+w"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+toggle_sidebar = "prefix+b"
+
 [ui]
 pane_borders = true
 pane_gaps = false
+# tmux showed session/window name in the status bar; herdr's sidebar is the
+# equivalent always-on-screen place for that, so keep it visible and roomy
+# enough for names instead of trying to recreate a status-bar string.
+sidebar_width = 30
+show_agent_labels_on_pane_borders = true
+accent = "blue"  # tmux used blue to highlight the active window
