@@ -2,6 +2,8 @@
 # Keep the feel close to home_config/.tmux.conf + .tmux/screen-keys.conf
 # (GNU screen-like bindings, prefix ctrl+t).
 
+# To kill the server, `hd server stop`
+
 onboarding = false
 
 [keys]
