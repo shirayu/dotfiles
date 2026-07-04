@@ -7,7 +7,7 @@ onboarding = false
 [keys]
 prefix = "ctrl+t"
 
-detach = "prefix+ctrl+d"
+detach = "prefix+ctrl+d"  # tmux used bare Ctrl-d; herdr detach always needs prefix
 reload_config = "prefix+shift+r"
 
 new_tab = "prefix+c"
