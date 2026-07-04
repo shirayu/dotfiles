@@ -49,6 +49,7 @@ source "$ZSH_SETTING_PATH/zshrc.peco"
 tmux ls | grep -E '^[0-9]*:' | cut -f1 -d':' | sort -n | awk '{ printf("tmux rename -t %s _%s\n", $1,NR-1)}END{ for(i=0;i<NR;i++){ printf("tmux rename -t _%s %s\n", i, i) } }' | zsh
 
 source "$ZSH_SETTING_PATH/zshrc.tmux"
+source "$ZSH_SETTING_PATH/zshrc.herdr"
 if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux
 fi

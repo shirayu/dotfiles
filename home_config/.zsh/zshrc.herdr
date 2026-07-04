@@ -1,0 +1,25 @@
+# herdr equivalent of zshrc.tmux: auto-rename the current tab from the cwd
+# or running command, but only while herdr hasn't detected an agent in this
+# pane (agent panes get their label from herdr's own agent detection instead).
+function _herdr_myprecmd() {
+    if [ "$HERDR_ENV" ]; then
+        local agent_status
+        agent_status="$(herdr pane get "$HERDR_PANE_ID" 2>/dev/null | jq -r '.result.pane.agent_status // "unknown"')"
+        if [[ "$agent_status" == "unknown" ]]; then
+            local winname="${PWD##*/}"
+            herdr tab rename "$HERDR_TAB_ID" "${winname:-/}" >/dev/null 2>&1
+        fi
+    fi
+}
+add-zsh-hook precmd _herdr_myprecmd
+
+function _herdr_mypreexec() {
+    if [ "$HERDR_ENV" ]; then
+        local agent_status
+        agent_status="$(herdr pane get "$HERDR_PANE_ID" 2>/dev/null | jq -r '.result.pane.agent_status // "unknown"')"
+        if [[ "$agent_status" == "unknown" ]]; then
+            herdr tab rename "$HERDR_TAB_ID" "$1" >/dev/null 2>&1
+        fi
+    fi
+}
+add-zsh-hook preexec _herdr_mypreexec
