@@ -44,6 +44,7 @@ toggle_sidebar = "prefix+b"
 pane_borders = true
 pane_gaps = false
 confirm_close = true  # tmux asked "kill-window/-pane?" before destructive closes; keep that habit
+prompt_new_tab_name = false  # tmux never asked either; zshrc.herdr auto-renames from cwd/command
 # tmux showed session/window name in the status bar; herdr's sidebar is the
 # equivalent always-on-screen place for that, so keep it visible and roomy
 # enough for names instead of trying to recreate a status-bar string.
