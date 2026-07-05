@@ -1,0 +1,64 @@
+# herdr configuration
+# Keep the feel close to home_config/.tmux.conf + .tmux/screen-keys.conf
+# (GNU screen-like bindings, prefix ctrl+t).
+
+# To kill the server, `hd server stop`
+
+onboarding = false
+
+[keys]
+prefix = "ctrl+t"
+
+detach = "prefix+d"  # tmux used bare Ctrl-d; herdr detach always needs prefix
+reload_config = "prefix+shift+e"  # freed up prefix+shift+r for resize_mode below
+
+new_tab = "prefix+c"
+rename_tab = "prefix+shift+t"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+close_tab = "prefix+shift+x"  # tmux's K/k, see ui.confirm_close below
+
+split_vertical = "prefix+v"    # like tmux `|` / `v`: side-by-side panes
+split_horizontal = "prefix+s"  # like tmux `-` / `s`: stacked panes
+close_pane = "prefix+x"        # same key as tmux
+zoom = "prefix+z"
+resize_mode = "prefix+shift+r"  # like tmux's bind r; mode you enter and press arrows in, not instant Shift+arrow
+
+cycle_pane_next = "prefix+tab"
+cycle_pane_previous = "prefix+shift+tab"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+last_pane = "prefix+t"  # tmux's Ctrl-t t (last-window); herdr has no tab equivalent, closest is pane-level
+
+# tmux session-like: workspaces group multiple tabs/panes.
+# Mirrors tmux's N/P (switch session) and O (new session).
+next_workspace = "prefix+shift+n"
+previous_workspace = "prefix+shift+p"
+new_workspace = "prefix+shift+o"
+workspace_picker = "prefix+w"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+q"  # moved off shift+d, too close to detach's plain d
+toggle_sidebar = "prefix+b"
+
+[ui]
+pane_borders = true
+pane_gaps = false
+confirm_close = true  # tmux asked "kill-window/-pane?" before destructive closes; keep that habit
+prompt_new_tab_name = false  # tmux never asked either; zshrc.herdr auto-renames from cwd/command
+# tmux showed session/window name in the status bar; herdr's sidebar is the
+# equivalent always-on-screen place for that, so keep it visible and roomy
+# enough for names instead of trying to recreate a status-bar string.
+sidebar_width = 30
+show_agent_labels_on_pane_borders = true
+accent = "blue"  # tmux used blue to highlight the active window
+
+# TODO: tmux's status-right showed date/time and user@host; herdr has no
+#       free-form status bar. No off-the-shelf plugin covers this either
+#       (checked awesome-herdr). Revisit if the sidebar/accent setup above
+#       stops feeling like enough.
+# TODO: tmux's status-right also showed mouse-mode on/off; no herdr equivalent found.
+# TODO: tmux showed a 👀 icon on a zoomed pane's status; check whether herdr's
+#       own zoom indicator (border/UI state) is enough or needs a plugin.
+# TODO: tmux's choose-window+join-pane (j/J) has no herdr equivalent yet.

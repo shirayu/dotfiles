@@ -62,10 +62,10 @@ SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b ${DEFAUL
 VSN="%1(v|(%1v)|)"
 
 MYSHORTHOST=$(hostname -s)
-if [ "$TMUX" = "" ]; then
+if [ "$TMUX" = "" ] && [ -z "$HERDR_ENV" ]; then
     RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]$VSN${PYTHON_VERSION_STRING}'$DEFAULT
 else
-    #exclude username when tmux is active
+    #exclude username when tmux or herdr is active
     RPROMPT=$GREEN'[$MYSHORTHOST:%~]$VSN${PYTHON_VERSION_STRING}'$DEFAULT
 fi
 
