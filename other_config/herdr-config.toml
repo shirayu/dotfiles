@@ -1,7 +1,3 @@
-# herdr configuration
-# Keep the feel close to home_config/.tmux.conf + .tmux/screen-keys.conf
-# (GNU screen-like bindings, prefix ctrl+t).
-
 # To kill the server, `hd server stop`
 
 onboarding = false
@@ -10,19 +6,19 @@ onboarding = false
 prefix = "ctrl+t"
 
 detach = "prefix+d"  # tmux used bare Ctrl-d; herdr detach always needs prefix
-reload_config = "prefix+shift+e"  # freed up prefix+shift+r for resize_mode below
+reload_config = "prefix+shift+e"
 
 new_tab = "prefix+c"
 rename_tab = "prefix+shift+t"
 previous_tab = "prefix+p"
 next_tab = "prefix+n"
-close_tab = "prefix+shift+x"  # tmux's K/k, see ui.confirm_close below
+close_tab = "prefix+shift+x"
 
 split_vertical = "prefix+v"    # like tmux `|` / `v`: side-by-side panes
 split_horizontal = "prefix+s"  # like tmux `-` / `s`: stacked panes
-close_pane = "prefix+x"        # same key as tmux
+close_pane = "prefix+x"
 zoom = "prefix+z"
-resize_mode = "prefix+shift+r"  # like tmux's bind r; mode you enter and press arrows in, not instant Shift+arrow
+resize_mode = "prefix+r"
 
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
@@ -62,3 +58,6 @@ accent = "blue"  # tmux used blue to highlight the active window
 # TODO: tmux showed a 👀 icon on a zoomed pane's status; check whether herdr's
 #       own zoom indicator (border/UI state) is enough or needs a plugin.
 # TODO: tmux's choose-window+join-pane (j/J) has no herdr equivalent yet.
+
+[ui.toast]
+delivery = "system"
