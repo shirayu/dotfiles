@@ -44,14 +44,20 @@ source "$ZSH_SETTING_PATH/zshrc.alias"
 source "$ZSH_SETTING_PATH/zshrc.change_title_bar"
 source "$ZSH_SETTING_PATH/zshrc.peco"
 
-#tmux
-# https://endaaman.me/tips/tmux-renumber-session
-tmux ls 2>/dev/null | grep -E '^[0-9]*:' | cut -f1 -d':' | sort -n | awk '{ printf("tmux rename -t %s _%s\n", $1,NR-1)}END{ for(i=0;i<NR;i++){ printf("tmux rename -t _%s %s\n", i, i) } }' | zsh
+if [[ -z "$HERDR_ENV" ]]; then
+    #tmux
+    # https://endaaman.me/tips/tmux-renumber-session
+    tmux ls 2>/dev/null | grep -E '^[0-9]*:' | cut -f1 -d':' | sort -n | awk '{ printf("tmux rename -t %s _%s\n", $1,NR-1)}END{ for(i=0;i<NR;i++){ printf("tmux rename -t _%s %s\n", i, i) } }' | zsh
 
-source "$ZSH_SETTING_PATH/zshrc.tmux"
+    source "$ZSH_SETTING_PATH/zshrc.tmux"
+fi
 source "$ZSH_SETTING_PATH/zshrc.herdr"
-if [[ $SHLVL == 1 ]]; then
-    tmux attach || tmux
+if [[ $SHLVL == 1 && -z "$HERDR_ENV" ]]; then
+    if command -v herdr >/dev/null 2>&1; then
+        herdr
+    elif command -v tmux >/dev/null 2>&1; then
+        tmux attach || tmux
+    fi
 fi
 
 ZSH_SYNTAX_PLUGIN=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
