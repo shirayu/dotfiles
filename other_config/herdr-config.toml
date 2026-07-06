@@ -60,4 +60,4 @@ accent = "blue"  # tmux used blue to highlight the active window
 # TODO: tmux's choose-window+join-pane (j/J) has no herdr equivalent yet.
 
 [ui.toast]
-delivery = "system"
+delivery = "herdr"
