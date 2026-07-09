@@ -19,9 +19,9 @@ else
 fi
 
 if type 'eza' >/dev/null 2>&1; then
-    alias "ls=_ls_with_eza --time-style=long-iso"
-    _ls_with_eza() {
-        local args=()
+    unalias ls 2>/dev/null
+    function ls {
+        local args=("--time-style=long-iso")
         for arg in "$@"; do
             local use_l_opt=false
             local use_t_opt=false
@@ -55,7 +55,7 @@ if type 'eza' >/dev/null 2>&1; then
     _eza_mod() {
         _arguments '*:filename:_files'
     }
-    compdef _eza_mod _ls_with_eza
+    compdef _eza_mod ls
 else
     alias "ls=ls --time-style=long-iso"
 fi
