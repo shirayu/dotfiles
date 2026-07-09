@@ -1,14 +1,13 @@
 {
-  "includeCoAuthoredBy": false,
-  "autoMemoryEnabled": false,
   "cleanupPeriodDays": 3650,
   "env": {
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true"
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [],
     "deny": []
   },
-  "skipDangerousModePermissionPrompt": true,
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": false,
+  "autoMemoryEnabled": false
 }
