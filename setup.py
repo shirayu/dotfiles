@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -26,6 +27,15 @@ class LinkConfig:
 
 
 @dataclass(frozen=True)
+class TomlMergeConfig:
+    """config の 'toml_merges' セクションの項目を保持します。"""
+
+    source: str
+    target: str
+    section: str
+
+
+@dataclass(frozen=True)
 class DotfileConfig:
     """config 全体の設定を保持します。"""
 
@@ -34,6 +44,7 @@ class DotfileConfig:
     deprecated_commands: list["DeprecatedCommand"] = field(default_factory=list)
     exist_files: list[str] = field(default_factory=list)
     exist_commands: list[str] = field(default_factory=list)
+    toml_merges: list[TomlMergeConfig] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -96,12 +107,21 @@ def _load_config(config_path: Path) -> DotfileConfig:
         )
         sys.exit(1)
 
+    try:
+        toml_merges = [
+            TomlMergeConfig(**item) for item in data.get("toml_merges", [])
+        ]
+    except TypeError as e:
+        print(f"エラー: toml_merges 設定のフィールドが不正です: {e}", file=sys.stderr)
+        sys.exit(1)
+
     return DotfileConfig(
         links=link_configs,
         deprecated_files=data.get("deprecated_files", []),
         deprecated_commands=deprecated_commands,
         exist_files=data.get("exist_files", []),
         exist_commands=data.get("exist_commands", []),
+        toml_merges=toml_merges,
     )
 
 
@@ -294,6 +314,164 @@ def _process_link_config(
             target_path = target_template_path
 
         _process_link_item_single(source_path, target_path, dry_run, False)
+
+
+# ----------------------------------------------------------------------
+# 3.5 TOML Section Merge
+# ----------------------------------------------------------------------
+
+# テーブル見出し行 (例: "[tui]", "[projects.\"foo\"]", "[tui.model_availability_nux]")
+_TOML_HEADER_RE = re.compile(r"^\[(?P<name>[^\[\]]+)\]\s*$")
+# キー行の先頭 (例: 'status_line = [', 'status_line_use_colors = true')
+_TOML_KEY_RE = re.compile(r'^(?P<key>[A-Za-z0-9_-]+|"[^"]+")\s*=')
+
+
+def _find_section_body_range(lines: list[str], section: str) -> tuple[int, int] | None:
+    """指定セクション（[section] の完全一致）の本文範囲 [start, end) を返します。
+    本文はキー行のみを含み、次のテーブル見出し（サブテーブル含む）や
+    ファイル末尾で終わります。見つからない場合は None。
+    """
+    header_idx = None
+    for i, line in enumerate(lines):
+        m = _TOML_HEADER_RE.match(line.strip())
+        if m and m.group("name").strip() == section:
+            header_idx = i
+            break
+    if header_idx is None:
+        return None
+
+    end_idx = len(lines)
+    for i in range(header_idx + 1, len(lines)):
+        if _TOML_HEADER_RE.match(lines[i].strip()):
+            end_idx = i
+            break
+    return header_idx + 1, end_idx
+
+
+def _split_toml_keys(body_lines: list[str]) -> tuple[dict[str, list[str]], list[str]]:
+    """セクション本文の行を、キーごとの行リストと末尾の装飾行（空行等）に分割します
+    （複数行値対応）。セクション先頭のコメント等（どのキーにも属さない先頭行）は
+    捨てます。
+    """
+    keys: dict[str, list[str]] = {}
+    current_key = None
+    for line in body_lines:
+        m = _TOML_KEY_RE.match(line.strip())
+        if m:
+            current_key = m.group("key").strip('"')
+            keys[current_key] = [line]
+        elif current_key is not None:
+            keys[current_key].append(line)
+        # else: セクション先頭のコメント等は無視
+
+    trailing: list[str] = []
+    if current_key is not None:
+        value_lines = keys[current_key]
+        while len(value_lines) > 1 and not value_lines[-1].strip():
+            trailing.insert(0, value_lines.pop())
+
+    return keys, trailing
+
+
+def merge_toml_section(target_text: str, new_section_text: str, section: str) -> str:
+    """new_section_text に含まれる `[section]` 直下の各キーだけを、target_text の
+    対応するセクションに上書き（無ければ追加）します。サブテーブルや他のキー・
+    他のセクションは一切変更しません。
+    """
+    new_lines = new_section_text.splitlines(keepends=True)
+    new_range = _find_section_body_range(new_lines, section)
+    if new_range is None:
+        raise ValueError(f"ソースに '[{section}]' セクションが見つかりません。")
+    new_keys, _ = _split_toml_keys(new_lines[new_range[0] : new_range[1]])
+
+    lines = target_text.splitlines(keepends=True)
+    target_range = _find_section_body_range(lines, section)
+
+    if target_range is None:
+        # セクション自体が存在しない場合は末尾に新規セクションとして追記
+        header = f"[{section}]\n"
+        body = "".join("".join(v) for v in new_keys.values())
+        if not target_text:
+            return header + body
+        prefix = target_text if target_text.endswith("\n") else target_text + "\n"
+        if not prefix.endswith("\n\n"):
+            prefix += "\n"
+        return prefix + header + body
+
+    start, end = target_range
+    existing_keys, trailing = _split_toml_keys(lines[start:end])
+
+    merged_keys = dict(existing_keys)
+    merged_keys.update(new_keys)
+
+    body_lines: list[str] = []
+    seen = set()
+    for key in existing_keys:
+        body_lines.extend(merged_keys[key])
+        seen.add(key)
+    for key, value_lines in new_keys.items():
+        if key not in seen:
+            body_lines.extend(value_lines)
+    body_lines.extend(trailing)
+
+    return "".join(lines[:start]) + "".join(body_lines) + "".join(lines[end:])
+
+
+def handle_toml_merges(config: DotfileConfig, base_dir: Path, dry_run: bool) -> bool:
+    """toml_merges で指定された各セクションを対象TOMLファイルへマージします。
+    対象ファイルの他のセクション・キーは変更しません。
+    """
+    if not config.toml_merges:
+        print("\n## 🧩 TOMLセクションのマージ: 対象なし")
+        return True
+
+    print("\n## 🧩 TOMLセクションのマージを開始します...")
+
+    ok = True
+    for merge_conf in config.toml_merges:
+        source_path = base_dir / merge_conf.source
+        target_path = resolve_path(merge_conf.target)
+
+        print(
+            f"\n--- 処理中: source='{merge_conf.source}', "
+            f"target='{merge_conf.target}', section='[{merge_conf.section}]' ---"
+        )
+
+        if not source_path.exists():
+            print(f"  ❌ ソース '{source_path}' が存在しません。スキップします。")
+            ok = False
+            continue
+
+        new_section_text = source_path.read_text(encoding="utf-8")
+
+        if target_path.exists():
+            target_text = target_path.read_text(encoding="utf-8")
+        else:
+            target_text = ""
+
+        try:
+            merged_text = merge_toml_section(
+                target_text, new_section_text, merge_conf.section
+            )
+        except ValueError as e:
+            print(f"  ❌ {e}")
+            ok = False
+            continue
+
+        if merged_text == target_text:
+            print(f"  [OK] 変更なし: '{target_path}'")
+            continue
+
+        if dry_run:
+            print(f"  [DRY-RUN] セクション '[{merge_conf.section}]' を更新予定: '{target_path}'")
+        else:
+            if not target_path.parent.exists():
+                target_path.parent.mkdir(parents=True, exist_ok=True)
+            target_path.write_text(merged_text, encoding="utf-8")
+            print(f"  ✅ セクション '[{merge_conf.section}]' を更新: '{target_path}'")
+
+    print("\n## 🏁 TOMLセクションのマージが完了しました。")
+    return ok
 
 
 # ----------------------------------------------------------------------
@@ -535,6 +713,9 @@ def main():
 
     # 1. シンボリックリンクの処理 (作成/シミュレーション)
     run_symlink_process(config, args.root, dry_run_mode)
+
+    # 1.5 TOMLセクションのマージ
+    ok = handle_toml_merges(config, args.root, dry_run_mode) and ok
 
     # 2. 非推奨ファイルの確認 (削除は手動)
     ok = ok and handle_deprecated_files(config)

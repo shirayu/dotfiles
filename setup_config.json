@@ -39,6 +39,13 @@
             "target": "~/.config/herdr/config.toml"
         }
     ],
+    "toml_merges": [
+        {
+            "source": "other_config/codex/tui.toml",
+            "target": "~/.codex/config.toml",
+            "section": "tui"
+        }
+    ],
     "deprecated_files": [
         "~/.screenrc",
         "~/.markdownlintrc",
