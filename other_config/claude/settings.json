@@ -8,10 +8,11 @@
     "allow": [],
     "deny": []
   },
-  "alwaysThinkingEnabled": false,
-  "autoMemoryEnabled": false,
   "statusLine": {
     "type": "command",
-    "command": "bash \"$HOME/.local/bin/claude-statusline.sh\""
-  }
+    "command": "python3 \"$HOME/.local/bin/claude-statusline.py\""
+  },
+  "alwaysThinkingEnabled": false,
+  "autoMemoryEnabled": false,
+  "skipDangerousModePermissionPrompt": true
 }
