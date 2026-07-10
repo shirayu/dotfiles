@@ -9,5 +9,9 @@
     "deny": []
   },
   "alwaysThinkingEnabled": false,
-  "autoMemoryEnabled": false
+  "autoMemoryEnabled": false,
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.local/bin/claude-statusline.sh\""
+  }
 }
