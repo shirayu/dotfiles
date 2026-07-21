@@ -13,7 +13,7 @@
     "command": "python3 \"$HOME/.local/bin/claude-statusline.py\""
   },
   "alwaysThinkingEnabled": false,
+  "awaySummaryEnabled": false,
   "autoMemoryEnabled": false,
-  "skipDangerousModePermissionPrompt": true,
-  "awaySummaryEnabled": false
+  "skipDangerousModePermissionPrompt": true
 }
