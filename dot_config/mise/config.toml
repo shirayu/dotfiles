@@ -19,5 +19,5 @@ uv = "latest"
 zizmor = "latest"
 
 [settings]
-minimum_release_age = "3d"
+minimum_release_age = "24h"
 lockfile = true
