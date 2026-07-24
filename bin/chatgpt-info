@@ -168,13 +168,13 @@ def section(title):
     print(Ansi.bold(title))
 
 
-def fetch(outdir):
+def fetch(outdir, sleep:float,):
     token = json.loads(AUTH_PATH.read_text())["tokens"]["access_token"]
     outdir.mkdir(parents=True, exist_ok=True)
 
     for i, (filename, url) in enumerate(ENDPOINTS.items()):
         if i > 0:
-            time.sleep(1)
+            time.sleep(sleep)
         req = Request(url, headers={"Authorization": f"Bearer {token}", "Accept": "application/json"})
         data = json.loads(urlopen(req, timeout=30).read())
         (outdir / filename).write_text(json.dumps(data, indent=2) + "\n")
@@ -298,10 +298,14 @@ def main():
         "--cache", action="store_true",
         help="skip re-downloading; render the existing dump in ~/.codex/dump/",
     )
+    parser.add_argument(
+        "--sleep", type=float, default=0.1,
+        help="sleep time",
+    )
     args = parser.parse_args()
 
     if not args.cache:
-        fetch(DUMP_DIR)
+        fetch(DUMP_DIR, args.sleep)
 
     render(DUMP_DIR)
 
