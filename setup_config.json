@@ -23,12 +23,28 @@
             "all": true
         },
         {
+            "source": "bin/qwen",
+            "target": "~/.local/bin/qwen"
+        },
+        {
             "source": "other_config/AGENTS.md",
             "target": "~/.codex/AGENTS.md"
         },
         {
             "source": "other_config/AGENTS.md",
             "target": "~/.gemini/GEMINI.md"
+        },
+        {
+            "source": "other_config/AGENTS.md",
+            "target": "~/.qwen/AGENTS.md"
+        },
+        {
+            "source": "other_config/qwen/config.toml",
+            "target": "~/.qwen/config.toml"
+        },
+        {
+            "source": "other_config/qwen/model-catalog.local.json",
+            "target": "~/.qwen/model-catalog.local.json"
         },
         {
             "source": "other_config/claude/settings.json",

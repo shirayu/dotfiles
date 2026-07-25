@@ -39,5 +39,8 @@ alias copilot="copilot --allow-all-tools"
 alias claude="claude --dangerously-skip-permissions"
 alias agy="agy --dangerously-skip-permissions"
 
+# Qwen Cloud
+#export QWENCLOUD_API_KEY="sk-xxxxxxxx"
+
 # GitHub Personal Access Token (PAT)
 # export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxx
