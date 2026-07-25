@@ -6,6 +6,7 @@ Use --cache to skip re-downloading and just render the last dump in
 """
 
 import argparse
+import io
 import json
 import sys
 import time
@@ -142,18 +143,18 @@ class Table:
     def add_row(self, *cells):
         self.rows.append([str(cell) for cell in cells])
 
-    def print(self):
+    def print(self, file=sys.stdout):
         widths = [len(h) for h in self.headers]
         for row in self.rows:
             for i, cell in enumerate(row):
                 widths[i] = max(widths[i], Ansi.visible_len(cell))
 
         def rule():
-            print("+" + "+".join("-" * (w + 2) for w in widths) + "+")
+            print("+" + "+".join("-" * (w + 2) for w in widths) + "+", file=file)
 
         def print_row(cells):
             padded = [f" {cell}{' ' * (w - Ansi.visible_len(cell))} " for cell, w in zip(cells, widths)]
-            print("|" + "|".join(padded) + "|")
+            print("|" + "|".join(padded) + "|", file=file)
 
         rule()
         print_row([Ansi.bold(h) for h in self.headers])
@@ -163,12 +164,15 @@ class Table:
         rule()
 
 
-def section(title):
-    print()
-    print(Ansi.bold(title))
+def section(title, file=sys.stdout):
+    print(file=file)
+    print(Ansi.bold(title), file=file)
 
 
-def fetch(outdir, sleep:float,):
+def fetch(
+    outdir,
+    sleep: float,
+):
     token = json.loads(AUTH_PATH.read_text())["tokens"]["access_token"]
     outdir.mkdir(parents=True, exist_ok=True)
 
@@ -205,14 +209,14 @@ def load_dump(dump_dir):
     return Dump(usage=usage, reset_credits=reset_credits)
 
 
-def print_account_line(usage):
+def print_account_line(usage, file=sys.stdout):
     limit_reached = (usage.get("rate_limit") or {}).get("limit_reached")
     status = Ansi.bold(Ansi.red("LIMIT REACHED")) if limit_reached else Ansi.green("ok")
-    print(f"{Ansi.bold(usage.get('email', '-'))}  plan={usage.get('plan_type', '-')}  status={status}")
+    print(f"{Ansi.bold(usage.get('email', '-'))}  plan={usage.get('plan_type', '-')}  status={status}", file=file)
 
 
-def print_rate_limits(usage):
-    section("Rate limits")
+def print_rate_limits(usage, file=sys.stdout):
+    section("Rate limits", file=file)
     table = Table(["limit", "window", "used", "period", "resets in", "reset at"])
 
     def add_windows(label, rate_limit):
@@ -235,13 +239,13 @@ def print_rate_limits(usage):
         add_windows(extra.get("limit_name", "-"), extra.get("rate_limit"))
 
     if table.rows:
-        table.print()
+        table.print(file=file)
     else:
-        print("  (none)")
+        print("  (none)", file=file)
 
 
-def print_credits(usage):
-    section("Credits")
+def print_credits(usage, file=sys.stdout):
+    section("Credits", file=file)
     credits = usage.get("credits") or {}
     reset_credits = usage.get("rate_limit_reset_credits") or {}
 
@@ -253,15 +257,15 @@ def print_credits(usage):
         reset_credits.get("available_count", "-"),
         reset_credits.get("applicable_available_count", "-"),
     )
-    table.print()
+    table.print(file=file)
 
     upsell = usage.get("rate_limit_upsell")
     if upsell:
-        print(f"  {Ansi.dim(upsell.get('title', ''))}: {upsell.get('description', '')}")
+        print(f"  {Ansi.dim(upsell.get('title', ''))}: {upsell.get('description', '')}", file=file)
 
 
-def print_vouchers(reset_credits):
-    section(f"Reset-credit vouchers (earned total: {reset_credits.get('total_earned_count', 0)})")
+def print_vouchers(reset_credits, file=sys.stdout):
+    section(f"Reset-credit vouchers (earned total: {reset_credits.get('total_earned_count', 0)})", file=file)
     table = Table(["id", "status", "type", "granted", "expires", "expires in", "redeemed"])
 
     for voucher in reset_credits.get("credits") or []:
@@ -278,21 +282,21 @@ def print_vouchers(reset_credits):
         )
 
     if table.rows:
-        table.print()
+        table.print(file=file)
     else:
-        print("  (none)")
+        print("  (none)", file=file)
 
 
-def render(dump_dir):
+def render(dump_dir, file=sys.stdout):
     dump = load_dump(dump_dir)
-    print_account_line(dump.usage)
-    print_rate_limits(dump.usage)
-    print_vouchers(dump.reset_credits)
-    print_credits(dump.usage)
-    print()
+    print_account_line(dump.usage, file=file)
+    print_rate_limits(dump.usage, file=file)
+    print_vouchers(dump.reset_credits, file=file)
+    print_credits(dump.usage, file=file)
+    print(file=file)
 
 
-def render_zabbix(dump_dir):
+def render_zabbix(dump_dir, file=sys.stdout):
     dump = load_dump(dump_dir)
     usage = dump.usage or {}
     reset_credits = dump.reset_credits or {}
@@ -315,9 +319,7 @@ def render_zabbix(dump_dir):
             }
         return res
 
-    rate_limits_data = {
-        "default": extract_windows(rate_limit_main)
-    }
+    rate_limits_data = {"default": extract_windows(rate_limit_main)}
 
     for extra in usage.get("additional_rate_limits") or []:
         name = extra.get("limit_name")
@@ -339,17 +341,19 @@ def render_zabbix(dump_dir):
         expires_at_dt = parse_ts(v.get("expires_at"))
         remaining = (expires_at_dt - now_utc).total_seconds() if expires_at_dt else None
 
-        vouchers_list.append({
-            "id": v.get("id"),
-            "status": st,
-            "reset_type": v.get("reset_type"),
-            "granted_at": v.get("granted_at"),
-            "expires_at": v.get("expires_at"),
-            "expires_in_seconds": round(remaining) if remaining is not None else None,
-            "redeemed_at": v.get("redeemed_at"),
-        })
+        vouchers_list.append(
+            {
+                "id": v.get("id"),
+                "status": st,
+                "reset_type": v.get("reset_type"),
+                "granted_at": v.get("granted_at"),
+                "expires_at": v.get("expires_at"),
+                "expires_in_seconds": round(remaining) if remaining is not None else None,
+                "redeemed_at": v.get("redeemed_at"),
+            }
+        )
 
-    lasteupdate:int =int(now_utc.timestamp())
+    lasteupdate: int = int(now_utc.timestamp())
     data = {
         "lastupdate": lasteupdate,
         "lastupdate_text": datetime.fromtimestamp(lasteupdate).strftime("%Y-%m-%d %H:%M:%S"),
@@ -370,21 +374,34 @@ def render_zabbix(dump_dir):
             "list": vouchers_list,
         },
     }
-    print(json.dumps(data, indent=2, ensure_ascii=False))
+    print(json.dumps(data, indent=2, ensure_ascii=False), file=file)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--cache", action="store_true",
+        "-o",
+        "--output",
+        type=Path,
+        default=Path("/dev/stdout"),
+        help="output file path (default: /dev/stdout)",
+    )
+    parser.add_argument(
+        "--cache",
+        action="store_true",
         help="skip re-downloading; render the existing dump in ~/.codex/dump/",
     )
     parser.add_argument(
-        "--sleep", type=float, default=0.1,
+        "--sleep",
+        type=float,
+        default=0.1,
         help="sleep time",
     )
     parser.add_argument(
-        "--zabix", "--zabbix", action="store_true", dest="zabbix",
+        "--zabix",
+        "--zabbix",
+        action="store_true",
+        dest="zabbix",
         help="output JSON format for Zabbix monitoring",
     )
     args = parser.parse_args()
@@ -392,12 +409,24 @@ def main():
     if not args.cache:
         fetch(DUMP_DIR, args.sleep)
 
-    if args.zabbix:
-        render_zabbix(DUMP_DIR)
+    if str(args.output) == "/dev/stdout":
+        Ansi.enabled = sys.stdout.isatty()
+        if args.zabbix:
+            render_zabbix(DUMP_DIR, file=sys.stdout)
+        else:
+            render(DUMP_DIR, file=sys.stdout)
     else:
-        render(DUMP_DIR)
+        buf = io.StringIO()
+        Ansi.enabled = False
+        if args.zabbix:
+            render_zabbix(DUMP_DIR, file=buf)
+        else:
+            render(DUMP_DIR, file=buf)
+
+        if args.output.parent:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(buf.getvalue(), encoding="utf-8")
 
 
 if __name__ == "__main__":
     main()
-
