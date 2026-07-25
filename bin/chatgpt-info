@@ -350,6 +350,7 @@ def render_zabbix(dump_dir):
         })
 
     data = {
+        "lastupdate": int(now_utc.timestamp()),
         "email": usage.get("email"),
         "plan_type": usage.get("plan_type"),
         "limit_reached": bool(limit_reached),
