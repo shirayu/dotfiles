@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+CLAUDE_CONFIG_DIR="$HOME/.qwen-claude" \
+    ANTHROPIC_AUTH_TOKEN="${QWENCLOUD_API_KEY}" \
+    claude --dangerously-skip-permissions "$@"

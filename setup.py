@@ -36,6 +36,14 @@ class TomlMergeConfig:
 
 
 @dataclass(frozen=True)
+class JsonMergeConfig:
+    """config の 'json_merges' セクションの項目を保持します。"""
+
+    source: str
+    target: str
+
+
+@dataclass(frozen=True)
 class DotfileConfig:
     """config 全体の設定を保持します。"""
 
@@ -45,6 +53,7 @@ class DotfileConfig:
     exist_files: list[str] = field(default_factory=list)
     exist_commands: list[str] = field(default_factory=list)
     toml_merges: list[TomlMergeConfig] = field(default_factory=list)
+    json_merges: list[JsonMergeConfig] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -115,6 +124,14 @@ def _load_config(config_path: Path) -> DotfileConfig:
         print(f"エラー: toml_merges 設定のフィールドが不正です: {e}", file=sys.stderr)
         sys.exit(1)
 
+    try:
+        json_merges = [
+            JsonMergeConfig(**item) for item in data.get("json_merges", [])
+        ]
+    except TypeError as e:
+        print(f"エラー: json_merges 設定のフィールドが不正です: {e}", file=sys.stderr)
+        sys.exit(1)
+
     return DotfileConfig(
         links=link_configs,
         deprecated_files=data.get("deprecated_files", []),
@@ -122,6 +139,7 @@ def _load_config(config_path: Path) -> DotfileConfig:
         exist_files=data.get("exist_files", []),
         exist_commands=data.get("exist_commands", []),
         toml_merges=toml_merges,
+        json_merges=json_merges,
     )
 
 
@@ -474,6 +492,67 @@ def handle_toml_merges(config: DotfileConfig, base_dir: Path, dry_run: bool) -> 
     return ok
 
 
+def handle_json_merges(config: DotfileConfig, base_dir: Path, dry_run: bool) -> bool:
+    """json_merges で指定された各キーを対象JSONファイルの最上位へマージします。
+    ソースに含まれるキーだけを上書き（無ければ追加）し、他の既存キーは変更しません。
+    """
+    if not config.json_merges:
+        print("\n## 🧩 JSONキーのマージ: 対象なし")
+        return True
+
+    print("\n## 🧩 JSONキーのマージを開始します...")
+
+    ok = True
+    for merge_conf in config.json_merges:
+        source_path = base_dir / merge_conf.source
+        target_path = resolve_path(merge_conf.target)
+
+        print(f"\n--- 処理中: source='{merge_conf.source}', target='{merge_conf.target}' ---")
+
+        if not source_path.exists():
+            print(f"  ❌ ソース '{source_path}' が存在しません。スキップします。")
+            ok = False
+            continue
+
+        try:
+            new_data = json.loads(source_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            print(f"  ❌ ソース '{source_path}' のJSON形式が不正です: {e}")
+            ok = False
+            continue
+
+        if target_path.exists():
+            try:
+                target_data = json.loads(target_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as e:
+                print(f"  ❌ ターゲット '{target_path}' のJSON形式が不正です: {e}")
+                ok = False
+                continue
+        else:
+            target_data = {}
+
+        merged_data = dict(target_data)
+        merged_data.update(new_data)
+
+        if merged_data == target_data:
+            print(f"  [OK] 変更なし: '{target_path}'")
+            continue
+
+        if dry_run:
+            print(f"  [DRY-RUN] キー {list(new_data.keys())} を更新予定: '{target_path}'")
+        else:
+            if not target_path.parent.exists():
+                target_path.parent.mkdir(parents=True, exist_ok=True)
+            target_path.write_text(
+                json.dumps(merged_data, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            print(f"  ✅ キー {list(new_data.keys())} を更新: '{target_path}'")
+
+    print("\n## 🏁 JSONキーのマージが完了しました。")
+    return ok
+
+
 # ----------------------------------------------------------------------
 # 4. Main Operations
 # ----------------------------------------------------------------------
@@ -716,6 +795,9 @@ def main():
 
     # 1.5 TOMLセクションのマージ
     ok = handle_toml_merges(config, args.root, dry_run_mode) and ok
+
+    # 1.6 JSONキーのマージ
+    ok = handle_json_merges(config, args.root, dry_run_mode) and ok
 
     # 2. 非推奨ファイルの確認 (削除は手動)
     ok = ok and handle_deprecated_files(config)

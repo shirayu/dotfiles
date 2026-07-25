@@ -36,19 +36,23 @@
         },
         {
             "source": "other_config/AGENTS.md",
-            "target": "~/.qwen/AGENTS.md"
+            "target": "~/.qwen-codex/AGENTS.md"
         },
         {
-            "source": "other_config/qwen/config.toml",
-            "target": "~/.qwen/config.toml"
+            "source": "other_config/qwen-codex/config.toml",
+            "target": "~/.qwen-codex/config.toml"
         },
         {
-            "source": "other_config/qwen/model-catalog.local.json",
-            "target": "~/.qwen/model-catalog.local.json"
+            "source": "other_config/qwen-codex/model-catalog.local.json",
+            "target": "~/.qwen-codex/model-catalog.local.json"
         },
         {
             "source": "other_config/claude/settings.json",
             "target": "~/.claude/settings.json"
+        },
+        {
+            "source": "other_config/qwen-claude/settings.json",
+            "target": "~/.qwen-claude/settings.json"
         },
         {
             "source": "other_config/herdr-config.toml",
@@ -60,6 +64,12 @@
             "source": "other_config/codex/tui.toml",
             "target": "~/.codex/config.toml",
             "section": "tui"
+        }
+    ],
+    "json_merges": [
+        {
+            "source": "other_config/qwen-claude/.claude.json",
+            "target": "~/.qwen-claude/.claude.json"
         }
     ],
     "deprecated_files": [
