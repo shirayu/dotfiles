@@ -349,8 +349,10 @@ def render_zabbix(dump_dir):
             "redeemed_at": v.get("redeemed_at"),
         })
 
+    lasteupdate:int =int(now_utc.timestamp())
     data = {
-        "lastupdate": int(now_utc.timestamp()),
+        "lastupdate": lasteupdate,
+        "lastupdate_text": datetime.fromtimestamp(lasteupdate).strftime("%Y-%m-%d %H:%M:%S"),
         "email": usage.get("email"),
         "plan_type": usage.get("plan_type"),
         "limit_reached": bool(limit_reached),
