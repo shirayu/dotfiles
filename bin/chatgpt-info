@@ -292,6 +292,84 @@ def render(dump_dir):
     print()
 
 
+def render_zabbix(dump_dir):
+    dump = load_dump(dump_dir)
+    usage = dump.usage or {}
+    reset_credits = dump.reset_credits or {}
+
+    rate_limit_main = usage.get("rate_limit") or {}
+    limit_reached = rate_limit_main.get("limit_reached", False)
+
+    def extract_windows(rl_dict):
+        res = {}
+        for win_name in ("primary_window", "secondary_window"):
+            win = (rl_dict or {}).get(win_name)
+            if win is None:
+                continue
+            key = win_name.removesuffix("_window")
+            res[key] = {
+                "used_percent": win.get("used_percent"),
+                "limit_window_seconds": win.get("limit_window_seconds"),
+                "reset_after_seconds": win.get("reset_after_seconds"),
+                "reset_at": win.get("reset_at"),
+            }
+        return res
+
+    rate_limits_data = {
+        "default": extract_windows(rate_limit_main)
+    }
+
+    for extra in usage.get("additional_rate_limits") or []:
+        name = extra.get("limit_name")
+        if name:
+            rate_limits_data[name] = extract_windows(extra.get("rate_limit"))
+
+    credits_info = usage.get("credits") or {}
+    rl_credits_info = usage.get("rate_limit_reset_credits") or {}
+
+    vouchers_list = []
+    available_vouchers_count = 0
+    now_utc = datetime.now(timezone.utc)
+
+    for v in reset_credits.get("credits") or []:
+        st = v.get("status")
+        if st == "available":
+            available_vouchers_count += 1
+
+        expires_at_dt = parse_ts(v.get("expires_at"))
+        remaining = (expires_at_dt - now_utc).total_seconds() if expires_at_dt else None
+
+        vouchers_list.append({
+            "id": v.get("id"),
+            "status": st,
+            "reset_type": v.get("reset_type"),
+            "granted_at": v.get("granted_at"),
+            "expires_at": v.get("expires_at"),
+            "expires_in_seconds": round(remaining) if remaining is not None else None,
+            "redeemed_at": v.get("redeemed_at"),
+        })
+
+    data = {
+        "email": usage.get("email"),
+        "plan_type": usage.get("plan_type"),
+        "limit_reached": bool(limit_reached),
+        "rate_limits": rate_limits_data,
+        "credits": {
+            "balance": credits_info.get("balance"),
+            "has_credits": credits_info.get("has_credits"),
+            "unlimited": credits_info.get("unlimited"),
+            "available_count": rl_credits_info.get("available_count"),
+            "applicable_available_count": rl_credits_info.get("applicable_available_count"),
+        },
+        "vouchers": {
+            "total_earned_count": reset_credits.get("total_earned_count", 0),
+            "available_count": available_vouchers_count,
+            "list": vouchers_list,
+        },
+    }
+    print(json.dumps(data, indent=2, ensure_ascii=False))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -302,13 +380,21 @@ def main():
         "--sleep", type=float, default=0.1,
         help="sleep time",
     )
+    parser.add_argument(
+        "--zabix", "--zabbix", action="store_true", dest="zabbix",
+        help="output JSON format for Zabbix monitoring",
+    )
     args = parser.parse_args()
 
     if not args.cache:
         fetch(DUMP_DIR, args.sleep)
 
-    render(DUMP_DIR)
+    if args.zabbix:
+        render_zabbix(DUMP_DIR)
+    else:
+        render(DUMP_DIR)
 
 
 if __name__ == "__main__":
     main()
+
