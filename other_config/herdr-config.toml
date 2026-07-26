@@ -8,13 +8,17 @@ prefix = "ctrl+t"
 detach = "prefix+d"  # tmux used bare Ctrl-d; herdr detach always needs prefix
 reload_config = "prefix+shift+e"
 
+previous_agent = "prefix+shift+a"
+next_agent = "prefix+shift+s"
+focus_agent = "prefix+shift+1..9"
+
 new_tab = "prefix+c"
 rename_tab = "prefix+shift+t"
 previous_tab = "prefix+p"
 next_tab = "prefix+n"
 close_tab = "prefix+shift+x"
 
-split_vertical = "prefix+v"    # like tmux `|` / `v`: side-by-side panes
+split_vertical = "prefix+v"  # like tmux `|` / `v`: side-by-side panes
 split_horizontal = "prefix+s"  # like tmux `-` / `s`: stacked panes
 close_pane = "prefix+x"
 zoom = "prefix+z"
@@ -50,14 +54,22 @@ sidebar_width = 30
 show_agent_labels_on_pane_borders = true
 accent = "blue"  # tmux used blue to highlight the active window
 
-# TODO: tmux's status-right showed date/time and user@host; herdr has no
-#       free-form status bar. No off-the-shelf plugin covers this either
-#       (checked awesome-herdr). Revisit if the sidebar/accent setup above
-#       stops feeling like enough.
-# TODO: tmux's status-right also showed mouse-mode on/off; no herdr equivalent found.
-# TODO: tmux showed a 👀 icon on a zoomed pane's status; check whether herdr's
-#       own zoom indicator (border/UI state) is enough or needs a plugin.
-# TODO: tmux's choose-window+join-pane (j/J) has no herdr equivalent yet.
-
 [ui.toast]
 delivery = "herdr"
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", "workspace", "tab"],
+  ["agent", "$model"],
+]
+
+[ui.sidebar.spaces]
+row_gap = 0
+rows = [
+  ["state_icon", "workspace"],
+  ["branch", "git_status"],
+]
+
+[session]
+resume_agents_on_restore = false
