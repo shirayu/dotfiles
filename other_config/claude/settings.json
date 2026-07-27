@@ -16,5 +16,6 @@
   "effortLevel": "medium",
   "awaySummaryEnabled": false,
   "autoMemoryEnabled": false,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "model": "haiku"
 }
