@@ -3,6 +3,7 @@ import contextlib
 import json
 import subprocess
 import sys
+import time
 from pathlib import Path
 from typing import Any, cast
 
@@ -14,6 +15,7 @@ C_GIT = "\033[2;32m"  # dim green
 C_CTX = "\033[2;35m"  # dim magenta
 C_LIMIT = "\033[2;34m"  # dim blue
 C_COST = "\033[2;32m"  # dim green
+C_TIME = "\033[2;36m"  # dim cyan
 
 # Warning colors
 C_WARN = "\033[1;33m"  # bold yellow
@@ -130,39 +132,51 @@ def get_context_part(data: dict[str, Any]) -> str:
         return f"{C_CTX}ctx: {remaining}%{C_RESET}"
 
 
+def _format_remaining_seconds(seconds: float, *, with_days: bool = False) -> str:
+    total_seconds = max(0, int(seconds))
+    h, rem = divmod(total_seconds, 3600)
+    d, h = divmod(h, 24) if with_days else (0, h)
+    m, _ = divmod(rem, 60)
+    if with_days:
+        return f"{d}d +{h:02d}:{m:02d}"
+    return f"{h:02d}:{m:02d}"
+
+
 def get_rate_limit_part(data: dict[str, Any]) -> str:
     rl_dict = _get_dict(data, "rate_limits")
     five_h_dict = _get_dict(rl_dict, "five_hour")
-    five_hour = five_h_dict.get("used_percentage")
+    seven_d_dict = _get_dict(rl_dict, "seven_day")
 
-    weekly_dict = _get_dict(rl_dict, "seven_day")
-    weekly = weekly_dict.get("used_percentage")
+    windows = (
+        ("5h", five_h_dict, C_DANGER),
+        ("7d", seven_d_dict, C_WARN),
+    )
 
-    limit_parts: list[str] = []
-    if five_hour is not None and five_hour != "":
-        try:
-            fh_val = float(str(five_hour))
-            color = (
-                C_DANGER
-                if fh_val >= LIMIT_DANGER_THRESHOLD
-                else (C_WARN if fh_val >= LIMIT_WARN_THRESHOLD else C_LIMIT)
-            )
-            limit_parts.append(f"{color}5h:{fh_val:.0f}%{C_RESET}")
-        except ValueError:
-            pass
+    now = int(time.time())
+    parts: list[str] = []
+    for label, window, color in windows:
+        used_percentage = window.get("used_percentage")
+        resets_at = window.get("resets_at")
+        if used_percentage is None and resets_at is None:
+            continue
 
-    if weekly is not None and weekly != "":
-        try:
-            w_val = float(str(weekly))
-            color = (
-                C_DANGER if w_val >= LIMIT_DANGER_THRESHOLD else (C_WARN if w_val >= LIMIT_WARN_THRESHOLD else C_LIMIT)
-            )
-            limit_parts.append(f"{color}7d:{w_val:.0f}%{C_RESET}")
-        except ValueError:
-            pass
+        with contextlib.suppress(ValueError, TypeError):
+            time_text = "??:??"
+            if resets_at is not None and resets_at != "":
+                remaining = int(resets_at) - now
+                time_text = _format_remaining_seconds(float(remaining), with_days=(label == "7d"))
 
-    return " ".join(limit_parts)
+            if used_percentage is not None and used_percentage != "":
+                used_val = float(str(used_percentage))
+                parts.append(
+                    f"{color}{label}:{used_val:.0f}% ({time_text}){C_RESET}"
+                )
+            else:
+                parts.append(f"{color}{label}:{time_text}{C_RESET}")
 
+    if not parts:
+        return ""
+    return " ".join(parts)
 
 def get_cost_part(data: dict[str, Any]) -> str:
     cost_dict = _get_dict(data, "cost")
