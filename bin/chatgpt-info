@@ -131,6 +131,19 @@ def fmt_pct(p):
     return color(f"{p}%")
 
 
+def fmt_remaining_pct(used_percent):
+    if used_percent is None:
+        return "-"
+    remaining = 100 - float(used_percent)
+    if remaining < 0:
+        remaining = 0.0
+    if remaining > 100:
+        remaining = 100.0
+    remaining_int = int(remaining)
+    color = Ansi.green if remaining > 50 else (lambda s: Ansi.wrap("33", s)) if remaining > 10 else Ansi.red
+    return color(f"{remaining_int}%")
+
+
 def short_id(full_id):
     return full_id.rsplit("_", 1)[-1][:10]
 
@@ -217,7 +230,7 @@ def print_account_line(usage, file=sys.stdout):
 
 def print_rate_limits(usage, file=sys.stdout):
     section("Rate limits", file=file)
-    table = Table(["limit", "window", "used", "period", "resets in", "reset at"])
+    table = Table(["limit", "window", "remaining", "period", "resets in", "reset at"])
 
     def add_windows(label, rate_limit):
         for win_name in ("primary_window", "secondary_window"):
@@ -228,7 +241,7 @@ def print_rate_limits(usage, file=sys.stdout):
             table.add_row(
                 label,
                 win_name.removesuffix("_window"),
-                fmt_pct(win.get("used_percent")),
+                fmt_remaining_pct(win.get("used_percent")),
                 fmt_days(win.get("limit_window_seconds")),
                 color_by_relief(reset_after, fmt_duration(reset_after)) if reset_after is not None else "-",
                 fmt_ts(win.get("reset_at")),
