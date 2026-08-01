@@ -12,6 +12,7 @@
     "type": "command",
     "command": "python3 \"$HOME/.local/bin/claude-statusline.py\""
   },
+  "awaySummaryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "model": "opus"
 }
