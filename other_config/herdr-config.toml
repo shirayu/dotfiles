@@ -73,3 +73,6 @@ rows = [
 
 [session]
 resume_agents_on_restore = false
+
+[update]
+version_check = false
