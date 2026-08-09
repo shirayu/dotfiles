@@ -1,10 +1,12 @@
+autoload -Uz colors && colors
+
 #show branchname
 autoload -Uz vcs_info
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "+"
-zstyle ':vcs_info:git:*' unstagedstr "-"
-zstyle ':vcs_info:*' formats '%b%c%u'
-zstyle ':vcs_info:*' actionformats '%b|%a%c%u'
+zstyle ':vcs_info:git:*' stagedstr "%{$fg[yellow]%}+%{$reset_color%}"
+zstyle ':vcs_info:git:*' unstagedstr "%{$fg[red]%}-%{$reset_color%}"
+zstyle ':vcs_info:*' formats "%{$fg[cyan]%}%b%{$reset_color%}%c%u"
+zstyle ':vcs_info:*' actionformats "%{$fg[cyan]%}%b%{$reset_color%}|%{$fg[magenta]%}%a%{$reset_color%}%c%u"
 
 # preparation for user prompt
 function _prompt_myprecmd() {
@@ -59,21 +61,22 @@ PROMPT=$GREEN'%(!.#.$) '$DEFAULT
 PROMPT='$(show_non_zero_exit_status)%(!.#.$) '${DEFAULT}
 PROMPT2="${GREEN}%B%{${fg[blue]}%}%_#%{${reset_color}%}%b ${DEFAULT}"
 SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b ${DEFAULT}"
-VSN="%1(v|(%1v)|)"
+VSN='${vcs_info_msg_0_:+$vcs_info_msg_0_}'
 
 MYSHORTHOST=$(hostname -s)
 if [ "$TMUX" = "" ] && [ -z "$HERDR_ENV" ]; then
-    RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]$VSN${PYTHON_VERSION_STRING}'$DEFAULT
+    RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]'$VSN'${PYTHON_VERSION_STRING}'$DEFAULT
 else
     #exclude username when tmux or herdr is active
-    RPROMPT=$GREEN'[$MYSHORTHOST:%~]$VSN${PYTHON_VERSION_STRING}'$DEFAULT
+    RPROMPT=$GREEN'[$MYSHORTHOST:%~]'$VSN'${PYTHON_VERSION_STRING}'$DEFAULT
 fi
 
 function _vcs_myprecmd() {
     #for version system
-    psvar=()
+    local GREEN=$'%{\e[1;32m%}'
+    local DEFAULT=$'%{\e[0;m%}'
     LANG=en_US.UTF-8 vcs_info
-    [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"$(_git_not_pushed)
+    [[ -n $vcs_info_msg_0_ ]] && vcs_info_msg_0_="${DEFAULT}(${vcs_info_msg_0_}$(_git_not_pushed)${DEFAULT})${GREEN}"
 }
 
 function _git_not_pushed() {
@@ -84,7 +87,7 @@ function _git_not_pushed() {
                 return 0
             fi
         done
-        echo "*"
+        echo "%{$fg_bold[yellow]%}*%{$reset_color%}"
     fi
     return 0
 }
