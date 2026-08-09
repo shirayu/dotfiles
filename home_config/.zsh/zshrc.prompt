@@ -55,6 +55,7 @@ show_non_zero_exit_status() {
 
 # user prompt
 local GREEN=$'%{\e[1;32m%}'
+local BLUE=$'%{\e[1;34m%}'
 local RED=$'%{\e[1;31m%}'
 local DEFAULT=$'%{\e[0;m%}'
 PROMPT=$GREEN'%(!.#.$) '$DEFAULT
@@ -65,18 +66,17 @@ VSN='${vcs_info_msg_0_:+$vcs_info_msg_0_}'
 
 MYSHORTHOST=$(hostname -s)
 if [ "$TMUX" = "" ] && [ -z "$HERDR_ENV" ]; then
-    RPROMPT=$GREEN'[$USER@$MYSHORTHOST:%~]'$VSN'${PYTHON_VERSION_STRING}'$DEFAULT
+    RPROMPT=$DEFAULT'['$BLUE'$USER@$MYSHORTHOST'$DEFAULT':'$GREEN'%~'$DEFAULT']'$VSN'${PYTHON_VERSION_STRING}'$DEFAULT
 else
     #exclude username when tmux or herdr is active
-    RPROMPT=$GREEN'[$MYSHORTHOST:%~]'$VSN'${PYTHON_VERSION_STRING}'$DEFAULT
+    RPROMPT=$DEFAULT'['$BLUE'$MYSHORTHOST'$DEFAULT':'$GREEN'%~'$DEFAULT']'$VSN'${PYTHON_VERSION_STRING}'$DEFAULT
 fi
 
 function _vcs_myprecmd() {
     #for version system
-    local GREEN=$'%{\e[1;32m%}'
     local DEFAULT=$'%{\e[0;m%}'
     LANG=en_US.UTF-8 vcs_info
-    [[ -n $vcs_info_msg_0_ ]] && vcs_info_msg_0_="${DEFAULT}(${vcs_info_msg_0_}$(_git_not_pushed)${DEFAULT})${GREEN}"
+    [[ -n $vcs_info_msg_0_ ]] && vcs_info_msg_0_="${DEFAULT}(${vcs_info_msg_0_}$(_git_not_pushed)${DEFAULT})"
 }
 
 function _git_not_pushed() {
