@@ -2,75 +2,132 @@
 
 # MISE_USE_VERSIONS_HOST=false
 
-set -x
-
 exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-if exists claude; then
-    echo "Updating claude..."
-    claude update
-fi
-
-if exists agy; then
-    echo "Updating agy..."
-    agy update
-fi
-
-if exists mise; then
-    echo "Updating mise..."
-    export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
-    if [[ -z "${GITHUB_TOKEN:-}" && -f "${HOME}/.config/mise/github_token" ]]; then
-        export GITHUB_TOKEN
-        GITHUB_TOKEN="$(<"${HOME}/.config/mise/github_token")"
+update_claude() {
+    if exists claude; then
+        echo "Updating claude..."
+        claude update
     fi
-    mise cache clear
-    mise self-update -y
-    rm "${HOME}/.config/mise/mise.lock"
-    mise upgrade
-    mise reshim
-    mise lock -g
-fi
+}
 
-# if exists pip; then
-#     echo "Updating pip packages..."
-#     GLOBAL_PYTHON=$(MISE_CONFIG_FILE=~/.config/mise/config.toml mise which python3)
-#     $GLOBAL_PYTHON -m pip list -o --format json \
-#         | $GLOBAL_PYTHON -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
-#         | xargs --no-run-if-empty -t "${GLOBAL_PYTHON}" -m pip install -U
-# fi
-
-if exists gh; then
-    echo "Updating gh extensions..."
-    if gh extension list | grep -q "gfm-preview"; then
-        gh extension upgrade gfm-preview
-    else
-        gh extension install thiagokokada/gh-gfm-preview
+update_agy() {
+    if exists agy; then
+        echo "Updating agy..."
+        agy update
     fi
-fi
+}
 
-if exists uv; then
-    echo "Updating uv tools..."
-    export UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-600}
-    uv tool upgrade --all
-fi
+update_mise() {
+    if exists mise; then
+        echo "Updating mise..."
+        export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
+        if [[ -z "${GITHUB_TOKEN:-}" && -f "${HOME}/.config/mise/github_token" ]]; then
+            export GITHUB_TOKEN
+            GITHUB_TOKEN="$(<"${HOME}/.config/mise/github_token")"
+        fi
+        mise cache clear
+        mise self-update -y
+        rm "${HOME}/.config/mise/mise.lock"
+        mise upgrade
+        mise reshim
+        mise lock -g
+    fi
+}
 
-if exists npm; then
-    echo "Updating npm global packages..."
-    npm -g upgrade
-    npm -g uninstall corepack || true
-fi
+# update_pip() {
+#     if exists pip; then
+#         echo "Updating pip packages..."
+#         GLOBAL_PYTHON=$(MISE_CONFIG_FILE=~/.config/mise/config.toml mise which python3)
+#         $GLOBAL_PYTHON -m pip list -o --format json \
+#             | $GLOBAL_PYTHON -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
+#             | xargs --no-run-if-empty -t "${GLOBAL_PYTHON}" -m pip install -U
+#     fi
+# }
 
-if exists pnpm; then
-    echo "Updating pnpm global packages..."
-    pnpm -g up --latest
-fi
+update_gh() {
+    if exists gh; then
+        echo "Updating gh extensions..."
+        if gh extension list | grep -q "gfm-preview"; then
+            gh extension upgrade gfm-preview
+        else
+            gh extension install thiagokokada/gh-gfm-preview
+        fi
+    fi
+}
 
-if exists flatpak; then
-    echo "Updating flatpak..."
-    flatpak update -y
-    flatpak uninstall --unused -y
+update_uv() {
+    if exists uv; then
+        echo "Updating uv tools..."
+        export UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-600}
+        uv tool upgrade --all
+    fi
+}
+
+update_npm() {
+    if exists npm; then
+        echo "Updating npm global packages..."
+        npm -g upgrade
+        npm -g uninstall corepack || true
+    fi
+}
+
+update_pnpm() {
+    if exists pnpm; then
+        echo "Updating pnpm global packages..."
+        pnpm -g up --latest
+    fi
+}
+
+update_flatpak() {
+    if exists flatpak; then
+        echo "Updating flatpak..."
+        flatpak update -y
+        flatpak uninstall --unused -y
+    fi
+}
+
+# 実行順を保った対応表
+TARGETS=(claude agy mise gh uv npm pnpm flatpak)
+
+usage() {
+    echo "Usage: $(basename "$0") [TARGET...]"
+    echo "Targets: ${TARGETS[*]}"
+    echo "  (no args = update everything)"
+}
+
+run_target() {
+    case "$1" in
+        claude) update_claude ;;
+        agy) update_agy ;;
+        mise) update_mise ;;
+        gh) update_gh ;;
+        uv) update_uv ;;
+        npm) update_npm ;;
+        pnpm) update_pnpm ;;
+        flatpak) update_flatpak ;;
+        -h | --help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Unknown target: $1" >&2
+            usage >&2
+            exit 1
+            ;;
+    esac
+}
+
+if [[ $# -eq 0 ]]; then
+    for t in "${TARGETS[@]}"; do
+        run_target "$t"
+    done
+else
+    for t in "$@"; do
+        run_target "$t"
+    done
 fi
 
 echo "All updates completed!"
