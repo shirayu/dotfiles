@@ -67,4 +67,10 @@ if exists pnpm; then
     pnpm -g up --latest
 fi
 
+if exists flatpak; then
+    echo "Updating flatpak..."
+    flatpak update -y
+    flatpak uninstall --unused -y
+fi
+
 echo "All updates completed!"
