@@ -127,7 +127,13 @@ def fmt_time_until(value):
 def fmt_pct(p):
     if p is None:
         return "-"
-    color = Ansi.red if p >= 90 else (lambda s: Ansi.wrap("33", s)) if p >= 50 else Ansi.green
+    color = (
+        Ansi.red
+        if p >= 90
+        else (lambda s: Ansi.wrap("33", s))
+        if p >= 50
+        else Ansi.green
+    )
     return color(f"{p}%")
 
 
@@ -140,7 +146,13 @@ def fmt_remaining_pct(used_percent):
     if remaining > 100:
         remaining = 100.0
     remaining_int = int(remaining)
-    color = Ansi.green if remaining > 50 else (lambda s: Ansi.wrap("33", s)) if remaining > 10 else Ansi.red
+    color = (
+        Ansi.green
+        if remaining > 50
+        else (lambda s: Ansi.wrap("33", s))
+        if remaining > 10
+        else Ansi.red
+    )
     return color(f"{remaining_int}%")
 
 
@@ -166,7 +178,10 @@ class Table:
             print("+" + "+".join("-" * (w + 2) for w in widths) + "+", file=file)
 
         def print_row(cells):
-            padded = [f" {cell}{' ' * (w - Ansi.visible_len(cell))} " for cell, w in zip(cells, widths)]
+            padded = [
+                f" {cell}{' ' * (w - Ansi.visible_len(cell))} "
+                for cell, w in zip(cells, widths)
+            ]
             print("|" + "|".join(padded) + "|", file=file)
 
         rule()
@@ -192,7 +207,10 @@ def fetch(
     for i, (filename, url) in enumerate(ENDPOINTS.items()):
         if i > 0:
             time.sleep(sleep)
-        req = Request(url, headers={"Authorization": f"Bearer {token}", "Accept": "application/json"})
+        req = Request(
+            url,
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+        )
         data = json.loads(urlopen(req, timeout=30).read())
         (outdir / filename).write_text(json.dumps(data, indent=2) + "\n")
 
@@ -225,7 +243,10 @@ def load_dump(dump_dir):
 def print_account_line(usage, file=sys.stdout):
     limit_reached = (usage.get("rate_limit") or {}).get("limit_reached")
     status = Ansi.bold(Ansi.red("LIMIT REACHED")) if limit_reached else Ansi.green("ok")
-    print(f"{Ansi.bold(usage.get('email', '-'))}  plan={usage.get('plan_type', '-')}  status={status}", file=file)
+    print(
+        f"{Ansi.bold(usage.get('email', '-'))}  plan={usage.get('plan_type', '-')}  status={status}",
+        file=file,
+    )
 
 
 def print_rate_limits(usage, file=sys.stdout):
@@ -243,7 +264,9 @@ def print_rate_limits(usage, file=sys.stdout):
                 win_name.removesuffix("_window"),
                 fmt_remaining_pct(win.get("used_percent")),
                 fmt_days(win.get("limit_window_seconds")),
-                color_by_relief(reset_after, fmt_duration(reset_after)) if reset_after is not None else "-",
+                color_by_relief(reset_after, fmt_duration(reset_after))
+                if reset_after is not None
+                else "-",
                 fmt_ts(win.get("reset_at")),
             )
 
@@ -262,7 +285,15 @@ def print_credits(usage, file=sys.stdout):
     credits = usage.get("credits") or {}
     reset_credits = usage.get("rate_limit_reset_credits") or {}
 
-    table = Table(["balance", "has_credits", "unlimited", "reset_credits avail", "reset_credits applicable"])
+    table = Table(
+        [
+            "balance",
+            "has_credits",
+            "unlimited",
+            "reset_credits avail",
+            "reset_credits applicable",
+        ]
+    )
     table.add_row(
         credits.get("balance", "-"),
         credits.get("has_credits", "-"),
@@ -274,12 +305,20 @@ def print_credits(usage, file=sys.stdout):
 
     upsell = usage.get("rate_limit_upsell")
     if upsell:
-        print(f"  {Ansi.dim(upsell.get('title', ''))}: {upsell.get('description', '')}", file=file)
+        print(
+            f"  {Ansi.dim(upsell.get('title', ''))}: {upsell.get('description', '')}",
+            file=file,
+        )
 
 
 def print_vouchers(reset_credits, file=sys.stdout):
-    section(f"Reset-credit vouchers (earned total: {reset_credits.get('total_earned_count', 0)})", file=file)
-    table = Table(["id", "status", "type", "granted", "expires", "expires in", "redeemed"])
+    section(
+        f"Reset-credit vouchers (earned total: {reset_credits.get('total_earned_count', 0)})",
+        file=file,
+    )
+    table = Table(
+        ["id", "status", "type", "granted", "expires", "expires in", "redeemed"]
+    )
 
     for voucher in reset_credits.get("credits") or []:
         status = voucher.get("status", "")
@@ -317,6 +356,17 @@ def render_zabbix(dump_dir, file=sys.stdout):
     rate_limit_main = usage.get("rate_limit") or {}
     limit_reached = rate_limit_main.get("limit_reached", False)
 
+    def window_period_alias(limit_window_seconds):
+        """Map a window length in seconds to a human-readable period alias."""
+        if limit_window_seconds is None:
+            return None
+        return {
+            3600: "hourly",
+            18000: "five_hour",
+            86400: "daily",
+            604800: "week",
+        }.get(int(limit_window_seconds))
+
     def extract_windows(rl_dict):
         res = {}
         for win_name in ("primary_window", "secondary_window"):
@@ -324,12 +374,16 @@ def render_zabbix(dump_dir, file=sys.stdout):
             if win is None:
                 continue
             key = win_name.removesuffix("_window")
-            res[key] = {
+            entry = {
                 "used_percent": win.get("used_percent"),
                 "limit_window_seconds": win.get("limit_window_seconds"),
                 "reset_after_seconds": win.get("reset_after_seconds"),
                 "reset_at": win.get("reset_at"),
             }
+            res[key] = entry
+            alias = window_period_alias(win.get("limit_window_seconds"))
+            if alias:
+                res[alias] = entry
         return res
 
     rate_limits_data = {"default": extract_windows(rate_limit_main)}
@@ -361,7 +415,9 @@ def render_zabbix(dump_dir, file=sys.stdout):
                 "reset_type": v.get("reset_type"),
                 "granted_at": v.get("granted_at"),
                 "expires_at": v.get("expires_at"),
-                "expires_in_seconds": round(remaining) if remaining is not None else None,
+                "expires_in_seconds": round(remaining)
+                if remaining is not None
+                else None,
                 "redeemed_at": v.get("redeemed_at"),
             }
         )
@@ -369,7 +425,9 @@ def render_zabbix(dump_dir, file=sys.stdout):
     lasteupdate: int = int(now_utc.timestamp())
     data = {
         "lastupdate": lasteupdate,
-        "lastupdate_text": datetime.fromtimestamp(lasteupdate).strftime("%Y-%m-%d %H:%M:%S"),
+        "lastupdate_text": datetime.fromtimestamp(lasteupdate).strftime(
+            "%Y-%m-%d %H:%M:%S"
+        ),
         "email": usage.get("email"),
         "plan_type": usage.get("plan_type"),
         "limit_reached": bool(limit_reached),
@@ -379,7 +437,9 @@ def render_zabbix(dump_dir, file=sys.stdout):
             "has_credits": credits_info.get("has_credits"),
             "unlimited": credits_info.get("unlimited"),
             "available_count": rl_credits_info.get("available_count"),
-            "applicable_available_count": rl_credits_info.get("applicable_available_count"),
+            "applicable_available_count": rl_credits_info.get(
+                "applicable_available_count"
+            ),
         },
         "vouchers": {
             "total_earned_count": reset_credits.get("total_earned_count", 0),
