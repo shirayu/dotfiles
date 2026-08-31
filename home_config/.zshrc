@@ -52,7 +52,7 @@ if [[ -z "$HERDR_ENV" ]]; then
     source "$ZSH_SETTING_PATH/zshrc.tmux"
 fi
 source "$ZSH_SETTING_PATH/zshrc.herdr"
-if [[ $SHLVL == 1 && -z "$HERDR_ENV" ]]; then
+if [[ -z "$TMUX" && -z "$HERDR_ENV" ]]; then
     if command -v herdr >/dev/null 2>&1; then
         herdr
     elif command -v tmux >/dev/null 2>&1; then
