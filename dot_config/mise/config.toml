@@ -1,6 +1,7 @@
 [tools]
 actionlint = "latest"
 delta = "latest"
+duckdb = "latest"
 gh = "latest"
 go = "latest"
 hadolint = "latest"
