@@ -78,7 +78,7 @@ def get_git_info(cwd: str) -> str:
         dirty = "*" if status_res.stdout.strip() else ""
 
         return f"{branch}{dirty}"
-    except FileNotFoundError, subprocess.TimeoutExpired:
+    except (FileNotFoundError, subprocess.TimeoutExpired):
         return ""
 
 
