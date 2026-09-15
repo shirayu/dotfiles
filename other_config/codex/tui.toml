@@ -9,3 +9,4 @@ status_line = [
   "fast-mode",
 ]
 status_line_use_colors = true
+auto_recap = false
