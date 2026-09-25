@@ -433,50 +433,50 @@ url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/5
 provenance = "github-attestations"
 
 [[tools.pnpm]]
-version = "12.5.1"
+version = "12.6.0"
 backend = "aqua:pnpm/pnpm"
 specifiers = ["latest"]
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:84e1290e82c800acd406b6db27e9650e15db3c2344d12162cc305ea1f942c6ff"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.5.1/pnpm-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/573486212"
+checksum = "sha256:973af2b3eb9509416cf889a7336705062c936407d5fda07298814e7532f5dea1"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.6.0/pnpm-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/581813240"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:41d24fdc91360b431d667c54720f62b2d32e14ba71b09b2d0a63a8c859dcc4e3"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.5.1/pnpm-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/573486225"
+checksum = "sha256:61e5a2b9aa8c1ebb73ea22203021531f88b8aff9499b68be03f695d9377928c1"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.6.0/pnpm-linux-arm64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/581813242"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:5a397dfb6b3d4b07d3d7769586aeb471048faf04299a492e2808b95a9a1c701f"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.5.1/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/573486211"
+checksum = "sha256:3f4c66f668d0e84219679982d095b30da68325e1fac9284e7f5dc1584bd3d13e"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.6.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/581813243"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:9b1910e07dac85bb7a2f5e0d1eb15da49b9e6220e0862b339877f8729bfb467a"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.5.1/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/573486222"
+checksum = "sha256:bf23d242a6c7a4d42b21bf1d93bff9d6a473cf8b6a7a990c6ed3094228513048"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.6.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/581813234"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:776b26182ea825d5846dc236d29773cf4b7568b7f0abe145c328a342284c8b75"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.5.1/pnpm-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/573486213"
+checksum = "sha256:1030f38e14fa2e6c87fe6ab0313a3bf3b794a961504f4439bad2ca2110d3583e"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.6.0/pnpm-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/581813250"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-x64"]
-checksum = "sha256:1d2d7caa6018b811fecb6af04cc1d13fad138cc8c555e95ee7af8629473352cb"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.5.1/pnpm-darwin-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/573486224"
+checksum = "sha256:baee033929fd76bdf0193ea35aad6efa7ac2931b96f2780328d244c70174306a"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.6.0/pnpm-darwin-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/581813241"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:fd20b55fe51414951efd4870a24dc4609694e391d07620e0df69aac151278989"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.5.1/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/573486214"
+checksum = "sha256:8152a1c9d14d38fb1cd98a211bcc48e4ae0c921ad918c52ffce19c222268f8b8"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.6.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/581813237"
 provenance = "github-attestations"
 
 [[tools.python]]
@@ -485,38 +485,38 @@ backend = "core:python"
 specifiers = ["3.14.7"]
 
 [tools.python."platforms.linux-arm64"]
-checksum = "sha256:8a0798baa8a2c27b5751d590aced543eaa85e20b3f73d93c1af049688acdc9c5"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:d922413468a276e69a132b79fb7493faa46ef2e85b1a29844d3af1f7710ab5bd"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.14.7+20260924-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-arm64-musl"]
-checksum = "sha256:701c31d72187242302922a29f3bc6023ceb68b6b68fb8d4ed7568d1e6ef34548"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-aarch64-unknown-linux-musl-install_only_stripped.tar.gz"
+checksum = "sha256:db650a9719bacd8a7c43c7c0f3024eda6feb2042f596f0b3143c4d23b90df9e4"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.14.7+20260924-aarch64-unknown-linux-musl-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64"]
-checksum = "sha256:3959f92825141e04adf44982d3a83ee57af0877e893b0796e04c1468749d9b04"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:bd0d0568ccded07bbf1c87727230dc5dd0187e706a87da23c4de78388a229b78"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.14.7+20260924-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-musl"]
-checksum = "sha256:c773f8a7357c0d1a29e208a14bc16386731ca9c0d2e51f1b6741967fb0632cdc"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
+checksum = "sha256:8ea6ca8a46e2e0b824a29ddaf208388dea7ede6808d8ceccd02b547882c92b3a"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.14.7+20260924-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.macos-arm64"]
-checksum = "sha256:4632cb1a6edad9e73d3c81b6d2e69131637d995173e3e85005df14102b0592ba"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-aarch64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:f0fb6b233971672dd7add4efa90f8c209a63253e457ffabd0148b9f734638319"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.14.7+20260924-aarch64-apple-darwin-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.macos-x64"]
-checksum = "sha256:7e151a7c9028855b61a7d6e78381f2020a1ef185281399f3b1aafc5e1c9a1a64"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:82745f483d2bcf39ade058ec0dbd44659d583454ea9c4562b66dae7d718ae100"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.14.7+20260924-x86_64-apple-darwin-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.windows-x64"]
-checksum = "sha256:ca3c33ca924dfcab3b74205a7a58a88b0255135c53f95497b26b5e60700fd66d"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+checksum = "sha256:1493fc4185edf84bbd4305c15c5fbac2d4fcd4ddd7eb6273903669a5d3106178"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260924/cpython-3.14.7+20260924-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [[tools.shfmt]]
@@ -673,43 +673,43 @@ url = "https://github.com/crate-ci/typos/releases/download/v1.50.2/typos-v1.50.2
 url_api = "https://api.github.com/repos/crate-ci/typos/releases/assets/565798642"
 
 [[tools.usage]]
-version = "6.11.0"
+version = "6.11.1"
 backend = "packslip:github.com/jdx/usage"
 specifiers = ["latest"]
 
 [tools.usage."platforms.linux-arm64"]
-checksum = "sha256:84fae7251a458d804d1b574ce2b46f483fa5859b773c4a8c5012d9d86c68e7c4"
-url = "https://github.com/jdx/usage/releases/download/v6.11.0/usage-aarch64-unknown-linux-gnu.tar.gz"
+checksum = "sha256:90622145566409da24d282190ad17cc786c85d498d751543824ab62931705018"
+url = "https://github.com/jdx/usage/releases/download/v6.11.1/usage-aarch64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [tools.usage."platforms.linux-arm64-musl"]
-checksum = "sha256:e52a21f240c58890265e9c74f75e2d329f68220159abcf51aee0ef33f37e4990"
-url = "https://github.com/jdx/usage/releases/download/v6.11.0/usage-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:b8903edb0accb76576a9a454900388d629dff9a35186e653c4e5b48e622e62c0"
+url = "https://github.com/jdx/usage/releases/download/v6.11.1/usage-aarch64-unknown-linux-musl.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [tools.usage."platforms.linux-x64"]
-checksum = "sha256:2ebc293d1645a80e3b7c4d87cd2cca35d34c6582733260fe1d13e537bb3d1e2e"
-url = "https://github.com/jdx/usage/releases/download/v6.11.0/usage-x86_64-unknown-linux-gnu.tar.gz"
+checksum = "sha256:afa6cb0e76f88cc6392aeecf21bbcd869747d4eeb60ab84c98d6e6178edc359a"
+url = "https://github.com/jdx/usage/releases/download/v6.11.1/usage-x86_64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [tools.usage."platforms.linux-x64-musl"]
-checksum = "sha256:bbc05d7cf1e3f5d7f00bf97217e910898b6914283e5a0cd8c2224c4ce3c49f31"
-url = "https://github.com/jdx/usage/releases/download/v6.11.0/usage-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:7b37d1d36b310857908e508802db6c6b670555cf25cd0b990f09ee40cb11247b"
+url = "https://github.com/jdx/usage/releases/download/v6.11.1/usage-x86_64-unknown-linux-musl.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [tools.usage."platforms.macos-arm64"]
-checksum = "sha256:0277664d5a7f615ec427cfc312e175684f027bf69e43e76964f086aaf5e51d3f"
-url = "https://github.com/jdx/usage/releases/download/v6.11.0/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:e3a20b948f2665862dcbaddfc50d62ac741654e3cdd815130a6fae00b3d088ff"
+url = "https://github.com/jdx/usage/releases/download/v6.11.1/usage-universal-apple-darwin.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [tools.usage."platforms.macos-x64"]
-checksum = "sha256:0277664d5a7f615ec427cfc312e175684f027bf69e43e76964f086aaf5e51d3f"
-url = "https://github.com/jdx/usage/releases/download/v6.11.0/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:e3a20b948f2665862dcbaddfc50d62ac741654e3cdd815130a6fae00b3d088ff"
+url = "https://github.com/jdx/usage/releases/download/v6.11.1/usage-universal-apple-darwin.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [tools.usage."platforms.windows-x64"]
-checksum = "sha256:49f78fdeb1678986a89fabffc10b9e01c1dee4d3f8f001cd245af0471df9d9be"
-url = "https://github.com/jdx/usage/releases/download/v6.11.0/usage-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:783ce7539b1145f1860054352067e5da70bfac1ceeba3c9f3cb912477068f99d"
+url = "https://github.com/jdx/usage/releases/download/v6.11.1/usage-x86_64-pc-windows-msvc.zip"
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [[tools.uv]]
