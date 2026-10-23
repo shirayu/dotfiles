@@ -84,91 +84,51 @@ checksum = "sha256:c9af7484b33f1dbc1312a892fc7d5753a6d3365140a4000d49e575a2de742
 url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610501426"
 
-[[tools.duckdb]]
-version = "1.5.6"
-backend = "aqua:duckdb/duckdb"
-specifiers = ["latest"]
-
-[tools.duckdb."platforms.linux-arm64"]
-checksum = "sha256:c544e92c9b7c31fc53c2139802cabd8e2d1b2b3e3f933117f31611239c1402db"
-url = "https://github.com/duckdb/duckdb/releases/download/v1.5.6/duckdb_cli-linux-arm64.zip"
-url_api = "https://api.github.com/repos/duckdb/duckdb/releases/assets/595495292"
-
-[tools.duckdb."platforms.linux-arm64-musl"]
-checksum = "sha256:c544e92c9b7c31fc53c2139802cabd8e2d1b2b3e3f933117f31611239c1402db"
-url = "https://github.com/duckdb/duckdb/releases/download/v1.5.6/duckdb_cli-linux-arm64.zip"
-url_api = "https://api.github.com/repos/duckdb/duckdb/releases/assets/595495292"
-
-[tools.duckdb."platforms.linux-x64"]
-checksum = "sha256:6e89deac1ebbc36eed0291caf8b567b030c7b86ac35998f71854e22b3c5d5e2f"
-url = "https://github.com/duckdb/duckdb/releases/download/v1.5.6/duckdb_cli-linux-amd64.zip"
-url_api = "https://api.github.com/repos/duckdb/duckdb/releases/assets/595495137"
-
-[tools.duckdb."platforms.linux-x64-musl"]
-checksum = "sha256:6e89deac1ebbc36eed0291caf8b567b030c7b86ac35998f71854e22b3c5d5e2f"
-url = "https://github.com/duckdb/duckdb/releases/download/v1.5.6/duckdb_cli-linux-amd64.zip"
-url_api = "https://api.github.com/repos/duckdb/duckdb/releases/assets/595495137"
-
-[tools.duckdb."platforms.macos-arm64"]
-checksum = "sha256:80a80c68736bd7dea53e8b02447e9759db0c8596ea156476ba396c44f54c5810"
-url = "https://github.com/duckdb/duckdb/releases/download/v1.5.6/duckdb_cli-osx-universal.zip"
-url_api = "https://api.github.com/repos/duckdb/duckdb/releases/assets/595495619"
-
-[tools.duckdb."platforms.macos-x64"]
-checksum = "sha256:80a80c68736bd7dea53e8b02447e9759db0c8596ea156476ba396c44f54c5810"
-url = "https://github.com/duckdb/duckdb/releases/download/v1.5.6/duckdb_cli-osx-universal.zip"
-url_api = "https://api.github.com/repos/duckdb/duckdb/releases/assets/595495619"
-
-[tools.duckdb."platforms.windows-x64"]
-checksum = "sha256:798eae475d07c645ff3b914f7b0e676d06502b5412dd7552638fafed81f9e916"
-url = "https://github.com/duckdb/duckdb/releases/download/v1.5.6/duckdb_cli-windows-amd64.zip"
-url_api = "https://api.github.com/repos/duckdb/duckdb/releases/assets/595495726"
-
 [[tools.gh]]
-version = "2.102.1"
+version = "2.103.0"
 backend = "aqua:cli/cli"
 specifiers = ["latest"]
 
 [tools.gh."platforms.linux-arm64"]
-checksum = "sha256:5019b3cc6e8a03bb4d88600f8dbda2add8e6407705c159b0c63151036e77a1af"
-url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284837"
+checksum = "sha256:7f322df34e624d14f5ec0c4acb121fd6dfa14392fdbbd1066aa8e0a05ac3721e"
+url = "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/662956401"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-arm64-musl"]
-checksum = "sha256:5019b3cc6e8a03bb4d88600f8dbda2add8e6407705c159b0c63151036e77a1af"
-url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284837"
+checksum = "sha256:7f322df34e624d14f5ec0c4acb121fd6dfa14392fdbbd1066aa8e0a05ac3721e"
+url = "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/662956401"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64"]
-checksum = "sha256:77b9e297e94c50336823d0f84de7ef1be60cba704601fa0d98f129f47a94987b"
-url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284822"
+checksum = "sha256:fdd768eb70f6409f80fcfa9f3a1c0adf0fc98d827ab3ce0bed2ac22762c5d786"
+url = "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/662956379"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64-musl"]
-checksum = "sha256:77b9e297e94c50336823d0f84de7ef1be60cba704601fa0d98f129f47a94987b"
-url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284822"
+checksum = "sha256:fdd768eb70f6409f80fcfa9f3a1c0adf0fc98d827ab3ce0bed2ac22762c5d786"
+url = "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/662956379"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-arm64"]
-checksum = "sha256:08bfef98b50c553df122bb34ee8dcf415cae7d3b108891488964a0df07aa2aeb"
-url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_macOS_arm64.zip"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284918"
+checksum = "sha256:54be566e9f614bea5de8021e95b9ad33dfee3b9d2ea120c9c294c00defaa5014"
+url = "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_arm64.zip"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/662956481"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-x64"]
-checksum = "sha256:91c5fbd493274b545b03ef32a89c2a21238393c0c0b1108210967199b3230d9d"
-url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_macOS_amd64.zip"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284911"
+checksum = "sha256:64d1734941f104f996271c820daa50e96902c2618f9b4c1e63c41519517a9c6b"
+url = "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_amd64.zip"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/662956458"
 provenance = "github-attestations"
 
 [tools.gh."platforms.windows-x64"]
-checksum = "sha256:843c0dc119f014d9458aeaff96c44c16fc4b8e556c1c4c5df9bab5ba002356e9"
-url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_windows_amd64.zip"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284981"
+checksum = "sha256:80c846a5b8432672ca6373b34ce9de998c9686aaa1885c845f2e1ee81f713726"
+url = "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.zip"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/662956535"
 provenance = "github-attestations"
 
 [[tools.go]]
@@ -391,97 +351,97 @@ url = "https://github.com/peco/peco/releases/download/v0.6.0/peco_0.6.0_windows_
 url_api = "https://api.github.com/repos/peco/peco/releases/assets/361190179"
 
 [[tools.pinact]]
-version = "5.0.0"
+version = "5.0.1"
 backend = "aqua:suzuki-shunsuke/pinact"
 specifiers = ["latest"]
 
 [tools.pinact."platforms.linux-arm64"]
-checksum = "sha256:d28ca5e9ddd7950da4a808288f8a83f84fc3ca40e86bab970f3adeef33578c0b"
-url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.0/pinact_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/558638070"
+checksum = "sha256:fc1432004f378ae51d549a356195b4d2e3ee05935dbd20e3bbca66db1cdf6590"
+url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.1/pinact_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/664460182"
 provenance = "github-attestations"
 
 [tools.pinact."platforms.linux-arm64-musl"]
-checksum = "sha256:d28ca5e9ddd7950da4a808288f8a83f84fc3ca40e86bab970f3adeef33578c0b"
-url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.0/pinact_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/558638070"
+checksum = "sha256:fc1432004f378ae51d549a356195b4d2e3ee05935dbd20e3bbca66db1cdf6590"
+url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.1/pinact_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/664460182"
 provenance = "github-attestations"
 
 [tools.pinact."platforms.linux-x64"]
-checksum = "sha256:d005bbb85da80dacdc07816f24a5da723a9f6d1e9f3d3e7e73df33f9caa1358f"
-url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.0/pinact_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/558638065"
+checksum = "sha256:12500c0fff5db94a0155e2e76ed959d1dc0e899056ee168d8fb7b4840e7c04f0"
+url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.1/pinact_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/664460175"
 provenance = "github-attestations"
 
 [tools.pinact."platforms.linux-x64-musl"]
-checksum = "sha256:d005bbb85da80dacdc07816f24a5da723a9f6d1e9f3d3e7e73df33f9caa1358f"
-url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.0/pinact_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/558638065"
+checksum = "sha256:12500c0fff5db94a0155e2e76ed959d1dc0e899056ee168d8fb7b4840e7c04f0"
+url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.1/pinact_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/664460175"
 provenance = "github-attestations"
 
 [tools.pinact."platforms.macos-arm64"]
-checksum = "sha256:3437ebfc9db720e431e86fd03ed19173b88dcb80b0f177d11a892126108661b5"
-url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.0/pinact_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/558638064"
+checksum = "sha256:58390ac843b7a14414df79762e2f64051158d00549762b1c49ded3d2f1746007"
+url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.1/pinact_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/664460145"
 provenance = "github-attestations"
 
 [tools.pinact."platforms.macos-x64"]
-checksum = "sha256:da5532bd185a9d3a16a1f93774f835574e0c50bc74c2085b9917b9df3e9fbbaa"
-url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.0/pinact_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/558638050"
+checksum = "sha256:a8eb8dd4daecb7eefa660e1920ff65302714173be9c2f335a0ae77f053fd975a"
+url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.1/pinact_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/664460144"
 provenance = "github-attestations"
 
 [tools.pinact."platforms.windows-x64"]
-checksum = "sha256:df2f590f24c2bfe65a35010bffb4369ba0792c9afaf7fb324b2330895a37d19f"
-url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.0/pinact_windows_amd64.zip"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/558638100"
+checksum = "sha256:d679bfd3ecb489f3d4242e54016f57181948980bf0ca7b98c6003c8d256c27f2"
+url = "https://github.com/suzuki-shunsuke/pinact/releases/download/v5.0.1/pinact_windows_amd64.zip"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/664460186"
 provenance = "github-attestations"
 
 [[tools.pnpm]]
-version = "12.14.0"
+version = "12.15.0"
 backend = "aqua:pnpm/pnpm"
 specifiers = ["latest"]
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:cfc780b9e690549e6633e1045fb1fb6ef84e390711e2099e6ccbae91c32456ea"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.14.0/pnpm-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/643957409"
+checksum = "sha256:d7ce93a2c7d847d3a34bd3f559b60c14f578b1320c17cc352a2c5c5fdf956117"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.15.0/pnpm-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/662173352"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:511a54809bdfd28270d30011d1697f582c8130d555b4fa0e2856b1a7534c98bf"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.14.0/pnpm-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/643957416"
+checksum = "sha256:1188ef8a57bfc5786f3f739a98067242e531a4636e3f52e9e9ddc75564ea804d"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.15.0/pnpm-linux-arm64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/662173342"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:3910c3852136bed5bc1511b9137a45fd4357ed6b3970d9d08893641e9005867e"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.14.0/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/643957410"
+checksum = "sha256:55b5ed0092bd11176c1669598e231ae52e7cedac59de6efd0d415730f37d0598"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.15.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/662173360"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:d7115e2f2791d79bf9e7e448609537595bb7787de1ef5292ce91ff3d1be2629e"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.14.0/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/643957412"
+checksum = "sha256:d33802cc987dcfbe02a991473764ba25ad1b2344189e2097a2570baed66f008a"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.15.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/662173349"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:50f48e0e17508952790a3fbf58fcf14f3b82efa5f594ca04ad904e29aaf854b0"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.14.0/pnpm-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/643957413"
+checksum = "sha256:6a41a2877773e97f19832067187cc6fc82e186d8a2cf91fec4b4c1a5fbd6ef27"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.15.0/pnpm-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/662173343"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-x64"]
-checksum = "sha256:2c412e07382049b4edb04fa6da78f3d4ef7810b75853c80544dcfb7c0ed79880"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.14.0/pnpm-darwin-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/643957411"
+checksum = "sha256:2d7b336884574aee8a765bee48591212e9caf4fcf985fb3279588c1fb73fb47f"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.15.0/pnpm-darwin-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/662173347"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:6f0f38e917c8ce76ef31db528c357e2bfa354a1bcb16464e3cdec39e6530d784"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.14.0/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/643957404"
+checksum = "sha256:84cf69db1be19e95bb4e5bef329291a046f2821b390d87e00f5690809d8a2ed7"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.15.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/662173351"
 provenance = "github-attestations"
 
 [[tools.python]]
@@ -718,50 +678,50 @@ url = "https://github.com/jdx/usage/releases/download/v7.1.0/usage-x86_64-pc-win
 signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-cli.yml"
 
 [[tools.uv]]
-version = "0.13.4"
+version = "0.13.5"
 backend = "aqua:astral-sh/uv"
 specifiers = ["latest"]
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:1ae72b4718729e2ccc4f1ae2c6d1e531ca8467800e0546e9130b3886023a60ab"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/659693320"
+checksum = "sha256:4bb69cf95ed13f23713bb7bc09f241896ea0c75b7c557e615a20604b82f9c403"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335837"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:253a17cadcb659ae77a0fe3b9a2f1c14297528d480c421899e61e64d64f24e8f"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/659693337"
+checksum = "sha256:7906c79adb21c81abd559841ba76bb1d9af9d791acac7a041b2972e03ae16538"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335857"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:2b428396f12572d4429cf210ca234dd599a33b3af0958a4d5ed569d63e3f344f"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/659693663"
+checksum = "sha256:f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664336023"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:28d4385f9f9d1d1c7654d85b3855e0e2615b2f6cc13136a2edff858bbdc16ff1"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/659693713"
+checksum = "sha256:57ef9d9ccb01fb1bd998df995b0dd221b52f7d7841fbea93f2d4463bf61fb7a9"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664336027"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:e0b1d4743ce64c55d9f0f4a444afa6b81125680070ee04e853fcd0f6c1ebf8f1"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/659693291"
+checksum = "sha256:743f85035a1996ecb350659e01cd9faea9709829be09b1b4b03c73eaf3c9cd73"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335803"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:7be2dcd316122f4b3e5a0a7889f6248266c14425374e105ff7dc9779184603a6"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/659693620"
+checksum = "sha256:b0f52b0e3945b4107d89024ea38e625683011fbfc05a0d98f9fa2d6dcee28c66"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335993"
 provenance = "github-attestations"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:ccec7508a07d9933d7cb1261880633efcf1f30d6e6eddab21823f1dae6f23225"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/659693635"
+checksum = "sha256:a38b8d1902b7cfbc76b423ba1bb456f623f42064cdc72628b6075b89afd1019a"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664336006"
 provenance = "github-attestations"
 
 [[tools.zizmor]]
