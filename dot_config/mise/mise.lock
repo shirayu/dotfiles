@@ -109,6 +109,7 @@ url_api = "https://api.github.com/repos/eza-community/eza/releases/assets/471228
 
 [tools.eza."platforms.linux-x64"]
 checksum = "sha256:35c70c5c43c29108075e58b893234c67ef585f0b53a7eaf8e9e7d4eec9f339b4"
+checksum_source = "mise-versions"
 url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-gnu.tar.gz"
 url_api = "https://api.github.com/repos/eza-community/eza/releases/assets/471228887"
 
