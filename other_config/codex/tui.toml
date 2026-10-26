@@ -10,3 +10,4 @@ status_line = [
 ]
 status_line_use_colors = true
 auto_recap = false
+show_tooltips = false
