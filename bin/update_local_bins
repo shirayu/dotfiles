@@ -30,13 +30,13 @@ update_mise() {
     exists mise || return 0
     echo "Updating mise..."
     export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
-    if [[ -z "${GITHUB_TOKEN:-}" && -f "${HOME}/.config/mise/github_token" ]]; then
+    if [[ -z ${GITHUB_TOKEN:-} && -f "${HOME}/.config/mise/github_token" ]]; then
         export GITHUB_TOKEN
         GITHUB_TOKEN="$(<"${HOME}/.config/mise/github_token")"
     fi
     local lock="${HOME}/.config/mise/mise.lock"
     local backup=""
-    if [[ -f "${lock}" ]]; then
+    if [[ -f ${lock} ]]; then
         backup="${lock}.bak"
         mv -f "${lock}" "${backup}"
     fi
@@ -45,11 +45,11 @@ update_mise() {
     if mise upgrade; then
         mise reshim
         mise lock -g
-        [[ -n "${backup}" ]] && rm -f "${backup}"
+        [[ -n ${backup} ]] && rm -f "${backup}"
         return 0
     fi
     # 失敗時は lock ファイルを元に戻す
-    if [[ -n "${backup}" ]]; then
+    if [[ -n ${backup} ]]; then
         mv -f "${backup}" "${lock}"
     fi
     return 1
@@ -60,7 +60,7 @@ update_gh() {
     echo "Updating gh extensions..."
     local extensions
     extensions="$(gh extension list)" || return 1
-    if [[ "${extensions}" == *gfm-preview* ]]; then
+    if [[ ${extensions} == *gfm-preview* ]]; then
         gh extension upgrade gfm-preview
     else
         gh extension install thiagokokada/gh-gfm-preview
@@ -104,7 +104,7 @@ usage() {
 is_target() {
     local t
     for t in "${TARGETS[@]}"; do
-        [[ "$t" == "$1" ]] && return 0
+        [[ $t == "$1" ]] && return 0
     done
     return 1
 }
