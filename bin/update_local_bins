@@ -96,9 +96,10 @@ update_flatpak() {
 }
 
 usage() {
-    echo "Usage: $(basename "$0") [TARGET...]"
+    echo "Usage: $(basename "$0") [--skip TARGET]... [TARGET...]"
     echo "Targets: ${TARGETS[*]}"
     echo "  (no args = update everything)"
+    echo "  --skip TARGET  exclude TARGET (repeatable)"
 }
 
 is_target() {
@@ -109,37 +110,74 @@ is_target() {
     return 1
 }
 
+die_unknown() {
+    echo "Unknown target: $1" >&2
+    usage >&2
+    exit 1
+}
+
 # 引数解析
-for arg in "$@"; do
-    case "${arg}" in
+requested=()
+skipped=()
+while (($# > 0)); do
+    case "$1" in
         -h | --help)
             usage
             exit 0
             ;;
-        *)
-            if ! is_target "${arg}"; then
-                echo "Unknown target: ${arg}" >&2
+        --skip)
+            if (($# < 2)); then
+                echo "--skip requires a TARGET" >&2
                 usage >&2
                 exit 1
             fi
+            is_target "$2" || die_unknown "$2"
+            skipped+=("$2")
+            shift 2
+            ;;
+        *)
+            is_target "$1" || die_unknown "$1"
+            requested+=("$1")
+            shift
             ;;
     esac
 done
 
-if [[ $# -eq 0 ]]; then
-    selected=("${TARGETS[@]}")
-else
-    selected=("$@")
+if ((${#requested[@]} == 0)); then
+    requested=("${TARGETS[@]}")
 fi
 
+is_skipped() {
+    local s
+    for s in "${skipped[@]}"; do
+        [[ $s == "$1" ]] && return 0
+    done
+    return 1
+}
+
 FAILED=()
-for t in "${selected[@]}"; do
+SUMMARY=()
+for t in "${requested[@]}"; do
+    if ((${#skipped[@]} > 0)) && is_skipped "${t}"; then
+        continue
+    fi
+    start=${SECONDS}
     # サブシェルで実行し、環境変数の export を隔離する
-    if ! ("update_${t}"); then
+    if ("update_${t}"); then
+        status="ok"
+    else
+        status="FAILED"
         echo "Failed: ${t}" >&2
         FAILED+=("${t}")
     fi
+    SUMMARY+=("$(printf '%-8s %-6s %ss' "${t}" "${status}" "$((SECONDS - start))")")
 done
+
+if ((${#SUMMARY[@]} > 0)); then
+    echo
+    echo "Summary:"
+    printf '  %s\n' "${SUMMARY[@]}"
+fi
 
 if ((${#FAILED[@]} > 0)); then
     echo "Some updates failed: ${FAILED[*]}" >&2
