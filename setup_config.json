@@ -102,22 +102,22 @@
         "~/.ssh/github.pub"
     ],
     "exist_commands": [
-        "parallel",
+        "cmake",
+        "curl",
+        "fdfind",
         "git",
         "htop",
         "jq",
         "make",
-        "cmake",
         "mise",
         "nvim",
+        "parallel",
         "peco",
+        "rg",
         "rsync",
         "shellcheck",
         "unar",
         "wget",
-        "zsh",
-        "curl",
-        "fdfind",
-        "rg"
+        "zsh"
     ]
 }
