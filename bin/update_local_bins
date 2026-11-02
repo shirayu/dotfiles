@@ -2,97 +2,98 @@
 
 # MISE_USE_VERSIONS_HOST=false
 
+set -u -o pipefail
+
 trap 'echo "Interrupted."; exit 130' INT
 
 exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+# 各 update_* はサブシェルで実行されるため、export は他のターゲットに漏れない。
+# 実行順を保った対応表 (update_<target> という関数名に対応)
+TARGETS=(claude agy mise gh uv npm pnpm flatpak)
+
 update_claude() {
-    if exists claude; then
-        echo "Updating claude..."
-        claude update
-    fi
+    exists claude || return 0
+    echo "Updating claude..."
+    claude update
 }
 
 update_agy() {
-    if exists agy; then
-        echo "Updating agy..."
-        agy update
-    fi
+    exists agy || return 0
+    echo "Updating agy..."
+    agy update
 }
 
 update_mise() {
-    if exists mise; then
-        echo "Updating mise..."
-        export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
-        if [[ -z "${GITHUB_TOKEN:-}" && -f "${HOME}/.config/mise/github_token" ]]; then
-            export GITHUB_TOKEN
-            GITHUB_TOKEN="$(<"${HOME}/.config/mise/github_token")"
-        fi
-        mise cache clear
-        mise self-update -y
-        rm "${HOME}/.config/mise/mise.lock"
-        mise upgrade
+    exists mise || return 0
+    echo "Updating mise..."
+    export MISE_CONFIG_FILE="${HOME}/.config/mise/config.toml"
+    if [[ -z "${GITHUB_TOKEN:-}" && -f "${HOME}/.config/mise/github_token" ]]; then
+        export GITHUB_TOKEN
+        GITHUB_TOKEN="$(<"${HOME}/.config/mise/github_token")"
+    fi
+    local lock="${HOME}/.config/mise/mise.lock"
+    local backup=""
+    if [[ -f "${lock}" ]]; then
+        backup="${lock}.bak"
+        mv -f "${lock}" "${backup}"
+    fi
+    mise cache clear || true
+    mise self-update -y || true
+    if mise upgrade; then
         mise reshim
         mise lock -g
+        [[ -n "${backup}" ]] && rm -f "${backup}"
+        return 0
     fi
+    # 失敗時は lock ファイルを元に戻す
+    if [[ -n "${backup}" ]]; then
+        mv -f "${backup}" "${lock}"
+    fi
+    return 1
 }
 
-# update_pip() {
-#     if exists pip; then
-#         echo "Updating pip packages..."
-#         GLOBAL_PYTHON=$(MISE_CONFIG_FILE=~/.config/mise/config.toml mise which python3)
-#         $GLOBAL_PYTHON -m pip list -o --format json \
-#             | $GLOBAL_PYTHON -c 'import sys, json; [print(item["name"]) for item in json.loads(sys.stdin.read())]' \
-#             | xargs --no-run-if-empty -t "${GLOBAL_PYTHON}" -m pip install -U
-#     fi
-# }
-
 update_gh() {
-    if exists gh; then
-        echo "Updating gh extensions..."
-        if gh extension list | grep -q "gfm-preview"; then
-            gh extension upgrade gfm-preview
-        else
-            gh extension install thiagokokada/gh-gfm-preview
-        fi
+    exists gh || return 0
+    echo "Updating gh extensions..."
+    local extensions
+    extensions="$(gh extension list)" || return 1
+    if [[ "${extensions}" == *gfm-preview* ]]; then
+        gh extension upgrade gfm-preview
+    else
+        gh extension install thiagokokada/gh-gfm-preview
     fi
 }
 
 update_uv() {
-    if exists uv; then
-        echo "Updating uv tools..."
-        export UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-600}
-        uv tool upgrade --all
-    fi
+    exists uv || return 0
+    echo "Updating uv tools..."
+    export UV_HTTP_TIMEOUT=${UV_HTTP_TIMEOUT:-600}
+    uv tool upgrade --all
 }
 
 update_npm() {
-    if exists npm; then
-        echo "Updating npm global packages..."
-        npm -g upgrade
-        npm -g uninstall corepack || true
-    fi
+    exists npm || return 0
+    echo "Updating npm global packages..."
+    npm -g upgrade
+    # corepack は mise/pnpm 側で管理するため、npm 同梱のものは毎回削除する
+    npm -g uninstall corepack || true
 }
 
 update_pnpm() {
-    if exists pnpm; then
-        echo "Updating pnpm global packages..."
-        pnpm -g up --latest
-    fi
+    exists pnpm || return 0
+    echo "Updating pnpm global packages..."
+    pnpm -g up --latest
 }
 
 update_flatpak() {
-    if exists flatpak; then
-        echo "Updating flatpak..."
-        flatpak update -y
-        flatpak uninstall --unused -y
-    fi
+    exists flatpak || return 0
+    echo "Updating flatpak..."
+    flatpak update -y
+    flatpak uninstall --unused -y
 }
-
-# 実行順を保った対応表
-TARGETS=(claude agy mise gh uv npm pnpm flatpak)
 
 usage() {
     echo "Usage: $(basename "$0") [TARGET...]"
@@ -100,36 +101,49 @@ usage() {
     echo "  (no args = update everything)"
 }
 
-run_target() {
-    case "$1" in
-        claude) update_claude ;;
-        agy) update_agy ;;
-        mise) update_mise ;;
-        gh) update_gh ;;
-        uv) update_uv ;;
-        npm) update_npm ;;
-        pnpm) update_pnpm ;;
-        flatpak) update_flatpak ;;
+is_target() {
+    local t
+    for t in "${TARGETS[@]}"; do
+        [[ "$t" == "$1" ]] && return 0
+    done
+    return 1
+}
+
+# 引数解析
+for arg in "$@"; do
+    case "${arg}" in
         -h | --help)
             usage
             exit 0
             ;;
         *)
-            echo "Unknown target: $1" >&2
-            usage >&2
-            exit 1
+            if ! is_target "${arg}"; then
+                echo "Unknown target: ${arg}" >&2
+                usage >&2
+                exit 1
+            fi
             ;;
     esac
-}
+done
 
 if [[ $# -eq 0 ]]; then
-    for t in "${TARGETS[@]}"; do
-        run_target "$t"
-    done
+    selected=("${TARGETS[@]}")
 else
-    for t in "$@"; do
-        run_target "$t"
-    done
+    selected=("$@")
+fi
+
+FAILED=()
+for t in "${selected[@]}"; do
+    # サブシェルで実行し、環境変数の export を隔離する
+    if ! ("update_${t}"); then
+        echo "Failed: ${t}" >&2
+        FAILED+=("${t}")
+    fi
+done
+
+if ((${#FAILED[@]} > 0)); then
+    echo "Some updates failed: ${FAILED[*]}" >&2
+    exit 1
 fi
 
 echo "All updates completed!"
