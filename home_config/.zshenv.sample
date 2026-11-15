@@ -36,7 +36,7 @@ function git() {
 
 alias codex="codex --dangerously-bypass-approvals-and-sandbox -c check_for_update_on_startup=false"
 alias copilot="copilot --allow-all-tools"
-alias claude="claude --dangerously-skip-permissions"
+alias claude="CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1 claude --dangerously-skip-permissions"
 alias agy="agy --dangerously-skip-permissions"
 
 # Qwen Cloud
