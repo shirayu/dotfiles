@@ -6,3 +6,4 @@ dot_vim
 .tmux/original.conf
 
 __pycache__
+dot_config/fontconfig/conf.d/
