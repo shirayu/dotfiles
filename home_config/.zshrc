@@ -28,8 +28,6 @@ if [[ "${ZSH_SETTING_PATH}" == '' ]]; then
     source "${ZSH_SETTING_PATH}/zshrc.envvar"
     source "$ZSH_SETTING_PATH/zshrc.gcp"
 fi
-source "${ZSH_SETTING_PATH}/zshrc.mise"
-
 # highlighting complement candidates
 autoload colors
 export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:'
@@ -52,6 +50,8 @@ if [[ -z "$HERDR_ENV" ]]; then
     source "$ZSH_SETTING_PATH/zshrc.tmux"
 fi
 source "$ZSH_SETTING_PATH/zshrc.herdr"
+source "$ZSH_SETTING_PATH/zshrc.mise"
+
 if [[ -z "$TMUX" && -z "$HERDR_ENV" ]]; then
     if command -v herdr >/dev/null 2>&1; then
         herdr

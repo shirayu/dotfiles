@@ -23,3 +23,4 @@ zizmor = "latest"
 [settings]
 minimum_release_age = "24h"
 lockfile = true
+activate_aggressive = true

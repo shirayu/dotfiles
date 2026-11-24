@@ -1,8 +1,7 @@
 # https://mise.jdx.dev/getting-started.html
 
-if [ -e $HOME/.local/bin/mise ]; then
-    eval "$($HOME/.local/bin/mise activate zsh --shims)"
-    eval "$($HOME/.local/bin/mise activate zsh)"
+if [ -e "$HOME/.local/bin/mise" ]; then
+    eval "$("$HOME/.local/bin/mise" activate zsh)"
 fi
 
 type "mise" >/dev/null && eval "$(mise completion zsh)"
