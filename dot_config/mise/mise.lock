@@ -50,46 +50,46 @@ url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/3849249
 provenance = "github-attestations"
 
 [[tools.delta]]
-version = "0.21.2"
+version = "0.22.0"
 backend = "aqua:dandavison/delta"
 specifiers = ["latest"]
 unsupported_platforms = ["macos-x64"]
 
 [tools.delta."platforms.linux-arm64"]
-checksum = "sha256:36dca3ddb293d2fa635aa2bf9c53c0ba2d38dcd749290d81c6685974cf3799c4"
+checksum = "sha256:9f462d3ffb74d188964f2f0c408619f1d63f60425f87f3dce83bab0db1c71313"
 checksum_source = "mise-versions"
-url = "https://github.com/dandavison/delta/releases/download/0.21.2/delta-0.21.2-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/768826544"
+url = "https://github.com/dandavison/delta/releases/download/0.22.0/delta-0.22.0-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/781464908"
 
 [tools.delta."platforms.linux-arm64-musl"]
-checksum = "sha256:36dca3ddb293d2fa635aa2bf9c53c0ba2d38dcd749290d81c6685974cf3799c4"
+checksum = "sha256:9f462d3ffb74d188964f2f0c408619f1d63f60425f87f3dce83bab0db1c71313"
 checksum_source = "mise-versions"
-url = "https://github.com/dandavison/delta/releases/download/0.21.2/delta-0.21.2-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/768826544"
+url = "https://github.com/dandavison/delta/releases/download/0.22.0/delta-0.22.0-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/781464908"
 
 [tools.delta."platforms.linux-x64"]
-checksum = "sha256:5d41046c4ada17e7d080e1e5dbbd46544146bb5597e2ab56881a8c594272cd06"
+checksum = "sha256:10d20fd7b7e0350e7996ff191a68bfd52093a2361c72b08f6fa10b31dd6782ce"
 checksum_source = "mise-versions"
-url = "https://github.com/dandavison/delta/releases/download/0.21.2/delta-0.21.2-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/768821396"
+url = "https://github.com/dandavison/delta/releases/download/0.22.0/delta-0.22.0-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/781463517"
 
 [tools.delta."platforms.linux-x64-musl"]
-checksum = "sha256:d4c55c9b9991c308cad84412e8a8afdc990779e4dd021f6ebb277a4249719b9f"
+checksum = "sha256:04bc8cde7e73e8603ce75fe6054453f316ca47263aa7d5832748ab442f5ad051"
 checksum_source = "mise-versions"
-url = "https://github.com/dandavison/delta/releases/download/0.21.2/delta-0.21.2-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/768825678"
+url = "https://github.com/dandavison/delta/releases/download/0.22.0/delta-0.22.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/781461863"
 
 [tools.delta."platforms.macos-arm64"]
-checksum = "sha256:ac78b8953c5087852437bfa0abfcc7908db1f7a7b7ab0e39e114a9454bb335a4"
+checksum = "sha256:1baa389d6de21e41f6de8a328ed2e19a4fdef6112641420bf591ead50299cab5"
 checksum_source = "mise-versions"
-url = "https://github.com/dandavison/delta/releases/download/0.21.2/delta-0.21.2-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/768827689"
+url = "https://github.com/dandavison/delta/releases/download/0.22.0/delta-0.22.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/781465750"
 
 [tools.delta."platforms.windows-x64"]
-checksum = "sha256:494af2013670f0304320d5e3ab5496274e5dd95cb1ce442181e3ce677f56af3d"
+checksum = "sha256:c9e1eb86cceaa4713c47bdeb4ce2476b78ac7f1082dac8b9cb66cad508cbdd5c"
 checksum_source = "mise-versions"
-url = "https://github.com/dandavison/delta/releases/download/0.21.2/delta-0.21.2-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/768829087"
+url = "https://github.com/dandavison/delta/releases/download/0.22.0/delta-0.22.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/781464813"
 
 [[tools.eza]]
 version = "0.23.5"
@@ -461,50 +461,50 @@ url_api = "https://api.github.com/repos/suzuki-shunsuke/pinact/releases/assets/6
 provenance = "github-attestations"
 
 [[tools.pnpm]]
-version = "12.21.0"
+version = "12.23.0"
 backend = "aqua:pnpm/pnpm"
 specifiers = ["latest"]
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:6c5913a48c93b3a556b71c3bd9bf12c6bf9fbfbbbd2dcbd1d52a85c539751b9e"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.21.0/pnpm-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/744357257"
+checksum = "sha256:dd03f7616625ff8f13d952f641f0864a2300d73d0a751a682737615bd9f9a7a2"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.23.0/pnpm-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/779077152"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:4faedaaa333b44d940ce5e38c223e829124affdbe5a6d3f694a69dd979a5a8d8"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.21.0/pnpm-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/744357263"
+checksum = "sha256:9b250672fd320ecd349510dc1ec60c3f1f21216b2b5dae637c2e228bf4f8fdd5"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.23.0/pnpm-linux-arm64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/779077162"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:84c4773bcf4a217f4083cd7b2a91e4cee6103cf42426c1282ef37d308f55a410"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.21.0/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/744357264"
+checksum = "sha256:b515e29f2ac1adc0fbe63173414a6682827baff24f17e7ad3476821bdef236ac"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.23.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/779077165"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:6dbcd9ea8ed37b5acbe279159ad0ed3a4ac614f5d7ae62d5ba51d32a85a589d7"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.21.0/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/744357269"
+checksum = "sha256:bd5ccafed63753322371d24b6676fe9a773ef5f9961d22ea225c1b287be28d57"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.23.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/779077157"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:5c4d73018e00dd602531ce714625594fb693cbe110e6719df2b043b0ae62ab1a"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.21.0/pnpm-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/744357270"
+checksum = "sha256:52bb314bf0d48928fc15126ccce42aa199275e29018bef112a04ae8acdcaaf14"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.23.0/pnpm-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/779077158"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-x64"]
-checksum = "sha256:415c05ae4262c89b8f24ca58c693be5d969856ae909c086aa06996951fca30ea"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.21.0/pnpm-darwin-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/744357251"
+checksum = "sha256:9655877c63f33bbb64508871e443fc05a5e4a87641c1becd83a45717a4b15d90"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.23.0/pnpm-darwin-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/779077167"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:4fb64bb37e46c788309e0fd4ea93beb512546fdc7348121194fb704fbb72c09c"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.21.0/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/744357265"
+checksum = "sha256:1a954bdc1b15ff036294279391d01a09407b7d46ff972a59d81f23becce96c1c"
+url = "https://github.com/pnpm/pnpm/releases/download/v12.23.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/779077146"
 provenance = "github-attestations"
 
 [[tools.python]]
@@ -513,38 +513,38 @@ backend = "core:python"
 specifiers = ["3.14.10"]
 
 [tools.python."platforms.linux-arm64"]
-checksum = "sha256:38fd50f07170adc29d481913d1c30b17ecb538fbe290315fe1f83d84fdd5b694"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:f1641401210144ca2eeb2774ee531f8bf903fd7f05d198b7feed62b40cbf4ba8"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261123/cpython-3.14.10+20261123-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-arm64-musl"]
-checksum = "sha256:75c04e5fa8105d95f8c84cca05a32b122d000dbbeb4cb4a81a1da5009636a42d"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-aarch64-unknown-linux-musl-install_only_stripped.tar.gz"
+checksum = "sha256:ca206ae761d3b1aed833763a9fccf59f9fc0131fae1e92193d9345f75df7dcd2"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261123/cpython-3.14.10+20261123-aarch64-unknown-linux-musl-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64"]
-checksum = "sha256:c2ff2e97422f5d3896a16e0317fd212ba977bbf2688d93a6f7a03d817506bd30"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+checksum = "sha256:92102b15f5149d124b5b4b2f00f1ff2f827cf1a99dc1a22447ad52861bd80ace"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261123/cpython-3.14.10+20261123-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-musl"]
-checksum = "sha256:eff469445ef67410c1bea2370c9d3032dcacb639e9711c891d92b846a7dc5ec3"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
+checksum = "sha256:803699c1a0556dfdb3253c3acef9a55b6855125eb43f8cc0950ccae221ec9b9f"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261123/cpython-3.14.10+20261123-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.macos-arm64"]
-checksum = "sha256:f15ec3d15460dd66c2eb88639b152cd9040e7d1ece11e38bf89e8f53f0171e02"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-aarch64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:f4b4683e628b86490baccd466d9fb9d4f1e73d57c96690634b6a1c0e91f3c5f7"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261123/cpython-3.14.10+20261123-aarch64-apple-darwin-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.macos-x64"]
-checksum = "sha256:85f8e54798e8e6aa58d2253f013d815c5616343cc0d15cbea882fca78bdfeae2"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-x86_64-apple-darwin-install_only_stripped.tar.gz"
+checksum = "sha256:6441b7990a38e4050149da626ce263766bd11a6017779f45382820bbe91cb7b0"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261123/cpython-3.14.10+20261123-x86_64-apple-darwin-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [tools.python."platforms.windows-x64"]
-checksum = "sha256:32b6cf90a03e2bc15fda8d2ab7ff78c4870f138887d612932650ce764efaab8f"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+checksum = "sha256:a0fb3d44b5c890c45679b398a685bd4a9e885d6a6100d9565de17545d5ef985c"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261123/cpython-3.14.10+20261123-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [[tools.shfmt]]
@@ -823,48 +823,48 @@ url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/758513940"
 provenance = "github-attestations"
 
 [[tools.zizmor]]
-version = "1.32.0"
+version = "1.33.1"
 backend = "aqua:zizmorcore/zizmor"
 specifiers = ["latest"]
 
 [tools.zizmor."platforms.linux-arm64"]
-checksum = "sha256:cb152b207f815116d7fa1c1ee4614f61578803351395052908095e79adfd9fd0"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541931"
+checksum = "sha256:aa487c792a7cbbe86e4f8dccd3b66de33b3b51813c090aaa0842d7ea08a3fc35"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/780655950"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.linux-arm64-musl"]
-checksum = "sha256:cb152b207f815116d7fa1c1ee4614f61578803351395052908095e79adfd9fd0"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541931"
+checksum = "sha256:aa487c792a7cbbe86e4f8dccd3b66de33b3b51813c090aaa0842d7ea08a3fc35"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/780655950"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.linux-x64"]
-checksum = "sha256:bb110cc765eca9cd7efb2e284a956be5974c60027b0970f16397d86208a9957b"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541932"
+checksum = "sha256:3e6a301c7a820a2501915f5a9de8c0486da82bdec7965f068477538a98743d43"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/780655958"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.linux-x64-musl"]
-checksum = "sha256:bb110cc765eca9cd7efb2e284a956be5974c60027b0970f16397d86208a9957b"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541932"
+checksum = "sha256:3e6a301c7a820a2501915f5a9de8c0486da82bdec7965f068477538a98743d43"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/780655958"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.macos-arm64"]
-checksum = "sha256:6efed18c4539a663fd3c851a2be9533fd8456c4e646d9416206da059154a0d3c"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541933"
+checksum = "sha256:68516d45723aac36e9c87c47d56e8418009fcb919c6ceb44514d85b9d0c1c011"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/780655957"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.macos-x64"]
-checksum = "sha256:6983143c719ada6845a69cc4dd2bacc215f971662fecd8bbd2678388e5ce5969"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541930"
+checksum = "sha256:8b609d38243c6dd6ddd29bf93d02d886eb507383fe4735b1cde73e66e4de4f29"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/780655956"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.windows-x64"]
-checksum = "sha256:d284a16e09d9df4ce2c000357e7b59bd531be093bea5718a1ce225b449b59d49"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541929"
+checksum = "sha256:f02ebeedf651da468b4de19d31f0609050af74e11be41dc46d82e355cf44f68b"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/780655954"
 provenance = "github-attestations"
